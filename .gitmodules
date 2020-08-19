@@ -1,0 +1,9 @@
+[submodule "dependencies/linux-sgx-driver"]
+	path = dependencies/linux-sgx-driver
+	url = https://github.com/intel/linux-sgx-driver/
+[submodule "dependencies/sgx-sdk-2.8_patched"]
+	path = dependencies/sgx-sdk-2.8_patched
+	url = https://github.com/intel/linux-sgx
+[submodule "dependencies/sgx-sdk-2.7.1_vulnerable"]
+	path = dependencies/sgx-sdk-2.7.1_vulnerable
+	url = https://github.com/intel/linux-sgx
