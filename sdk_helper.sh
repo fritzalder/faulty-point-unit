@@ -184,6 +184,17 @@ function install_common(){
     # Compile the fpu_lib library
     make -C lib
 
+    # ----------------------------------------------------------------------
+    echo "[ installing prerequisites ]"
+    sudo apt-get -y install build-essential ocaml ocamlbuild automake autoconf libtool wget python libssl-dev git cmake perl
+    sudo apt-get -y install libssl-dev libcurl4-openssl-dev protobuf-compiler libprotobuf-dev debhelper cmake reprepro unzip
+
+    # Boost program options for MNist example
+    sudo apt-get -y install libboost-dev
+    # tqdm for Python evaluation scripts
+    sudo pip3 install tqdm
+
+
 }
 
 function install_driver(){
@@ -224,16 +235,6 @@ function install_psw(){
 }
 
 function install_sdks(){
-    # ----------------------------------------------------------------------
-    echo "[ installing prerequisites ]"
-    sudo apt-get -y install build-essential ocaml ocamlbuild automake autoconf libtool wget python libssl-dev git cmake perl
-    sudo apt-get -y install libssl-dev libcurl4-openssl-dev protobuf-compiler libprotobuf-dev debhelper cmake reprepro unzip
-
-    # Boost program options for MNist example
-    sudo apt-get -y install libboost-dev
-    # tqdm for Python evaluation scripts
-    sudo pip3 install tqdm
-
     # ----------------------------------------------------------------------
     # Install patched SDK system wide
     echo "[ building patched SDK version 2.8 ]"
