@@ -1,0 +1,5 @@
+# Converting MNist to JSON
+
+In the paper, we use MNist images from the famous MNist dataset [here](http://yann.lecun.com/exdb/mnist/). To generate JSON from this dataset, we use a modified version of https://github.com/lorenmh/mnist_handwritten_json with adjustments to allow to Limit the images in the JSON file (as SGX has strict memory limitations) and to crop the images to the center to adhere to Convnet.JS neural network implementation.
+
+**Note**, that we provide a JSON file with the first 100 images in the parent folder under the name `mnist_handwritten_test_first100.json` and only provide this script for users who want to reproduce the process of converting images from the MNist dataset to JSON. Users who wish to use the provided script will need to download the MNist dataset themselves, unpack it, potentially modify the filenames in the last line of the script, and then run the script. Since the full data set can easily reach tens of gigabytes in a compiled JSON file, we suggest to use the provided file with only the first 100 entries of the test set.

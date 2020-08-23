@@ -1,0 +1,15 @@
+01_table1_basic-poc/inc
+
+*.o
+*.so
+*.a
+
+*_t.c
+*_t.h
+*_u.c
+*_u.h
+
+dependencies/sdk_2.7.1._installation/*
+dependencies/sgx-sdk-2.7.1_vulnerable/*
+dependencies/sgx-sdk-2.8_patched/*
+dependencies/linux-sgx-driver/*

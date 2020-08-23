@@ -1,0 +1,14 @@
+enclave
+{
+	trusted 
+	{
+		public uint64_t ecall_getmxcsr( void );
+		public uint64_t ecall_getfcw( void );
+		public void ecall_acosf([out] long double* rv, int a );
+		public void ecall_mul([out] long double* rv);
+	};
+
+	untrusted {
+	};
+};
+

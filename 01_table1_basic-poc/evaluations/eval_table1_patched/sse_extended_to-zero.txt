@@ -1,0 +1,22 @@
+Faulty Point Library: Setting FCW and MXCSR registers...
+Faulty Point Library: Setting x87 precision to 3 due to FPU_PRECISION set to EXTENDED..
+Set CW Precision to 3. 
+Faulty Point Library: Setting x87 and SSE Rounding mode to 3 due to FPU_ROUND set to TO_ZERO..
+Set CW Rounding mode to 3. 
+Set SSE Rounding mode to 3. 
+Faulty Point Library: done.
+Faulty Point Library: Setting FCW and MXCSR registers...
+Faulty Point Library: Setting x87 precision to 3 due to FPU_PRECISION set to EXTENDED..
+Set CW Precision to 3. 
+Faulty Point Library: Setting x87 and SSE Rounding mode to 3 due to FPU_ROUND set to TO_ZERO..
+Set CW Rounding mode to 3. 
+Set SSE Rounding mode to 3. 
+Faulty Point Library: done.
+Faulty Point Library: Setting FCW and MXCSR registers...
+Faulty Point Library: Setting x87 precision to 3 due to FPU_PRECISION set to EXTENDED..
+Set CW Precision to 3. 
+Faulty Point Library: Setting x87 and SSE Rounding mode to 3 due to FPU_ROUND set to TO_ZERO..
+Set CW Rounding mode to 3. 
+Set SSE Rounding mode to 3. 
+Faulty Point Library: done.
+3.14159265358979323851280896 	7.14000000000000011567136138 

@@ -1,0 +1,1848 @@
+runcpu v5825 started at 2020-06-11 21:30:21 on "spec-playground"
+runcpu is: /home/ubuntu/spec/spec-2017/bin/harness/runcpu
+runcpu: runcpu --config=attack-fpus-sse-enabled --size=ref --copies=1 --noreportable --iterations=1 --threads=4 fprate
+toolset: linux-x86_64
+
+Locating benchmarks...found 47 benchmarks in 53 benchsets.
+Reading config file '/home/ubuntu/spec/spec-2017/config/attack-fpus-sse-enabled.cfg'
+
+1 configuration selected:
+
+ Action    Run Mode   Workload     Report Type     Benchmarks
+--------   --------   --------   ---------------   ----------------------------
+validate   rate       refrate    SPECrate2017_fp   fprate                      
+-------------------------------------------------------------------------------
+
+Setting up environment for running fprate...
+Starting runcpu for fprate...
+Running "specperl /home/ubuntu/spec/spec-2017/bin/sysinfo" to gather system information.
+sysinfo: r5797 of 2017-06-14 (96c45e4568ad54c135fd618bcc091c0f)
+sysinfo: Getting system information for Linux...
+sysinfo: ...getting CPU info
+sysinfo: ...getting info from numactl
+sysinfo: ...getting memory info
+sysinfo: ...getting OS info
+sysinfo: ...getting disk info
+sysinfo: ...trying to get DIMM info from dmidecode
+Read 116 info lines from the sysinfo program.
+Retrieving flags file (/home/ubuntu/spec/spec-2017/config/flags/gcc.xml)...
+Verbosity = 5
+Action    = validate
+Tune      = base
+Label     = attack-library-sse-enabled-m64
+Size      = refrate
+benchmarks= 503.bwaves_r,507.cactuBSSN_r,508.namd_r,510.parest_r,511.povray_r,519.lbm_r,521.wrf_r,526.blender_r,527.cam4_r,538.imagick_r,544.nab_r,549.fotonik3d_r,554.roms_r,997.specrand_fr
+outputs   = txt,html,cfg,pdf,csv
+username  = ubuntu
+Environment settings:
+LD_LIBRARY_PATH = "%{gcc_dir}/lib64/:%{gcc_dir}/lib/:/lib64"
+
+Benchmarks selected: 503.bwaves_r, 507.cactuBSSN_r, 508.namd_r, 510.parest_r, 511.povray_r, 519.lbm_r, 521.wrf_r, 526.blender_r, 527.cam4_r, 538.imagick_r, 544.nab_r, 549.fotonik3d_r, 554.roms_r, 997.specrand_fr
+Compiling Binaries
+------------------------------------------------------------------------
+FPP: "specpp -DSPEC -DNDEBUG -w -DSPEC_AUTO_SUPPRESS_OPENMP -DSPEC_LP64 <source> -o <source>.fppized.f9x"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FPPFLAGS="-w -DSPEC_AUTO_SUPPRESS_OPENMP"
+O: OPTIMIZE=""
+O: EXTRA_OPTIMIZE=""
+O: FPPOPTIMIZE=""
+O: EXTRA_FPPOPTIMIZE=""
+O: FOPTIMIZE=""
+O: EXTRA_FOPTIMIZE=""
+P: PORTABILITY=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: FPORTABILITY=""
+P: EXTRA_FPORTABILITY=""
+COMP: "/usr/bin/gfortran           -m64 -fgnu89-inline -c -o options.o -g -O3 -march=native -fno-unsafe-math-optimizations -fno-tree-loop-vectorize <source>"
+C: FC="/usr/bin/gfortran           -m64 -fgnu89-inline"
+C: FOBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS=""
+P: BENCH_FFLAGS=""
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: FOPTIMIZE=""
+P: PORTABILITY=""
+P: FPORTABILITY=""
+O: EXTRA_FFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_FOPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_FPORTABILITY=""
+LINK: "/usr/bin/gfortran           -m64 -fgnu89-inline      -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize          <objects> -Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive           -o options  "
+C: LD="/usr/bin/gfortran           -m64 -fgnu89-inline"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: LIBS="-Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive"
+C: LDOUT="-o options"
+ FC_VERSION_OPTION:
+Using built-in specs.
+COLLECT_GCC=/usr/bin/gfortran
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+  Up to date 503.bwaves_r base attack-library-sse-enabled-m64
+------------------------------------------------------------------------
+COMP: "/usr/bin/g++                -m64 -fgnu89-inline -c -o options.o -DSPEC -DNDEBUG -DSPEC_AUTO_SUPPRESS_OPENMP -Iinclude -DCCODE -DCCTK_DISABLE_RESTRICT=1 -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize         -DSPEC_LP64  <source>"
+C: CXXC="/usr/bin/g++                -m64 -fgnu89-inline"
+C: CXXOBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-DSPEC_AUTO_SUPPRESS_OPENMP"
+P: BENCH_CXXFLAGS="-Iinclude -DCCODE -DCCTK_DISABLE_RESTRICT=1"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: CXXOPTIMIZE=""
+P: PORTABILITY=""
+P: CXXPORTABILITY=""
+O: EXTRA_CXXFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_CXXOPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_CXXPORTABILITY=""
+COMP: "/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline -c -o options.o -DSPEC -DNDEBUG -DSPEC_AUTO_SUPPRESS_OPENMP -Iinclude -DCCODE -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize               -DSPEC_LP64  <source>"
+C: CC="/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline"
+C: COBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-DSPEC_AUTO_SUPPRESS_OPENMP"
+P: BENCH_CFLAGS="-Iinclude -DCCODE"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: COPTIMIZE=""
+P: PORTABILITY=""
+P: CPORTABILITY=""
+O: EXTRA_CFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_COPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_CPORTABILITY=""
+COMP: "/usr/bin/gfortran           -m64 -fgnu89-inline -c -o options.o -Iinclude -g -O3 -march=native -fno-unsafe-math-optimizations -fno-tree-loop-vectorize <source>"
+C: FC="/usr/bin/gfortran           -m64 -fgnu89-inline"
+C: FOBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-DSPEC_AUTO_SUPPRESS_OPENMP"
+P: BENCH_FFLAGS="-Iinclude -DFCODE"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: FOPTIMIZE=""
+P: PORTABILITY=""
+P: FPORTABILITY=""
+O: EXTRA_FFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_FOPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_FPORTABILITY=""
+LINK: "/usr/bin/g++                -m64 -fgnu89-inline      -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize          <objects> -Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive           -o options  "
+C: LD="/usr/bin/g++                -m64 -fgnu89-inline"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: LIBS="-Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive"
+C: LDOUT="-o options"
+ CXXC_VERSION_OPTION:
+ CC_VERSION_OPTION:
+ FC_VERSION_OPTION:
+Using built-in specs.
+COLLECT_GCC=/usr/bin/g++
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+Using built-in specs.
+COLLECT_GCC=/usr/bin/gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+Using built-in specs.
+COLLECT_GCC=/usr/bin/gfortran
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+  Up to date 507.cactuBSSN_r base attack-library-sse-enabled-m64
+------------------------------------------------------------------------
+COMP: "/usr/bin/g++                -m64 -fgnu89-inline -c -o options.o -DSPEC -DNDEBUG  -DNAMD_DISABLE_SSE -DSPEC_AUTO_SUPPRESS_OPENMP -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize         -DSPEC_LP64  <source>"
+C: CXXC="/usr/bin/g++                -m64 -fgnu89-inline"
+C: CXXOBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS=""
+P: BENCH_CXXFLAGS="-DNAMD_DISABLE_SSE -DSPEC_AUTO_SUPPRESS_OPENMP"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: CXXOPTIMIZE=""
+P: PORTABILITY=""
+P: CXXPORTABILITY=""
+O: EXTRA_CXXFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_CXXOPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_CXXPORTABILITY=""
+LINK: "/usr/bin/g++                -m64 -fgnu89-inline      -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize          <objects> -Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive           -o options  "
+C: LD="/usr/bin/g++                -m64 -fgnu89-inline"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: LIBS="-Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive"
+C: LDOUT="-o options"
+ CXXC_VERSION_OPTION:
+Using built-in specs.
+COLLECT_GCC=/usr/bin/g++
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+  Up to date 508.namd_r base attack-library-sse-enabled-m64
+------------------------------------------------------------------------
+COMP: "/usr/bin/g++                -m64 -fgnu89-inline -c -o options.o -DSPEC -DNDEBUG -Iinclude -I. -DSPEC_AUTO_SUPPRESS_OPENMP  -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize         -DSPEC_LP64  <source>"
+C: CXXC="/usr/bin/g++                -m64 -fgnu89-inline"
+C: CXXOBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-Iinclude -I. -DSPEC_AUTO_SUPPRESS_OPENMP"
+P: BENCH_CXXFLAGS=""
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: CXXOPTIMIZE=""
+P: PORTABILITY=""
+P: CXXPORTABILITY=""
+O: EXTRA_CXXFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_CXXOPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_CXXPORTABILITY=""
+LINK: "/usr/bin/g++                -m64 -fgnu89-inline      -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize          <objects> -Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive           -o options  "
+C: LD="/usr/bin/g++                -m64 -fgnu89-inline"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: LIBS="-Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive"
+C: LDOUT="-o options"
+ CXXC_VERSION_OPTION:
+Using built-in specs.
+COLLECT_GCC=/usr/bin/g++
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+  Up to date 510.parest_r base attack-library-sse-enabled-m64
+------------------------------------------------------------------------
+COMP: "/usr/bin/g++                -m64 -fgnu89-inline -c -o options.o -DSPEC -DNDEBUG -Ifrontend -Ibase -I. -Ispec_qsort -DSPEC_AUTO_SUPPRESS_OPENMP  -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize         -DSPEC_LP64  <source>"
+C: CXXC="/usr/bin/g++                -m64 -fgnu89-inline"
+C: CXXOBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-Ifrontend -Ibase -I. -Ispec_qsort -DSPEC_AUTO_SUPPRESS_OPENMP"
+P: BENCH_CXXFLAGS=""
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: CXXOPTIMIZE=""
+P: PORTABILITY=""
+P: CXXPORTABILITY=""
+O: EXTRA_CXXFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_CXXOPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_CXXPORTABILITY=""
+COMP: "/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline -c -o options.o -DSPEC -DNDEBUG -Ifrontend -Ibase -I. -Ispec_qsort -DSPEC_AUTO_SUPPRESS_OPENMP  -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize               -DSPEC_LP64  <source>"
+C: CC="/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline"
+C: COBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-Ifrontend -Ibase -I. -Ispec_qsort -DSPEC_AUTO_SUPPRESS_OPENMP"
+P: BENCH_CFLAGS=""
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: COPTIMIZE=""
+P: PORTABILITY=""
+P: CPORTABILITY=""
+O: EXTRA_CFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_COPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_CPORTABILITY=""
+LINK: "/usr/bin/g++                -m64 -fgnu89-inline      -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize          <objects> -Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive           -o options  "
+C: LD="/usr/bin/g++                -m64 -fgnu89-inline"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: LIBS="-Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive"
+C: LDOUT="-o options"
+ CXXC_VERSION_OPTION:
+ CC_VERSION_OPTION:
+Using built-in specs.
+COLLECT_GCC=/usr/bin/g++
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+Using built-in specs.
+COLLECT_GCC=/usr/bin/gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+COMP: "/usr/bin/g++                -m64 -fgnu89-inline -c -o options.o -DSPEC -DNDEBUG -Ifrontend -Ibase -I. -Ispec_qsort -DSPEC_AUTO_SUPPRESS_OPENMP  -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize         -DSPEC_LP64  <source>"
+C: CXXC="/usr/bin/g++                -m64 -fgnu89-inline"
+C: CXXOBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-Ifrontend -Ibase -I. -Ispec_qsort -DSPEC_AUTO_SUPPRESS_OPENMP"
+P: BENCH_CXXFLAGS=""
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: CXXOPTIMIZE=""
+P: PORTABILITY=""
+P: CXXPORTABILITY=""
+O: EXTRA_CXXFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_CXXOPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_CXXPORTABILITY=""
+COMP: "/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline -c -o options.o -DSPEC -DNDEBUG -Ifrontend -Ibase -I. -Ispec_qsort -DSPEC_AUTO_SUPPRESS_OPENMP  -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize               -DSPEC_LP64  <source>"
+C: CC="/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline"
+C: COBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-Ifrontend -Ibase -I. -Ispec_qsort -DSPEC_AUTO_SUPPRESS_OPENMP"
+P: BENCH_CFLAGS=""
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: COPTIMIZE=""
+P: PORTABILITY=""
+P: CPORTABILITY=""
+O: EXTRA_CFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_COPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_CPORTABILITY=""
+LINK: "/usr/bin/g++                -m64 -fgnu89-inline      -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize          <objects> -Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive           -o options  "
+C: LD="/usr/bin/g++                -m64 -fgnu89-inline"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: LIBS="-Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive"
+C: LDOUT="-o options"
+ CXXC_VERSION_OPTION:
+ CC_VERSION_OPTION:
+Using built-in specs.
+COLLECT_GCC=/usr/bin/g++
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+Using built-in specs.
+COLLECT_GCC=/usr/bin/gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+  Up to date 511.povray_r base attack-library-sse-enabled-m64
+------------------------------------------------------------------------
+COMP: "/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline -c -o options.o -DSPEC -DNDEBUG -DSPEC_AUTO_SUPPRESS_OPENMP  -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize               -DSPEC_LP64  <source>"
+C: CC="/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline"
+C: COBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-DSPEC_AUTO_SUPPRESS_OPENMP"
+P: BENCH_CFLAGS=""
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: COPTIMIZE=""
+P: PORTABILITY=""
+P: CPORTABILITY=""
+O: EXTRA_CFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_COPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_CPORTABILITY=""
+LINK: "/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline      -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize          <objects> -Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive  -lm         -o options  "
+C: LD="/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: LIBS="-Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive"
+C: MATH_LIBS="-lm"
+C: LDOUT="-o options"
+ CC_VERSION_OPTION:
+Using built-in specs.
+COLLECT_GCC=/usr/bin/gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+  Up to date 519.lbm_r base attack-library-sse-enabled-m64
+------------------------------------------------------------------------
+FPP: "specpp -DSPEC -DNDEBUG -DSTUBMPI -DSPEC_AUTO_SUPPRESS_OPENMP -w -m literal.pm -I. -I./inc -I./netcdf/include -DDM_PARALLEL -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DCOAMPS_CORE=0 -DDA_CORE=0 -DEXP_CORE=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNETCDF -DINTIO -DCONFIG_BUF_LEN=32768 -DMAX_DOMAINS_F=21 -DNMM_NEST=0 -DMAX_HISTORY=25 -DSPEC_AUTO_SUPPRESS_OPENMP -DSPEC_LP64 <source> -o <source>.fppized.f9x"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-DSTUBMPI -DSPEC_AUTO_SUPPRESS_OPENMP"
+P: BENCH_FPPFLAGS="-w -m literal.pm -I. -I./inc -I./netcdf/include -DDM_PARALLEL -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DCOAMPS_CORE=0 -DDA_CORE=0 -DEXP_CORE=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNETCDF -DINTIO -DCONFIG_BUF_LEN=32768 -DMAX_DOMAINS_F=21 -DNMM_NEST=0 -DMAX_HISTORY=25 -DSPEC_AUTO_SUPPRESS_OPENMP"
+O: OPTIMIZE=""
+O: EXTRA_OPTIMIZE=""
+O: FPPOPTIMIZE=""
+O: EXTRA_FPPOPTIMIZE=""
+O: FOPTIMIZE=""
+O: EXTRA_FOPTIMIZE=""
+P: PORTABILITY=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: FPORTABILITY=""
+P: EXTRA_FPORTABILITY=""
+COMP: "/usr/bin/gfortran           -m64 -fgnu89-inline -c -o options.o -I. -I./netcdf/include -I./inc -g -O3 -march=native -fno-unsafe-math-optimizations -fno-tree-loop-vectorize -fconvert=big-endian <source>"
+C: FC="/usr/bin/gfortran           -m64 -fgnu89-inline"
+C: FOBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-I. -I./netcdf/include -I./inc -DSTUBMPI -DSPEC_AUTO_SUPPRESS_OPENMP"
+P: BENCH_FFLAGS=""
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: FOPTIMIZE=""
+P: PORTABILITY=""
+P: FPORTABILITY="-fconvert=big-endian"
+O: EXTRA_FFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_FOPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_FPORTABILITY=""
+COMP: "/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline -c -o options.o -DSPEC -DNDEBUG -I. -I./netcdf/include -I./inc -DSTUBMPI -DSPEC_AUTO_SUPPRESS_OPENMP -DSPEC_AUTO_BYTEORDER=0x12345678 -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize         -DSPEC_CASE_FLAG      -DSPEC_LP64  <source>"
+C: CC="/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline"
+C: COBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-I. -I./netcdf/include -I./inc -DSTUBMPI -DSPEC_AUTO_SUPPRESS_OPENMP"
+P: BENCH_CFLAGS="-DSPEC_AUTO_BYTEORDER=0x12345678"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: COPTIMIZE=""
+P: PORTABILITY=""
+P: CPORTABILITY="-DSPEC_CASE_FLAG"
+O: EXTRA_CFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_COPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_CPORTABILITY=""
+LINK: "/usr/bin/gfortran           -m64 -fgnu89-inline      -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize      -fconvert=big-endian    <objects> -Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive           -o options  "
+C: LD="/usr/bin/gfortran           -m64 -fgnu89-inline"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+P: FPORTABILITY="-fconvert=big-endian"
+O: LIBS="-Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive"
+C: LDOUT="-o options"
+ FC_VERSION_OPTION:
+ CC_VERSION_OPTION:
+Using built-in specs.
+COLLECT_GCC=/usr/bin/gfortran
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+Using built-in specs.
+COLLECT_GCC=/usr/bin/gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+FPP: "specpp -DSPEC -DNDEBUG -DSTUBMPI -DSPEC_AUTO_SUPPRESS_OPENMP -w -m literal.pm -I. -I./inc -I./netcdf/include -DDM_PARALLEL -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DCOAMPS_CORE=0 -DDA_CORE=0 -DEXP_CORE=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNETCDF -DINTIO -DCONFIG_BUF_LEN=32768 -DMAX_DOMAINS_F=21 -DNMM_NEST=0 -DMAX_HISTORY=25 -DSPEC_AUTO_SUPPRESS_OPENMP -DSPEC_LP64 <source> -o <source>.fppized.f9x"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-DSTUBMPI -DSPEC_AUTO_SUPPRESS_OPENMP"
+P: BENCH_FPPFLAGS="-w -m literal.pm -I. -I./inc -I./netcdf/include -DDM_PARALLEL -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DCOAMPS_CORE=0 -DDA_CORE=0 -DEXP_CORE=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNETCDF -DINTIO -DCONFIG_BUF_LEN=32768 -DMAX_DOMAINS_F=21 -DNMM_NEST=0 -DMAX_HISTORY=25 -DSPEC_AUTO_SUPPRESS_OPENMP"
+O: OPTIMIZE=""
+O: EXTRA_OPTIMIZE=""
+O: FPPOPTIMIZE=""
+O: EXTRA_FPPOPTIMIZE=""
+O: FOPTIMIZE=""
+O: EXTRA_FOPTIMIZE=""
+P: PORTABILITY=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: FPORTABILITY=""
+P: EXTRA_FPORTABILITY=""
+COMP: "/usr/bin/gfortran           -m64 -fgnu89-inline -c -o options.o -I. -I./netcdf/include -I./inc -g -O3 -march=native -fno-unsafe-math-optimizations -fno-tree-loop-vectorize -fconvert=big-endian <source>"
+C: FC="/usr/bin/gfortran           -m64 -fgnu89-inline"
+C: FOBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-I. -I./netcdf/include -I./inc -DSTUBMPI -DSPEC_AUTO_SUPPRESS_OPENMP"
+P: BENCH_FFLAGS=""
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: FOPTIMIZE=""
+P: PORTABILITY=""
+P: FPORTABILITY="-fconvert=big-endian"
+O: EXTRA_FFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_FOPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_FPORTABILITY=""
+COMP: "/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline -c -o options.o -DSPEC -DNDEBUG -I. -I./netcdf/include -I./inc -DSTUBMPI -DSPEC_AUTO_SUPPRESS_OPENMP -DSPEC_AUTO_BYTEORDER=0x12345678 -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize         -DSPEC_CASE_FLAG      -DSPEC_LP64  <source>"
+C: CC="/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline"
+C: COBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-I. -I./netcdf/include -I./inc -DSTUBMPI -DSPEC_AUTO_SUPPRESS_OPENMP"
+P: BENCH_CFLAGS="-DSPEC_AUTO_BYTEORDER=0x12345678"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: COPTIMIZE=""
+P: PORTABILITY=""
+P: CPORTABILITY="-DSPEC_CASE_FLAG"
+O: EXTRA_CFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_COPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_CPORTABILITY=""
+LINK: "/usr/bin/gfortran           -m64 -fgnu89-inline      -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize      -fconvert=big-endian    <objects> -Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive           -o options  "
+C: LD="/usr/bin/gfortran           -m64 -fgnu89-inline"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+P: FPORTABILITY="-fconvert=big-endian"
+O: LIBS="-Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive"
+C: LDOUT="-o options"
+ FC_VERSION_OPTION:
+ CC_VERSION_OPTION:
+Using built-in specs.
+COLLECT_GCC=/usr/bin/gfortran
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+Using built-in specs.
+COLLECT_GCC=/usr/bin/gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+  Up to date 521.wrf_r base attack-library-sse-enabled-m64
+------------------------------------------------------------------------
+COMP: "/usr/bin/g++                -m64 -fgnu89-inline -c -o options.o -DSPEC -DNDEBUG -Ispecrand -Iblender/extern/binreloc/include -Iblender/extern/colamd/Include -Iblender/extern/glew/include -Iblender/extern/libmv -Iblender/extern/libmv/intern -Iblender/extern/rangetree -Iblender/extern/wcwidth -Iblender/intern -Iblender/intern/atomic -Iblender/intern/audaspace/intern -Iblender/intern/cycles/blender -Iblender/intern/elbeem/extern -Iblender/intern/ghost -Iblender/intern/ghost/intern -Iblender/intern/glew-mx -Iblender/intern/glew-mx/intern -Iblender/intern/guardedalloc -Iblender/intern/guardedalloc/intern -Iblender/intern/iksolver/extern -Iblender/intern/locale -Iblender/intern/memutil -Iblender/intern/mikktspace -Iblender/intern/opencolorio -Iblender/intern/raskter -Iblender/intern/smoke/extern -Iblender/intern/string -Iblender/intern/utfconv -Iblender/source/blender/blenfont -Iblender/source/blender/blenfont/intern -Iblender/source/blender/blenkernel -Iblender/source/blender/blenkernel/intern -Iblender
+/source/blender/blenlib -Iblender/source/blender/blenlib/intern -Iblender/source/blender/blenloader -Iblender/source/blender/blenloader/intern -Iblender/source/blender/bmesh -Iblender/source/blender/bmesh/intern -Iblender/source/blender/bmesh/tools -Iblender/source/blender/collada -Iblender/source/blender/compositor -Iblender/source/blender/editors/animation -Iblender/source/blender/editors/armature -Iblender/source/blender/editors/curve -Iblender/source/blender/editors/gpencil -Iblender/source/blender/editors/include -Iblender/source/blender/editors/interface -Iblender/source/blender/editors/io -Iblender/source/blender/editors/mask -Iblender/source/blender/editors/mesh -Iblender/source/blender/editors/metaball -Iblender/source/blender/editors/object -Iblender/source/blender/editors/physics -Iblender/source/blender/editors/render -Iblender/source/blender/editors/screen -Iblender/source/blender/editors/sculpt_paint -Iblender/source/blender/editors/sound -Iblender/source/blender/editors/space_action -Iblend
+er/source/blender/editors/space_buttons -Iblender/source/blender/editors/space_clip -Iblender/source/blender/editors/space_console -Iblender/source/blender/editors/space_file -Iblender/source/blender/editors/space_graph -Iblender/source/blender/editors/space_image -Iblender/source/blender/editors/space_info -Iblender/source/blender/editors/space_logic -Iblender/source/blender/editors/space_nla -Iblender/source/blender/editors/space_node -Iblender/source/blender/editors/space_outliner -Iblender/source/blender/editors/space_script -Iblender/source/blender/editors/space_sequencer -Iblender/source/blender/editors/space_text -Iblender/source/blender/editors/space_time -Iblender/source/blender/editors/space_userpref -Iblender/source/blender/editors/space_view3d -Iblender/source/blender/editors/transform -Iblender/source/blender/editors/util -Iblender/source/blender/editors/uvedit -Iblender/source/blender/gpu -Iblender/source/blender/gpu/intern -Iblender/source/blender/ikplugin -Iblender/source/blender/ikplugin/
+intern -Iblender/source/blender/imbuf -Iblender/source/blender/imbuf/intern -Iblender/source/blender/imbuf/intern/openexr -Iblender/source/blender/makesdna -Iblender/source/blender/makesrna -Iblender/source/blender/makesrna/intern -Iblender/source/blender/modifiers -Iblender/source/blender/modifiers/intern -Iblender/source/blender/nodes -Iblender/source/blender/nodes/composite -Iblender/source/blender/nodes/intern -Iblender/source/blender/nodes/shader -Iblender/source/blender/nodes/texture -Iblender/source/blender/python -Iblender/source/blender/render/extern/include -Iblender/source/blender/render/intern/include -Iblender/source/blender/render/intern/raytrace -Iblender/source/blender/windowmanager -Iblender/source/gameengine/BlenderRoutines -Iblender_bin/source/blender/makesrna/intern -Iinclude -Ilibpng -Izlib -DSPEC_AUTO_SUPPRESS_OPENMP -DSPEC_AUTO_BYTEORDER=0x12345678 -DGLEW_NO_ES -DGLEW_STATIC -DWITH_DNA_GHASH -DWITH_GL_PROFILE_COMPAT -DWITH_HEADLESS -DHAVE_UNSIGNED_CHAR  -g -O3 -march=native -fno-uns
+afe-math-optimizations  -fno-tree-loop-vectorize    -funsigned-char -DSPEC_LINUX     -DSPEC_LP64  <source>"
+C: CXXC="/usr/bin/g++                -m64 -fgnu89-inline"
+C: CXXOBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-Ispecrand -Iblender/extern/binreloc/include -Iblender/extern/colamd/Include -Iblender/extern/glew/include -Iblender/extern/libmv -Iblender/extern/libmv/intern -Iblender/extern/rangetree -Iblender/extern/wcwidth -Iblender/intern -Iblender/intern/atomic -Iblender/intern/audaspace/intern -Iblender/intern/cycles/blender -Iblender/intern/elbeem/extern -Iblender/intern/ghost -Iblender/intern/ghost/intern -Iblender/intern/glew-mx -Iblender/intern/glew-mx/intern -Iblender/intern/guardedalloc -Iblender/intern/guardedalloc/intern -Iblender/intern/iksolver/extern -Iblender/intern/locale -Iblender/intern/memutil -Iblender/intern/mikktspace -Iblender/intern/opencolorio -Iblender/intern/raskter -Iblender/intern/smoke/extern -Iblender/intern/string -Iblender/intern/utfconv -Iblender/source/blender/blenfont -Iblender/source/blender/blenfont/intern -Iblender/source/blender/blenkernel -Iblender/source/blender/blenkernel/intern -Iblender/source/blender/blenlib -Iblender/source/blender/blenlib/intern -Iblend
+er/source/blender/blenloader -Iblender/source/blender/blenloader/intern -Iblender/source/blender/bmesh -Iblender/source/blender/bmesh/intern -Iblender/source/blender/bmesh/tools -Iblender/source/blender/collada -Iblender/source/blender/compositor -Iblender/source/blender/editors/animation -Iblender/source/blender/editors/armature -Iblender/source/blender/editors/curve -Iblender/source/blender/editors/gpencil -Iblender/source/blender/editors/include -Iblender/source/blender/editors/interface -Iblender/source/blender/editors/io -Iblender/source/blender/editors/mask -Iblender/source/blender/editors/mesh -Iblender/source/blender/editors/metaball -Iblender/source/blender/editors/object -Iblender/source/blender/editors/physics -Iblender/source/blender/editors/render -Iblender/source/blender/editors/screen -Iblender/source/blender/editors/sculpt_paint -Iblender/source/blender/editors/sound -Iblender/source/blender/editors/space_action -Iblender/source/blender/editors/space_buttons -Iblender/source/blender/editor
+s/space_clip -Iblender/source/blender/editors/space_console -Iblender/source/blender/editors/space_file -Iblender/source/blender/editors/space_graph -Iblender/source/blender/editors/space_image -Iblender/source/blender/editors/space_info -Iblender/source/blender/editors/space_logic -Iblender/source/blender/editors/space_nla -Iblender/source/blender/editors/space_node -Iblender/source/blender/editors/space_outliner -Iblender/source/blender/editors/space_script -Iblender/source/blender/editors/space_sequencer -Iblender/source/blender/editors/space_text -Iblender/source/blender/editors/space_time -Iblender/source/blender/editors/space_userpref -Iblender/source/blender/editors/space_view3d -Iblender/source/blender/editors/transform -Iblender/source/blender/editors/util -Iblender/source/blender/editors/uvedit -Iblender/source/blender/gpu -Iblender/source/blender/gpu/intern -Iblender/source/blender/ikplugin -Iblender/source/blender/ikplugin/intern -Iblender/source/blender/imbuf -Iblender/source/blender/imbuf/in
+tern -Iblender/source/blender/imbuf/intern/openexr -Iblender/source/blender/makesdna -Iblender/source/blender/makesrna -Iblender/source/blender/makesrna/intern -Iblender/source/blender/modifiers -Iblender/source/blender/modifiers/intern -Iblender/source/blender/nodes -Iblender/source/blender/nodes/composite -Iblender/source/blender/nodes/intern -Iblender/source/blender/nodes/shader -Iblender/source/blender/nodes/texture -Iblender/source/blender/python -Iblender/source/blender/render/extern/include -Iblender/source/blender/render/intern/include -Iblender/source/blender/render/intern/raytrace -Iblender/source/blender/windowmanager -Iblender/source/gameengine/BlenderRoutines -Iblender_bin/source/blender/makesrna/intern -Iinclude -Ilibpng -Izlib -DSPEC_AUTO_SUPPRESS_OPENMP -DSPEC_AUTO_BYTEORDER=0x12345678 -DGLEW_NO_ES -DGLEW_STATIC -DWITH_DNA_GHASH -DWITH_GL_PROFILE_COMPAT -DWITH_HEADLESS -DHAVE_UNSIGNED_CHAR"
+P: BENCH_CXXFLAGS=""
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: CXXOPTIMIZE=""
+P: PORTABILITY="-funsigned-char -DSPEC_LINUX"
+P: CXXPORTABILITY=""
+O: EXTRA_CXXFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_CXXOPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_CXXPORTABILITY=""
+COMP: "/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline -c -o options.o -DSPEC -DNDEBUG -Ispecrand -Iblender/extern/binreloc/include -Iblender/extern/colamd/Include -Iblender/extern/glew/include -Iblender/extern/libmv -Iblender/extern/libmv/intern -Iblender/extern/rangetree -Iblender/extern/wcwidth -Iblender/intern -Iblender/intern/atomic -Iblender/intern/audaspace/intern -Iblender/intern/cycles/blender -Iblender/intern/elbeem/extern -Iblender/intern/ghost -Iblender/intern/ghost/intern -Iblender/intern/glew-mx -Iblender/intern/glew-mx/intern -Iblender/intern/guardedalloc -Iblender/intern/guardedalloc/intern -Iblender/intern/iksolver/extern -Iblender/intern/locale -Iblender/intern/memutil -Iblender/intern/mikktspace -Iblender/intern/opencolorio -Iblender/intern/raskter -Iblender/intern/smoke/extern -Iblender/intern/string -Iblender/intern/utfconv -Iblender/source/blender/blenfont -Iblender/source/blender/blenfont/intern -Iblender/source/blender/blenkernel -Iblender/source/blender/blenkernel/intern -Iblender
+/source/blender/blenlib -Iblender/source/blender/blenlib/intern -Iblender/source/blender/blenloader -Iblender/source/blender/blenloader/intern -Iblender/source/blender/bmesh -Iblender/source/blender/bmesh/intern -Iblender/source/blender/bmesh/tools -Iblender/source/blender/collada -Iblender/source/blender/compositor -Iblender/source/blender/editors/animation -Iblender/source/blender/editors/armature -Iblender/source/blender/editors/curve -Iblender/source/blender/editors/gpencil -Iblender/source/blender/editors/include -Iblender/source/blender/editors/interface -Iblender/source/blender/editors/io -Iblender/source/blender/editors/mask -Iblender/source/blender/editors/mesh -Iblender/source/blender/editors/metaball -Iblender/source/blender/editors/object -Iblender/source/blender/editors/physics -Iblender/source/blender/editors/render -Iblender/source/blender/editors/screen -Iblender/source/blender/editors/sculpt_paint -Iblender/source/blender/editors/sound -Iblender/source/blender/editors/space_action -Iblend
+er/source/blender/editors/space_buttons -Iblender/source/blender/editors/space_clip -Iblender/source/blender/editors/space_console -Iblender/source/blender/editors/space_file -Iblender/source/blender/editors/space_graph -Iblender/source/blender/editors/space_image -Iblender/source/blender/editors/space_info -Iblender/source/blender/editors/space_logic -Iblender/source/blender/editors/space_nla -Iblender/source/blender/editors/space_node -Iblender/source/blender/editors/space_outliner -Iblender/source/blender/editors/space_script -Iblender/source/blender/editors/space_sequencer -Iblender/source/blender/editors/space_text -Iblender/source/blender/editors/space_time -Iblender/source/blender/editors/space_userpref -Iblender/source/blender/editors/space_view3d -Iblender/source/blender/editors/transform -Iblender/source/blender/editors/util -Iblender/source/blender/editors/uvedit -Iblender/source/blender/gpu -Iblender/source/blender/gpu/intern -Iblender/source/blender/ikplugin -Iblender/source/blender/ikplugin/
+intern -Iblender/source/blender/imbuf -Iblender/source/blender/imbuf/intern -Iblender/source/blender/imbuf/intern/openexr -Iblender/source/blender/makesdna -Iblender/source/blender/makesrna -Iblender/source/blender/makesrna/intern -Iblender/source/blender/modifiers -Iblender/source/blender/modifiers/intern -Iblender/source/blender/nodes -Iblender/source/blender/nodes/composite -Iblender/source/blender/nodes/intern -Iblender/source/blender/nodes/shader -Iblender/source/blender/nodes/texture -Iblender/source/blender/python -Iblender/source/blender/render/extern/include -Iblender/source/blender/render/intern/include -Iblender/source/blender/render/intern/raytrace -Iblender/source/blender/windowmanager -Iblender/source/gameengine/BlenderRoutines -Iblender_bin/source/blender/makesrna/intern -Iinclude -Ilibpng -Izlib -DSPEC_AUTO_SUPPRESS_OPENMP -DSPEC_AUTO_BYTEORDER=0x12345678 -DGLEW_NO_ES -DGLEW_STATIC -DWITH_DNA_GHASH -DWITH_GL_PROFILE_COMPAT -DWITH_HEADLESS -DHAVE_UNSIGNED_CHAR  -g -O3 -march=native -fno-uns
+afe-math-optimizations  -fno-tree-loop-vectorize        -funsigned-char -DSPEC_LINUX       -DSPEC_LP64  <source>"
+C: CC="/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline"
+C: COBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-Ispecrand -Iblender/extern/binreloc/include -Iblender/extern/colamd/Include -Iblender/extern/glew/include -Iblender/extern/libmv -Iblender/extern/libmv/intern -Iblender/extern/rangetree -Iblender/extern/wcwidth -Iblender/intern -Iblender/intern/atomic -Iblender/intern/audaspace/intern -Iblender/intern/cycles/blender -Iblender/intern/elbeem/extern -Iblender/intern/ghost -Iblender/intern/ghost/intern -Iblender/intern/glew-mx -Iblender/intern/glew-mx/intern -Iblender/intern/guardedalloc -Iblender/intern/guardedalloc/intern -Iblender/intern/iksolver/extern -Iblender/intern/locale -Iblender/intern/memutil -Iblender/intern/mikktspace -Iblender/intern/opencolorio -Iblender/intern/raskter -Iblender/intern/smoke/extern -Iblender/intern/string -Iblender/intern/utfconv -Iblender/source/blender/blenfont -Iblender/source/blender/blenfont/intern -Iblender/source/blender/blenkernel -Iblender/source/blender/blenkernel/intern -Iblender/source/blender/blenlib -Iblender/source/blender/blenlib/intern -Iblend
+er/source/blender/blenloader -Iblender/source/blender/blenloader/intern -Iblender/source/blender/bmesh -Iblender/source/blender/bmesh/intern -Iblender/source/blender/bmesh/tools -Iblender/source/blender/collada -Iblender/source/blender/compositor -Iblender/source/blender/editors/animation -Iblender/source/blender/editors/armature -Iblender/source/blender/editors/curve -Iblender/source/blender/editors/gpencil -Iblender/source/blender/editors/include -Iblender/source/blender/editors/interface -Iblender/source/blender/editors/io -Iblender/source/blender/editors/mask -Iblender/source/blender/editors/mesh -Iblender/source/blender/editors/metaball -Iblender/source/blender/editors/object -Iblender/source/blender/editors/physics -Iblender/source/blender/editors/render -Iblender/source/blender/editors/screen -Iblender/source/blender/editors/sculpt_paint -Iblender/source/blender/editors/sound -Iblender/source/blender/editors/space_action -Iblender/source/blender/editors/space_buttons -Iblender/source/blender/editor
+s/space_clip -Iblender/source/blender/editors/space_console -Iblender/source/blender/editors/space_file -Iblender/source/blender/editors/space_graph -Iblender/source/blender/editors/space_image -Iblender/source/blender/editors/space_info -Iblender/source/blender/editors/space_logic -Iblender/source/blender/editors/space_nla -Iblender/source/blender/editors/space_node -Iblender/source/blender/editors/space_outliner -Iblender/source/blender/editors/space_script -Iblender/source/blender/editors/space_sequencer -Iblender/source/blender/editors/space_text -Iblender/source/blender/editors/space_time -Iblender/source/blender/editors/space_userpref -Iblender/source/blender/editors/space_view3d -Iblender/source/blender/editors/transform -Iblender/source/blender/editors/util -Iblender/source/blender/editors/uvedit -Iblender/source/blender/gpu -Iblender/source/blender/gpu/intern -Iblender/source/blender/ikplugin -Iblender/source/blender/ikplugin/intern -Iblender/source/blender/imbuf -Iblender/source/blender/imbuf/in
+tern -Iblender/source/blender/imbuf/intern/openexr -Iblender/source/blender/makesdna -Iblender/source/blender/makesrna -Iblender/source/blender/makesrna/intern -Iblender/source/blender/modifiers -Iblender/source/blender/modifiers/intern -Iblender/source/blender/nodes -Iblender/source/blender/nodes/composite -Iblender/source/blender/nodes/intern -Iblender/source/blender/nodes/shader -Iblender/source/blender/nodes/texture -Iblender/source/blender/python -Iblender/source/blender/render/extern/include -Iblender/source/blender/render/intern/include -Iblender/source/blender/render/intern/raytrace -Iblender/source/blender/windowmanager -Iblender/source/gameengine/BlenderRoutines -Iblender_bin/source/blender/makesrna/intern -Iinclude -Ilibpng -Izlib -DSPEC_AUTO_SUPPRESS_OPENMP -DSPEC_AUTO_BYTEORDER=0x12345678 -DGLEW_NO_ES -DGLEW_STATIC -DWITH_DNA_GHASH -DWITH_GL_PROFILE_COMPAT -DWITH_HEADLESS -DHAVE_UNSIGNED_CHAR"
+P: BENCH_CFLAGS=""
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: COPTIMIZE=""
+P: PORTABILITY="-funsigned-char -DSPEC_LINUX"
+P: CPORTABILITY=""
+O: EXTRA_CFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_COPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_CPORTABILITY=""
+LINK: "/usr/bin/g++                -m64 -fgnu89-inline      -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize     -funsigned-char -DSPEC_LINUX     <objects> -Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive           -o options  "
+C: LD="/usr/bin/g++                -m64 -fgnu89-inline"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+P: PORTABILITY="-funsigned-char -DSPEC_LINUX"
+O: LIBS="-Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive"
+C: LDOUT="-o options"
+ CXXC_VERSION_OPTION:
+ CC_VERSION_OPTION:
+Using built-in specs.
+COLLECT_GCC=/usr/bin/g++
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+Using built-in specs.
+COLLECT_GCC=/usr/bin/gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+COMP: "/usr/bin/g++                -m64 -fgnu89-inline -c -o options.o -DSPEC -DNDEBUG -Ispecrand -Iblender/extern/binreloc/include -Iblender/extern/colamd/Include -Iblender/extern/glew/include -Iblender/extern/libmv -Iblender/extern/libmv/intern -Iblender/extern/rangetree -Iblender/extern/wcwidth -Iblender/intern -Iblender/intern/atomic -Iblender/intern/audaspace/intern -Iblender/intern/cycles/blender -Iblender/intern/elbeem/extern -Iblender/intern/ghost -Iblender/intern/ghost/intern -Iblender/intern/glew-mx -Iblender/intern/glew-mx/intern -Iblender/intern/guardedalloc -Iblender/intern/guardedalloc/intern -Iblender/intern/iksolver/extern -Iblender/intern/locale -Iblender/intern/memutil -Iblender/intern/mikktspace -Iblender/intern/opencolorio -Iblender/intern/raskter -Iblender/intern/smoke/extern -Iblender/intern/string -Iblender/intern/utfconv -Iblender/source/blender/blenfont -Iblender/source/blender/blenfont/intern -Iblender/source/blender/blenkernel -Iblender/source/blender/blenkernel/intern -Iblender
+/source/blender/blenlib -Iblender/source/blender/blenlib/intern -Iblender/source/blender/blenloader -Iblender/source/blender/blenloader/intern -Iblender/source/blender/bmesh -Iblender/source/blender/bmesh/intern -Iblender/source/blender/bmesh/tools -Iblender/source/blender/collada -Iblender/source/blender/compositor -Iblender/source/blender/editors/animation -Iblender/source/blender/editors/armature -Iblender/source/blender/editors/curve -Iblender/source/blender/editors/gpencil -Iblender/source/blender/editors/include -Iblender/source/blender/editors/interface -Iblender/source/blender/editors/io -Iblender/source/blender/editors/mask -Iblender/source/blender/editors/mesh -Iblender/source/blender/editors/metaball -Iblender/source/blender/editors/object -Iblender/source/blender/editors/physics -Iblender/source/blender/editors/render -Iblender/source/blender/editors/screen -Iblender/source/blender/editors/sculpt_paint -Iblender/source/blender/editors/sound -Iblender/source/blender/editors/space_action -Iblend
+er/source/blender/editors/space_buttons -Iblender/source/blender/editors/space_clip -Iblender/source/blender/editors/space_console -Iblender/source/blender/editors/space_file -Iblender/source/blender/editors/space_graph -Iblender/source/blender/editors/space_image -Iblender/source/blender/editors/space_info -Iblender/source/blender/editors/space_logic -Iblender/source/blender/editors/space_nla -Iblender/source/blender/editors/space_node -Iblender/source/blender/editors/space_outliner -Iblender/source/blender/editors/space_script -Iblender/source/blender/editors/space_sequencer -Iblender/source/blender/editors/space_text -Iblender/source/blender/editors/space_time -Iblender/source/blender/editors/space_userpref -Iblender/source/blender/editors/space_view3d -Iblender/source/blender/editors/transform -Iblender/source/blender/editors/util -Iblender/source/blender/editors/uvedit -Iblender/source/blender/gpu -Iblender/source/blender/gpu/intern -Iblender/source/blender/ikplugin -Iblender/source/blender/ikplugin/
+intern -Iblender/source/blender/imbuf -Iblender/source/blender/imbuf/intern -Iblender/source/blender/imbuf/intern/openexr -Iblender/source/blender/makesdna -Iblender/source/blender/makesrna -Iblender/source/blender/makesrna/intern -Iblender/source/blender/modifiers -Iblender/source/blender/modifiers/intern -Iblender/source/blender/nodes -Iblender/source/blender/nodes/composite -Iblender/source/blender/nodes/intern -Iblender/source/blender/nodes/shader -Iblender/source/blender/nodes/texture -Iblender/source/blender/python -Iblender/source/blender/render/extern/include -Iblender/source/blender/render/intern/include -Iblender/source/blender/render/intern/raytrace -Iblender/source/blender/windowmanager -Iblender/source/gameengine/BlenderRoutines -Iblender_bin/source/blender/makesrna/intern -Iinclude -Ilibpng -Izlib -DSPEC_AUTO_SUPPRESS_OPENMP -DSPEC_AUTO_BYTEORDER=0x12345678 -DGLEW_NO_ES -DGLEW_STATIC -DWITH_DNA_GHASH -DWITH_GL_PROFILE_COMPAT -DWITH_HEADLESS -DHAVE_UNSIGNED_CHAR  -g -O3 -march=native -fno-uns
+afe-math-optimizations  -fno-tree-loop-vectorize    -funsigned-char -DSPEC_LINUX     -DSPEC_LP64  <source>"
+C: CXXC="/usr/bin/g++                -m64 -fgnu89-inline"
+C: CXXOBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-Ispecrand -Iblender/extern/binreloc/include -Iblender/extern/colamd/Include -Iblender/extern/glew/include -Iblender/extern/libmv -Iblender/extern/libmv/intern -Iblender/extern/rangetree -Iblender/extern/wcwidth -Iblender/intern -Iblender/intern/atomic -Iblender/intern/audaspace/intern -Iblender/intern/cycles/blender -Iblender/intern/elbeem/extern -Iblender/intern/ghost -Iblender/intern/ghost/intern -Iblender/intern/glew-mx -Iblender/intern/glew-mx/intern -Iblender/intern/guardedalloc -Iblender/intern/guardedalloc/intern -Iblender/intern/iksolver/extern -Iblender/intern/locale -Iblender/intern/memutil -Iblender/intern/mikktspace -Iblender/intern/opencolorio -Iblender/intern/raskter -Iblender/intern/smoke/extern -Iblender/intern/string -Iblender/intern/utfconv -Iblender/source/blender/blenfont -Iblender/source/blender/blenfont/intern -Iblender/source/blender/blenkernel -Iblender/source/blender/blenkernel/intern -Iblender/source/blender/blenlib -Iblender/source/blender/blenlib/intern -Iblend
+er/source/blender/blenloader -Iblender/source/blender/blenloader/intern -Iblender/source/blender/bmesh -Iblender/source/blender/bmesh/intern -Iblender/source/blender/bmesh/tools -Iblender/source/blender/collada -Iblender/source/blender/compositor -Iblender/source/blender/editors/animation -Iblender/source/blender/editors/armature -Iblender/source/blender/editors/curve -Iblender/source/blender/editors/gpencil -Iblender/source/blender/editors/include -Iblender/source/blender/editors/interface -Iblender/source/blender/editors/io -Iblender/source/blender/editors/mask -Iblender/source/blender/editors/mesh -Iblender/source/blender/editors/metaball -Iblender/source/blender/editors/object -Iblender/source/blender/editors/physics -Iblender/source/blender/editors/render -Iblender/source/blender/editors/screen -Iblender/source/blender/editors/sculpt_paint -Iblender/source/blender/editors/sound -Iblender/source/blender/editors/space_action -Iblender/source/blender/editors/space_buttons -Iblender/source/blender/editor
+s/space_clip -Iblender/source/blender/editors/space_console -Iblender/source/blender/editors/space_file -Iblender/source/blender/editors/space_graph -Iblender/source/blender/editors/space_image -Iblender/source/blender/editors/space_info -Iblender/source/blender/editors/space_logic -Iblender/source/blender/editors/space_nla -Iblender/source/blender/editors/space_node -Iblender/source/blender/editors/space_outliner -Iblender/source/blender/editors/space_script -Iblender/source/blender/editors/space_sequencer -Iblender/source/blender/editors/space_text -Iblender/source/blender/editors/space_time -Iblender/source/blender/editors/space_userpref -Iblender/source/blender/editors/space_view3d -Iblender/source/blender/editors/transform -Iblender/source/blender/editors/util -Iblender/source/blender/editors/uvedit -Iblender/source/blender/gpu -Iblender/source/blender/gpu/intern -Iblender/source/blender/ikplugin -Iblender/source/blender/ikplugin/intern -Iblender/source/blender/imbuf -Iblender/source/blender/imbuf/in
+tern -Iblender/source/blender/imbuf/intern/openexr -Iblender/source/blender/makesdna -Iblender/source/blender/makesrna -Iblender/source/blender/makesrna/intern -Iblender/source/blender/modifiers -Iblender/source/blender/modifiers/intern -Iblender/source/blender/nodes -Iblender/source/blender/nodes/composite -Iblender/source/blender/nodes/intern -Iblender/source/blender/nodes/shader -Iblender/source/blender/nodes/texture -Iblender/source/blender/python -Iblender/source/blender/render/extern/include -Iblender/source/blender/render/intern/include -Iblender/source/blender/render/intern/raytrace -Iblender/source/blender/windowmanager -Iblender/source/gameengine/BlenderRoutines -Iblender_bin/source/blender/makesrna/intern -Iinclude -Ilibpng -Izlib -DSPEC_AUTO_SUPPRESS_OPENMP -DSPEC_AUTO_BYTEORDER=0x12345678 -DGLEW_NO_ES -DGLEW_STATIC -DWITH_DNA_GHASH -DWITH_GL_PROFILE_COMPAT -DWITH_HEADLESS -DHAVE_UNSIGNED_CHAR"
+P: BENCH_CXXFLAGS=""
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: CXXOPTIMIZE=""
+P: PORTABILITY="-funsigned-char -DSPEC_LINUX"
+P: CXXPORTABILITY=""
+O: EXTRA_CXXFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_CXXOPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_CXXPORTABILITY=""
+COMP: "/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline -c -o options.o -DSPEC -DNDEBUG -Ispecrand -Iblender/extern/binreloc/include -Iblender/extern/colamd/Include -Iblender/extern/glew/include -Iblender/extern/libmv -Iblender/extern/libmv/intern -Iblender/extern/rangetree -Iblender/extern/wcwidth -Iblender/intern -Iblender/intern/atomic -Iblender/intern/audaspace/intern -Iblender/intern/cycles/blender -Iblender/intern/elbeem/extern -Iblender/intern/ghost -Iblender/intern/ghost/intern -Iblender/intern/glew-mx -Iblender/intern/glew-mx/intern -Iblender/intern/guardedalloc -Iblender/intern/guardedalloc/intern -Iblender/intern/iksolver/extern -Iblender/intern/locale -Iblender/intern/memutil -Iblender/intern/mikktspace -Iblender/intern/opencolorio -Iblender/intern/raskter -Iblender/intern/smoke/extern -Iblender/intern/string -Iblender/intern/utfconv -Iblender/source/blender/blenfont -Iblender/source/blender/blenfont/intern -Iblender/source/blender/blenkernel -Iblender/source/blender/blenkernel/intern -Iblender
+/source/blender/blenlib -Iblender/source/blender/blenlib/intern -Iblender/source/blender/blenloader -Iblender/source/blender/blenloader/intern -Iblender/source/blender/bmesh -Iblender/source/blender/bmesh/intern -Iblender/source/blender/bmesh/tools -Iblender/source/blender/collada -Iblender/source/blender/compositor -Iblender/source/blender/editors/animation -Iblender/source/blender/editors/armature -Iblender/source/blender/editors/curve -Iblender/source/blender/editors/gpencil -Iblender/source/blender/editors/include -Iblender/source/blender/editors/interface -Iblender/source/blender/editors/io -Iblender/source/blender/editors/mask -Iblender/source/blender/editors/mesh -Iblender/source/blender/editors/metaball -Iblender/source/blender/editors/object -Iblender/source/blender/editors/physics -Iblender/source/blender/editors/render -Iblender/source/blender/editors/screen -Iblender/source/blender/editors/sculpt_paint -Iblender/source/blender/editors/sound -Iblender/source/blender/editors/space_action -Iblend
+er/source/blender/editors/space_buttons -Iblender/source/blender/editors/space_clip -Iblender/source/blender/editors/space_console -Iblender/source/blender/editors/space_file -Iblender/source/blender/editors/space_graph -Iblender/source/blender/editors/space_image -Iblender/source/blender/editors/space_info -Iblender/source/blender/editors/space_logic -Iblender/source/blender/editors/space_nla -Iblender/source/blender/editors/space_node -Iblender/source/blender/editors/space_outliner -Iblender/source/blender/editors/space_script -Iblender/source/blender/editors/space_sequencer -Iblender/source/blender/editors/space_text -Iblender/source/blender/editors/space_time -Iblender/source/blender/editors/space_userpref -Iblender/source/blender/editors/space_view3d -Iblender/source/blender/editors/transform -Iblender/source/blender/editors/util -Iblender/source/blender/editors/uvedit -Iblender/source/blender/gpu -Iblender/source/blender/gpu/intern -Iblender/source/blender/ikplugin -Iblender/source/blender/ikplugin/
+intern -Iblender/source/blender/imbuf -Iblender/source/blender/imbuf/intern -Iblender/source/blender/imbuf/intern/openexr -Iblender/source/blender/makesdna -Iblender/source/blender/makesrna -Iblender/source/blender/makesrna/intern -Iblender/source/blender/modifiers -Iblender/source/blender/modifiers/intern -Iblender/source/blender/nodes -Iblender/source/blender/nodes/composite -Iblender/source/blender/nodes/intern -Iblender/source/blender/nodes/shader -Iblender/source/blender/nodes/texture -Iblender/source/blender/python -Iblender/source/blender/render/extern/include -Iblender/source/blender/render/intern/include -Iblender/source/blender/render/intern/raytrace -Iblender/source/blender/windowmanager -Iblender/source/gameengine/BlenderRoutines -Iblender_bin/source/blender/makesrna/intern -Iinclude -Ilibpng -Izlib -DSPEC_AUTO_SUPPRESS_OPENMP -DSPEC_AUTO_BYTEORDER=0x12345678 -DGLEW_NO_ES -DGLEW_STATIC -DWITH_DNA_GHASH -DWITH_GL_PROFILE_COMPAT -DWITH_HEADLESS -DHAVE_UNSIGNED_CHAR  -g -O3 -march=native -fno-uns
+afe-math-optimizations  -fno-tree-loop-vectorize        -funsigned-char -DSPEC_LINUX       -DSPEC_LP64  <source>"
+C: CC="/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline"
+C: COBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-Ispecrand -Iblender/extern/binreloc/include -Iblender/extern/colamd/Include -Iblender/extern/glew/include -Iblender/extern/libmv -Iblender/extern/libmv/intern -Iblender/extern/rangetree -Iblender/extern/wcwidth -Iblender/intern -Iblender/intern/atomic -Iblender/intern/audaspace/intern -Iblender/intern/cycles/blender -Iblender/intern/elbeem/extern -Iblender/intern/ghost -Iblender/intern/ghost/intern -Iblender/intern/glew-mx -Iblender/intern/glew-mx/intern -Iblender/intern/guardedalloc -Iblender/intern/guardedalloc/intern -Iblender/intern/iksolver/extern -Iblender/intern/locale -Iblender/intern/memutil -Iblender/intern/mikktspace -Iblender/intern/opencolorio -Iblender/intern/raskter -Iblender/intern/smoke/extern -Iblender/intern/string -Iblender/intern/utfconv -Iblender/source/blender/blenfont -Iblender/source/blender/blenfont/intern -Iblender/source/blender/blenkernel -Iblender/source/blender/blenkernel/intern -Iblender/source/blender/blenlib -Iblender/source/blender/blenlib/intern -Iblend
+er/source/blender/blenloader -Iblender/source/blender/blenloader/intern -Iblender/source/blender/bmesh -Iblender/source/blender/bmesh/intern -Iblender/source/blender/bmesh/tools -Iblender/source/blender/collada -Iblender/source/blender/compositor -Iblender/source/blender/editors/animation -Iblender/source/blender/editors/armature -Iblender/source/blender/editors/curve -Iblender/source/blender/editors/gpencil -Iblender/source/blender/editors/include -Iblender/source/blender/editors/interface -Iblender/source/blender/editors/io -Iblender/source/blender/editors/mask -Iblender/source/blender/editors/mesh -Iblender/source/blender/editors/metaball -Iblender/source/blender/editors/object -Iblender/source/blender/editors/physics -Iblender/source/blender/editors/render -Iblender/source/blender/editors/screen -Iblender/source/blender/editors/sculpt_paint -Iblender/source/blender/editors/sound -Iblender/source/blender/editors/space_action -Iblender/source/blender/editors/space_buttons -Iblender/source/blender/editor
+s/space_clip -Iblender/source/blender/editors/space_console -Iblender/source/blender/editors/space_file -Iblender/source/blender/editors/space_graph -Iblender/source/blender/editors/space_image -Iblender/source/blender/editors/space_info -Iblender/source/blender/editors/space_logic -Iblender/source/blender/editors/space_nla -Iblender/source/blender/editors/space_node -Iblender/source/blender/editors/space_outliner -Iblender/source/blender/editors/space_script -Iblender/source/blender/editors/space_sequencer -Iblender/source/blender/editors/space_text -Iblender/source/blender/editors/space_time -Iblender/source/blender/editors/space_userpref -Iblender/source/blender/editors/space_view3d -Iblender/source/blender/editors/transform -Iblender/source/blender/editors/util -Iblender/source/blender/editors/uvedit -Iblender/source/blender/gpu -Iblender/source/blender/gpu/intern -Iblender/source/blender/ikplugin -Iblender/source/blender/ikplugin/intern -Iblender/source/blender/imbuf -Iblender/source/blender/imbuf/in
+tern -Iblender/source/blender/imbuf/intern/openexr -Iblender/source/blender/makesdna -Iblender/source/blender/makesrna -Iblender/source/blender/makesrna/intern -Iblender/source/blender/modifiers -Iblender/source/blender/modifiers/intern -Iblender/source/blender/nodes -Iblender/source/blender/nodes/composite -Iblender/source/blender/nodes/intern -Iblender/source/blender/nodes/shader -Iblender/source/blender/nodes/texture -Iblender/source/blender/python -Iblender/source/blender/render/extern/include -Iblender/source/blender/render/intern/include -Iblender/source/blender/render/intern/raytrace -Iblender/source/blender/windowmanager -Iblender/source/gameengine/BlenderRoutines -Iblender_bin/source/blender/makesrna/intern -Iinclude -Ilibpng -Izlib -DSPEC_AUTO_SUPPRESS_OPENMP -DSPEC_AUTO_BYTEORDER=0x12345678 -DGLEW_NO_ES -DGLEW_STATIC -DWITH_DNA_GHASH -DWITH_GL_PROFILE_COMPAT -DWITH_HEADLESS -DHAVE_UNSIGNED_CHAR"
+P: BENCH_CFLAGS=""
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: COPTIMIZE=""
+P: PORTABILITY="-funsigned-char -DSPEC_LINUX"
+P: CPORTABILITY=""
+O: EXTRA_CFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_COPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_CPORTABILITY=""
+LINK: "/usr/bin/g++                -m64 -fgnu89-inline      -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize     -funsigned-char -DSPEC_LINUX     <objects> -Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive           -o options  "
+C: LD="/usr/bin/g++                -m64 -fgnu89-inline"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+P: PORTABILITY="-funsigned-char -DSPEC_LINUX"
+O: LIBS="-Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive"
+C: LDOUT="-o options"
+ CXXC_VERSION_OPTION:
+ CC_VERSION_OPTION:
+Using built-in specs.
+COLLECT_GCC=/usr/bin/g++
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+Using built-in specs.
+COLLECT_GCC=/usr/bin/gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+  Up to date 526.blender_r base attack-library-sse-enabled-m64
+------------------------------------------------------------------------
+FPP: "specpp -DSPEC -DNDEBUG -DNO_SHR_VMATH -DCO2A -DPERGRO -DPLON=144 -DPLAT=96 -DPLEV=26 -DPCNST=3 -DPCOLS=4 -DPTRM=1 -DPTRN=1 -DPTRK=1 -DSTAGGERED -D_NETCDF -DNO_R16 -I. -Iinclude -Inetcdf/include -DSPEC_AUTO_SUPPRESS_OPENMP -w -DHIDE_MPI -D_MPISERIAL -DNO_MPI2 -DSPEC_CASE_FLAG -DSPEC_LP64 <source> -o <source>.fppized.f9x"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FPPFLAGS="-DNO_SHR_VMATH -DCO2A -DPERGRO -DPLON=144 -DPLAT=96 -DPLEV=26 -DPCNST=3 -DPCOLS=4 -DPTRM=1 -DPTRN=1 -DPTRK=1 -DSTAGGERED -D_NETCDF -DNO_R16 -I. -Iinclude -Inetcdf/include -DSPEC_AUTO_SUPPRESS_OPENMP -w -DHIDE_MPI -D_MPISERIAL -DNO_MPI2"
+O: OPTIMIZE=""
+O: EXTRA_OPTIMIZE=""
+O: FPPOPTIMIZE=""
+O: EXTRA_FPPOPTIMIZE=""
+O: FOPTIMIZE=""
+O: EXTRA_FOPTIMIZE=""
+P: PORTABILITY="-DSPEC_CASE_FLAG"
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: FPORTABILITY=""
+P: EXTRA_FPORTABILITY=""
+COMP: "/usr/bin/gfortran           -m64 -fgnu89-inline -c -o options.o -I. -Iinclude -Inetcdf/include -g -O3 -march=native -fno-unsafe-math-optimizations -fno-tree-loop-vectorize <source>"
+C: FC="/usr/bin/gfortran           -m64 -fgnu89-inline"
+C: FOBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS=""
+P: BENCH_FFLAGS="-I. -Iinclude -Inetcdf/include"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: FOPTIMIZE=""
+P: PORTABILITY="-DSPEC_CASE_FLAG"
+P: FPORTABILITY=""
+O: EXTRA_FFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_FOPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_FPORTABILITY=""
+COMP: "/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline -c -o options.o -DSPEC -DNDEBUG  -DNO_SHR_VMATH -DCO2A -DPERGRO -DPLON=144 -DPLAT=96 -DPLEV=26 -DPCNST=3 -DPCOLS=4 -DPTRM=1 -DPTRN=1 -DPTRK=1 -DSTAGGERED -D_NETCDF -DNO_R16 -I. -Iinclude -Inetcdf/include -DSPEC_AUTO_SUPPRESS_OPENMP -DSPEC_AUTO_BYTEORDER=0x12345678 -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize        -DSPEC_CASE_FLAG       -DSPEC_LP64  <source>"
+C: CC="/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline"
+C: COBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS=""
+P: BENCH_CFLAGS="-DNO_SHR_VMATH -DCO2A -DPERGRO -DPLON=144 -DPLAT=96 -DPLEV=26 -DPCNST=3 -DPCOLS=4 -DPTRM=1 -DPTRN=1 -DPTRK=1 -DSTAGGERED -D_NETCDF -DNO_R16 -I. -Iinclude -Inetcdf/include -DSPEC_AUTO_SUPPRESS_OPENMP -DSPEC_AUTO_BYTEORDER=0x12345678"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: COPTIMIZE=""
+P: PORTABILITY="-DSPEC_CASE_FLAG"
+P: CPORTABILITY=""
+O: EXTRA_CFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_COPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_CPORTABILITY=""
+LINK: "/usr/bin/gfortran           -m64 -fgnu89-inline      -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize     -DSPEC_CASE_FLAG     <objects> -Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive           -o options  "
+C: LD="/usr/bin/gfortran           -m64 -fgnu89-inline"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+P: PORTABILITY="-DSPEC_CASE_FLAG"
+O: LIBS="-Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive"
+C: LDOUT="-o options"
+ FC_VERSION_OPTION:
+ CC_VERSION_OPTION:
+Using built-in specs.
+COLLECT_GCC=/usr/bin/gfortran
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+Using built-in specs.
+COLLECT_GCC=/usr/bin/gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+COMP: "/usr/bin/gfortran           -m64 -fgnu89-inline -c -o options.o -I. -Iinclude -Inetcdf/include -g -O3 -march=native -fno-unsafe-math-optimizations -fno-tree-loop-vectorize <source>"
+C: FC="/usr/bin/gfortran           -m64 -fgnu89-inline"
+C: FOBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS=""
+P: BENCH_FFLAGS="-I. -Iinclude -Inetcdf/include"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: FOPTIMIZE=""
+P: PORTABILITY="-DSPEC_CASE_FLAG"
+P: FPORTABILITY=""
+O: EXTRA_FFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_FOPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_FPORTABILITY=""
+COMP: "/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline -c -o options.o -DSPEC -DNDEBUG  -DNO_SHR_VMATH -DCO2A -DPERGRO -DPLON=144 -DPLAT=96 -DPLEV=26 -DPCNST=3 -DPCOLS=4 -DPTRM=1 -DPTRN=1 -DPTRK=1 -DSTAGGERED -D_NETCDF -DNO_R16 -I. -Iinclude -Inetcdf/include -DSPEC_AUTO_SUPPRESS_OPENMP -DSPEC_AUTO_BYTEORDER=0x12345678 -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize        -DSPEC_CASE_FLAG       -DSPEC_LP64  <source>"
+C: CC="/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline"
+C: COBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS=""
+P: BENCH_CFLAGS="-DNO_SHR_VMATH -DCO2A -DPERGRO -DPLON=144 -DPLAT=96 -DPLEV=26 -DPCNST=3 -DPCOLS=4 -DPTRM=1 -DPTRN=1 -DPTRK=1 -DSTAGGERED -D_NETCDF -DNO_R16 -I. -Iinclude -Inetcdf/include -DSPEC_AUTO_SUPPRESS_OPENMP -DSPEC_AUTO_BYTEORDER=0x12345678"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: COPTIMIZE=""
+P: PORTABILITY="-DSPEC_CASE_FLAG"
+P: CPORTABILITY=""
+O: EXTRA_CFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_COPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_CPORTABILITY=""
+LINK: "/usr/bin/gfortran           -m64 -fgnu89-inline      -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize     -DSPEC_CASE_FLAG     <objects> -Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive           -o options  "
+C: LD="/usr/bin/gfortran           -m64 -fgnu89-inline"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+P: PORTABILITY="-DSPEC_CASE_FLAG"
+O: LIBS="-Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive"
+C: LDOUT="-o options"
+ FC_VERSION_OPTION:
+ CC_VERSION_OPTION:
+Using built-in specs.
+COLLECT_GCC=/usr/bin/gfortran
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+Using built-in specs.
+COLLECT_GCC=/usr/bin/gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+  Up to date 527.cam4_r base attack-library-sse-enabled-m64
+------------------------------------------------------------------------
+COMP: "/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline -c -o options.o -DSPEC -DNDEBUG -I. -DSPEC_AUTO_SUPPRESS_OPENMP  -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize               -DSPEC_LP64  <source>"
+C: CC="/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline"
+C: COBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-I. -DSPEC_AUTO_SUPPRESS_OPENMP"
+P: BENCH_CFLAGS=""
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: COPTIMIZE=""
+P: PORTABILITY=""
+P: CPORTABILITY=""
+O: EXTRA_CFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_COPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_CPORTABILITY=""
+LINK: "/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline      -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize          <objects> -Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive  -lm         -o options  "
+C: LD="/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: LIBS="-Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive"
+C: MATH_LIBS="-lm"
+C: LDOUT="-o options"
+ CC_VERSION_OPTION:
+Using built-in specs.
+COLLECT_GCC=/usr/bin/gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+COMP: "/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline -c -o options.o -DSPEC -DNDEBUG -I. -DSPEC_AUTO_SUPPRESS_OPENMP  -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize               -DSPEC_LP64  <source>"
+C: CC="/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline"
+C: COBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-I. -DSPEC_AUTO_SUPPRESS_OPENMP"
+P: BENCH_CFLAGS=""
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: COPTIMIZE=""
+P: PORTABILITY=""
+P: CPORTABILITY=""
+O: EXTRA_CFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_COPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_CPORTABILITY=""
+LINK: "/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline      -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize          <objects> -Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive  -lm         -o options  "
+C: LD="/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: LIBS="-Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive"
+C: MATH_LIBS="-lm"
+C: LDOUT="-o options"
+ CC_VERSION_OPTION:
+Using built-in specs.
+COLLECT_GCC=/usr/bin/gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+  Up to date 538.imagick_r base attack-library-sse-enabled-m64
+------------------------------------------------------------------------
+COMP: "/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline -c -o options.o -DSPEC -DNDEBUG -Ispecrand -Iregex-alpha -DNDEBUG -DNOPERFLIB -DNOREDUCE -DSPEC_AUTO_SUPPRESS_OPENMP  -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize               -DSPEC_LP64  <source>"
+C: CC="/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline"
+C: COBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-Ispecrand -Iregex-alpha -DNDEBUG -DNOPERFLIB -DNOREDUCE -DSPEC_AUTO_SUPPRESS_OPENMP"
+P: BENCH_CFLAGS=""
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: COPTIMIZE=""
+P: PORTABILITY=""
+P: CPORTABILITY=""
+O: EXTRA_CFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_COPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_CPORTABILITY=""
+LINK: "/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline      -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize          <objects> -Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive  -lm         -o options  "
+C: LD="/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: LIBS="-Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive"
+C: MATH_LIBS="-lm"
+C: LDOUT="-o options"
+ CC_VERSION_OPTION:
+Using built-in specs.
+COLLECT_GCC=/usr/bin/gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+  Up to date 544.nab_r base attack-library-sse-enabled-m64
+------------------------------------------------------------------------
+FPP: "specpp -DSPEC -DNDEBUG -DSPEC_AUTO_SUPPRESS_OPENMP -DSPEC_LP64 <source> -o <source>.fppized.f9x"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-DSPEC_AUTO_SUPPRESS_OPENMP"
+O: OPTIMIZE=""
+O: EXTRA_OPTIMIZE=""
+O: FPPOPTIMIZE=""
+O: EXTRA_FPPOPTIMIZE=""
+O: FOPTIMIZE=""
+O: EXTRA_FOPTIMIZE=""
+P: PORTABILITY=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: FPORTABILITY=""
+P: EXTRA_FPORTABILITY=""
+COMP: "/usr/bin/gfortran           -m64 -fgnu89-inline -c -o options.o -I. -g -O3 -march=native -fno-unsafe-math-optimizations -fno-tree-loop-vectorize <source>"
+C: FC="/usr/bin/gfortran           -m64 -fgnu89-inline"
+C: FOBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-I. -DSPEC_AUTO_SUPPRESS_OPENMP"
+P: BENCH_FFLAGS=""
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: FOPTIMIZE=""
+P: PORTABILITY=""
+P: FPORTABILITY=""
+O: EXTRA_FFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_FOPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_FPORTABILITY=""
+LINK: "/usr/bin/gfortran           -m64 -fgnu89-inline      -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize          <objects> -Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive           -o options  "
+C: LD="/usr/bin/gfortran           -m64 -fgnu89-inline"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: LIBS="-Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive"
+C: LDOUT="-o options"
+ FC_VERSION_OPTION:
+Using built-in specs.
+COLLECT_GCC=/usr/bin/gfortran
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+  Up to date 549.fotonik3d_r base attack-library-sse-enabled-m64
+------------------------------------------------------------------------
+FPP: "specpp -DSPEC -DNDEBUG -w -m literal-single.pm -m c-comment.pm -I. -DBENCHMARK -DNestedGrids=1 -DNO_GETTIMEOFDAY -DSPEC_AUTO_SUPPRESS_OPENMP -DSPEC_LP64 <source> -o <source>.fppized.f9x"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FPPFLAGS="-w -m literal-single.pm -m c-comment.pm -I. -DBENCHMARK -DNestedGrids=1 -DNO_GETTIMEOFDAY -DSPEC_AUTO_SUPPRESS_OPENMP"
+O: OPTIMIZE=""
+O: EXTRA_OPTIMIZE=""
+O: FPPOPTIMIZE=""
+O: EXTRA_FPPOPTIMIZE=""
+O: FOPTIMIZE=""
+O: EXTRA_FOPTIMIZE=""
+P: PORTABILITY=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: FPORTABILITY=""
+P: EXTRA_FPORTABILITY=""
+COMP: "/usr/bin/gfortran           -m64 -fgnu89-inline -c -o options.o -I. -g -O3 -march=native -fno-unsafe-math-optimizations -fno-tree-loop-vectorize <source>"
+C: FC="/usr/bin/gfortran           -m64 -fgnu89-inline"
+C: FOBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS=""
+P: BENCH_FFLAGS="-I."
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: FOPTIMIZE=""
+P: PORTABILITY=""
+P: FPORTABILITY=""
+O: EXTRA_FFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_FOPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_FPORTABILITY=""
+LINK: "/usr/bin/gfortran           -m64 -fgnu89-inline      -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize          <objects> -Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive           -o options  "
+C: LD="/usr/bin/gfortran           -m64 -fgnu89-inline"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: LIBS="-Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive"
+C: LDOUT="-o options"
+ FC_VERSION_OPTION:
+Using built-in specs.
+COLLECT_GCC=/usr/bin/gfortran
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+  Up to date 554.roms_r base attack-library-sse-enabled-m64
+------------------------------------------------------------------------
+COMP: "/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline -c -o options.o -DSPEC -DNDEBUG -Ispecrand-common  -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize               -DSPEC_LP64  <source>"
+C: CC="/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline"
+C: COBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-Ispecrand-common"
+P: BENCH_CFLAGS=""
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: COPTIMIZE=""
+P: PORTABILITY=""
+P: CPORTABILITY=""
+O: EXTRA_CFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_COPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_CPORTABILITY=""
+LINK: "/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline      -g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize          <objects> -Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive           -o options  "
+C: LD="/usr/bin/gcc     -std=c99   -m64 -fgnu89-inline"
+O: OPTIMIZE="-g -O3 -march=native -fno-unsafe-math-optimizations  -fno-tree-loop-vectorize"
+O: LIBS="-Wl,--whole-archive -L/home/ubuntu/sgx-floats/code-snippets/fpu-lib/ -lfpu_lib -Wl,--no-whole-archive"
+C: LDOUT="-o options"
+ CC_VERSION_OPTION:
+Using built-in specs.
+COLLECT_GCC=/usr/bin/gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --wit
+h-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+  Up to date 997.specrand_fr base attack-library-sse-enabled-m64
+
+
+Setting Up Run Directories
+  Setting up 503.bwaves_r refrate (ref) base attack-library-sse-enabled-m64 (1 copy): run_base_refrate_attack-library-sse-enabled-m64.0003
+  Setting up 507.cactuBSSN_r refrate (ref) base attack-library-sse-enabled-m64 (1 copy): run_base_refrate_attack-library-sse-enabled-m64.0003
+  Setting up 508.namd_r refrate (ref) base attack-library-sse-enabled-m64 (1 copy): run_base_refrate_attack-library-sse-enabled-m64.0003
+  Setting up 510.parest_r refrate (ref) base attack-library-sse-enabled-m64 (1 copy): run_base_refrate_attack-library-sse-enabled-m64.0003
+  Setting up 511.povray_r refrate (ref) base attack-library-sse-enabled-m64 (1 copy): run_base_refrate_attack-library-sse-enabled-m64.0003
+  Setting up 519.lbm_r refrate (ref) base attack-library-sse-enabled-m64 (1 copy): run_base_refrate_attack-library-sse-enabled-m64.0003
+  Setting up 521.wrf_r refrate (ref) base attack-library-sse-enabled-m64 (1 copy): run_base_refrate_attack-library-sse-enabled-m64.0003
+  Setting up 526.blender_r refrate (ref) base attack-library-sse-enabled-m64 (1 copy): run_base_refrate_attack-library-sse-enabled-m64.0003
+  Setting up 527.cam4_r refrate (ref) base attack-library-sse-enabled-m64 (1 copy): run_base_refrate_attack-library-sse-enabled-m64.0003
+  Setting up 538.imagick_r refrate (ref) base attack-library-sse-enabled-m64 (1 copy): run_base_refrate_attack-library-sse-enabled-m64.0003
+  Setting up 544.nab_r refrate (ref) base attack-library-sse-enabled-m64 (1 copy): run_base_refrate_attack-library-sse-enabled-m64.0003
+  Setting up 549.fotonik3d_r refrate (ref) base attack-library-sse-enabled-m64 (1 copy): OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+**WARNING: environment variable 'TERMCAP' contains embedded CR or LF; they will be converted to spaces
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/549.fotonik3d_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f inputgen.cmd -e inputgen.err -o inputgen.stdout'
+Start command: 2020-06-11 21:30:46 (1591911046.64563)
+Stop command: 2020-06-11 21:30:47 (1591911047.09098)
+Elapsed time for command: 00:00:00 (0.445357084274292)
+Input generation total elapsed time = 1 seconds
+Input generation elapsed time (0:1) = 0.287422 seconds
+run_base_refrate_attack-library-sse-enabled-m64.0003
+  Setting up 554.roms_r refrate (ref) base attack-library-sse-enabled-m64 (1 copy): run_base_refrate_attack-library-sse-enabled-m64.0003
+  Setting up 997.specrand_fr refrate (ref) base attack-library-sse-enabled-m64 (1 copy): run_base_refrate_attack-library-sse-enabled-m64.0003
+-----------------------------------
+Running Benchmarks
+-----------------------------------
+  Running 503.bwaves_r refrate (ref) base attack-library-sse-enabled-m64 (1 copy) [2020-06-11 21:30:47]
+In SPECrate mode, threads is always 1 (ignoring setting of 4)
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+Commands to run (specinvoke command file):
+    -r
+    -N C
+    -C /home/ubuntu/spec/spec-2017/benchspec/CPU/503.bwaves_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003
+    -i bwaves_1.in -o bwaves_1.out -e bwaves_1.err ../run_base_refrate_attack-library-sse-enabled-m64.0003/bwaves_r_base.attack-library-sse-enabled-m64 bwaves_1 < bwaves_1.in > bwaves_1.out 2>> bwaves_1.err (timed)
+    -i bwaves_2.in -o bwaves_2.out -e bwaves_2.err ../run_base_refrate_attack-library-sse-enabled-m64.0003/bwaves_r_base.attack-library-sse-enabled-m64 bwaves_2 < bwaves_2.in > bwaves_2.out 2>> bwaves_2.err (timed)
+    -i bwaves_3.in -o bwaves_3.out -e bwaves_3.err ../run_base_refrate_attack-library-sse-enabled-m64.0003/bwaves_r_base.attack-library-sse-enabled-m64 bwaves_3 < bwaves_3.in > bwaves_3.out 2>> bwaves_3.err (timed)
+    -i bwaves_4.in -o bwaves_4.out -e bwaves_4.err ../run_base_refrate_attack-library-sse-enabled-m64.0003/bwaves_r_base.attack-library-sse-enabled-m64 bwaves_4 < bwaves_4.in > bwaves_4.out 2>> bwaves_4.err (timed)
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/503.bwaves_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/503.bwaves_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout'
+Start command: 2020-06-11 21:30:47 (1591911047.74252)
+Stop command: 2020-06-11 22:50:39 (1591915839.58003)
+Elapsed time for command: 01:19:51 (4791.83750295639)
+Workload elapsed time (copy 0 workload 1) = 1000.710256 seconds
+Workload elapsed time (copy 0 workload 2) = 1166.193737 seconds
+Workload elapsed time (copy 0 workload 3) = 1176.277272 seconds
+Workload elapsed time (copy 0 workload 4) = 1448.488209 seconds
+Copy 0 of 503.bwaves_r (base refrate) run 1 finished at 2020-06-11 22:50:39.  Total elapsed time: 4791.669474
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+comparing 'bwaves_1.out' with abstol=1e-16, reltol=0.015
+comparing 'bwaves_2.out' with abstol=1e-16, reltol=0.015
+comparing 'bwaves_3.out' with abstol=1e-16, reltol=0.015
+comparing 'bwaves_4.out' with abstol=1e-16, reltol=0.015
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/503.bwaves_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/503.bwaves_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout'
+Start command: 2020-06-11 22:50:39 (1591915839.74863)
+Stop command: 2020-06-11 22:50:41 (1591915841.36043)
+Elapsed time for command: 00:00:01 (1.61179995536804)
+Benchmark Times:
+  Run Start:    2020-06-11 21:30:47 (1591911047)
+  Rate Start:   2020-06-11 21:30:47 (1591911047.74805)
+  Rate End:     2020-06-11 22:50:39 (1591915839.41867)
+  Run Stop:     2020-06-11 22:50:39 (1591915839)
+  Run Elapsed:  01:19:52 (4792)
+  Run Reported: 01:19:51 (4791 670619964 4791.67062)
+ Success 503.bwaves_r base refrate ratio=2.09, runtime=4791.670620, copies=1, threads=1, power=0.00W, temp=0.00 degC, humidity=0.00%
+-----------------------------------
+  Running 507.cactuBSSN_r refrate (ref) base attack-library-sse-enabled-m64 (1 copy) [2020-06-11 22:50:41]
+In SPECrate mode, threads is always 1 (ignoring setting of 4)
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+Commands to run (specinvoke command file):
+    -r
+    -N C
+    -C /home/ubuntu/spec/spec-2017/benchspec/CPU/507.cactuBSSN_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003
+    -o spec_ref.out -e spec_ref.err ../run_base_refrate_attack-library-sse-enabled-m64.0003/cactusBSSN_r_base.attack-library-sse-enabled-m64 spec_ref.par   > spec_ref.out 2>> spec_ref.err (timed)
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/507.cactuBSSN_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/507.cactuBSSN_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout'
+Start command: 2020-06-11 22:50:41 (1591915841.86314)
+Stop command: 2020-06-11 23:00:54 (1591916454.32011)
+Elapsed time for command: 00:10:12 (612.456967115402)
+Workload elapsed time (copy 0 workload 1) = 612.293798 seconds
+Copy 0 of 507.cactuBSSN_r (base refrate) run 1 finished at 2020-06-11 23:00:54.  Total elapsed time: 612.293798
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+comparing 'gxx.xl' with abstol=5e-13, floatcompare=1
+comparing 'gxy.xl' with abstol=5e-13, floatcompare=1
+comparing 'spec_ref.out' with floatcompare=1
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/507.cactuBSSN_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/507.cactuBSSN_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout'
+Start command: 2020-06-11 23:00:54 (1591916454.45948)
+Stop command: 2020-06-11 23:00:56 (1591916456.95356)
+Elapsed time for command: 00:00:02 (2.4940779209137)
+Error with '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/507.cactuBSSN_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout'; no non-empty output files exist
+  Command returned exit code 1
+*** Miscompare of spec_ref.out; for details see
+    /home/ubuntu/spec/spec-2017/benchspec/CPU/507.cactuBSSN_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003/spec_ref.out.mis
+0085:  INFO (CartGrid3D): dx=>1.0000000e-01  dy=>1.0000000e-01  dz=>1.0000000e-01
+       INFO (CartGrid3D): dx=>9.9999999e-02  dy=>9.9999999e-02  dz=>9.9999999e-02
+                                          ^
+0087:  INFO (CartGrid3D): x=>[-0.200, 8.100]  y=>[-0.200, 8.100]  z=>[-0.200, 8.100]
+       INFO (CartGrid3D): x=>[-0.200, 8.099]  y=>[-0.200, 8.099]  z=>[-0.200, 8.099]
+                                          ^
+0093:  INFO (Time): Timestep set to 0.025 (courant_static)
+       INFO (Time): Timestep set to 0.0249999 (courant_static)
+                                            ^
+0099:       0 |    0.000 |   0.96829812 |   1.03170188 |  -0.03170188 |   0.03170188 |
+            0 |    0.000 |   0.96829811 |   1.03170188 |  -0.03170189 |   0.03170188 |
+                                      ^
+0100:       1 |    0.025 |   0.96598489 |   1.03402338 |  -0.03354010 |   0.03339658 |
+            1 |    0.024 |   0.96598488 |   1.03402337 |  -0.03354011 |   0.03339658 |
+                       ^
+0101:       2 |    0.050 |   0.96490929 |   1.03499120 |  -0.03454846 |   0.03394335 |
+            2 |    0.049 |   0.96490928 |   1.03499120 |  -0.03454846 |   0.03394335 |
+                       ^
+0102:       3 |    0.075 |   0.96189543 |   1.04025080 |  -0.04273463 |   0.04115623 |
+            3 |    0.074 |   0.96189542 |   1.04025080 |  -0.04273464 |   0.04115623 |
+                       ^
+0103:       4 |    0.100 |   0.95635044 |   1.04479427 |  -0.05083356 |   0.04823882 |
+            4 |    0.099 |   0.95635044 |   1.04479427 |  -0.05083357 |   0.04823882 |
+                       ^
+0104:       5 |    0.125 |   0.94939011 |   1.05313616 |  -0.05746425 |   0.05438592 |
+            5 |    0.124 |   0.94939011 |   1.05313615 |  -0.05746425 |   0.05438591 |
+                       ^
+0105:       6 |    0.150 |   0.93418231 |   1.07117441 |  -0.06090218 |   0.05825189 |
+            6 |    0.149 |   0.93418230 |   1.07117441 |  -0.06090218 |   0.05825189 |
+                       ^
+Benchmark Times:
+  Run Start:    2020-06-11 22:50:41 (1591915841)
+  Rate Start:   2020-06-11 22:50:41 (1591915841.86809)
+  Rate End:     2020-06-11 23:00:54 (1591916454.16189)
+  Run Stop:     2020-06-11 23:00:54 (1591916454)
+  Run Elapsed:  00:10:13 (613)
+  Run Reported: 00:10:12 (612 293797969 612.293798)
+ Error 507.cactuBSSN_r base refrate ratio=2.07, runtime=612.293798, copies=1, threads=1, power=0.00W, temp=0.00 degC, humidity=0.00%, errorcode=VE
+-----------------------------------
+  Running 508.namd_r refrate (ref) base attack-library-sse-enabled-m64 (1 copy) [2020-06-11 23:00:57]
+In SPECrate mode, threads is always 1 (ignoring setting of 4)
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+Commands to run (specinvoke command file):
+    -r
+    -N C
+    -C /home/ubuntu/spec/spec-2017/benchspec/CPU/508.namd_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003
+    -o namd.out -e namd.err ../run_base_refrate_attack-library-sse-enabled-m64.0003/namd_r_base.attack-library-sse-enabled-m64 --input apoa1.input --output apoa1.ref.output --iterations 65 > namd.out 2>> namd.err (timed)
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/508.namd_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/508.namd_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout'
+Start command: 2020-06-11 23:00:57 (1591916457.20834)
+Stop command: 2020-06-11 23:10:19 (1591917019.34477)
+Elapsed time for command: 00:09:22 (562.136434078217)
+Workload elapsed time (copy 0 workload 1) = 561.96745 seconds
+Copy 0 of 508.namd_r (base refrate) run 1 finished at 2020-06-11 23:10:19.  Total elapsed time: 561.96745
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+comparing 'apoa1.ref.output' with abstol=5e-05
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/508.namd_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/508.namd_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout'
+Start command: 2020-06-11 23:10:19 (1591917019.48225)
+Stop command: 2020-06-11 23:10:20 (1591917020.03091)
+Elapsed time for command: 00:00:00 (0.548654079437256)
+Error with '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/508.namd_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout'; no non-empty output files exist
+  Command returned exit code 1
+*** Miscompare of apoa1.ref.output; for details see
+    /home/ubuntu/spec/spec-2017/benchspec/CPU/508.namd_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003/apoa1.ref.output.mis
+0003:  -355359.709518 0.000000 24229.466017
+       -355359.749624 0.000000 24229.466016
+                    ^
+0004:  229430.306915 5781.518000 -2454.763962
+       229430.293436 5781.518111 -2454.763482
+                   ^
+0005:  5781.518000 226184.169856 -7867.670923
+       5781.518111 226184.156512 -7867.670788
+                 ^
+0006:  -2454.763962 -7867.670923 252281.624866
+       -2454.763482 -7867.670788 252281.611889
+                  ^
+0016:  -355359.709518 1175488.427169 24229.466017
+       -355359.749624 1175488.528002 24229.466016
+                    ^
+0017:  229430.306915 5781.518000 -2454.763962
+       229430.293436 5781.518111 -2454.763482
+                   ^
+0018:  5781.518000 226184.169856 -7867.670923
+       5781.518111 226184.156512 -7867.670788
+                 ^
+0019:  -2454.763962 -7867.670923 252281.624866
+       -2454.763482 -7867.670788 252281.611889
+                  ^
+0020:  5180.320209 277.843994 -1135.838854
+       5180.319304 277.844042 -1135.839003
+                 ^
+0021:  277.843994 2960.455480 -681.815832
+       277.844042 2960.454474 -681.815893
+                            ^
+Benchmark Times:
+  Run Start:    2020-06-11 23:00:57 (1591916457)
+  Rate Start:   2020-06-11 23:00:57 (1591916457.21619)
+  Rate End:     2020-06-11 23:10:19 (1591917019.18364)
+  Run Stop:     2020-06-11 23:10:19 (1591917019)
+  Run Elapsed:  00:09:22 (562)
+  Run Reported: 00:09:21 (561 967449903 561.96745)
+ Error 508.namd_r base refrate ratio=1.69, runtime=561.967450, copies=1, threads=1, power=0.00W, temp=0.00 degC, humidity=0.00%, errorcode=VE
+-----------------------------------
+  Running 510.parest_r refrate (ref) base attack-library-sse-enabled-m64 (1 copy) [2020-06-11 23:10:22]
+In SPECrate mode, threads is always 1 (ignoring setting of 4)
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+Commands to run (specinvoke command file):
+    -r
+    -N C
+    -C /home/ubuntu/spec/spec-2017/benchspec/CPU/510.parest_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003
+    -o ref.out -e ref.err ../run_base_refrate_attack-library-sse-enabled-m64.0003/parest_r_base.attack-library-sse-enabled-m64 ref.prm > ref.out 2>> ref.err (timed)
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/510.parest_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/510.parest_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout'
+Start command: 2020-06-11 23:10:22 (1591917022.98604)
+Stop command: 2020-06-11 23:25:56 (1591917956.86592)
+Elapsed time for command: 00:15:33 (933.879883050919)
+Workload elapsed time (copy 0 workload 1) = 933.714353 seconds
+Copy 0 of 510.parest_r (base refrate) run 1 finished at 2020-06-11 23:25:56.  Total elapsed time: 933.714353
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+comparing '001-m00.vtk' with abstol=0.001, floatcompare=1
+comparing '002-m00.vtk' with abstol=0.001, floatcompare=1
+comparing '003-m00.vtk' with abstol=0.001, floatcompare=1
+comparing '004-m00.vtk' with abstol=0.001, floatcompare=1
+comparing '005-m00.vtk' with abstol=0.001, floatcompare=1
+comparing '006-m00.vtk' with abstol=0.001, floatcompare=1
+comparing '007-m00.vtk' with abstol=0.001, floatcompare=1
+comparing 'log' with abstol=0.001, floatcompare=1
+comparing 'me.prm' with abstol=0.001, floatcompare=1
+comparing 'statistics' with abstol=0.004, floatcompare=1
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/510.parest_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/510.parest_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout'
+Start command: 2020-06-11 23:25:57 (1591917957.00151)
+Stop command: 2020-06-11 23:26:01 (1591917961.0656)
+Elapsed time for command: 00:00:04 (4.06408500671387)
+Benchmark Times:
+  Run Start:    2020-06-11 23:10:22 (1591917022)
+  Rate Start:   2020-06-11 23:10:22 (1591917022.99277)
+  Rate End:     2020-06-11 23:25:56 (1591917956.70712)
+  Run Stop:     2020-06-11 23:25:56 (1591917956)
+  Run Elapsed:  00:15:34 (934)
+  Run Reported: 00:15:33 (933 714353084 933.714353)
+ Success 510.parest_r base refrate ratio=2.80, runtime=933.714353, copies=1, threads=1, power=0.00W, temp=0.00 degC, humidity=0.00%
+-----------------------------------
+  Running 511.povray_r refrate (ref) base attack-library-sse-enabled-m64 (1 copy) [2020-06-11 23:26:01]
+In SPECrate mode, threads is always 1 (ignoring setting of 4)
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+Commands to run (specinvoke command file):
+    -r
+    -N C
+    -C /home/ubuntu/spec/spec-2017/benchspec/CPU/511.povray_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003
+    -o SPEC-benchmark-ref.stdout -e SPEC-benchmark-ref.stderr ../run_base_refrate_attack-library-sse-enabled-m64.0003/povray_r_base.attack-library-sse-enabled-m64 SPEC-benchmark-ref.ini > SPEC-benchmark-ref.stdout 2>> SPEC-benchmark-ref.stderr (timed)
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/511.povray_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/511.povray_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout'
+Start command: 2020-06-11 23:26:01 (1591917961.3316)
+Stop command: 2020-06-11 23:37:02 (1591918622.42072)
+Elapsed time for command: 00:11:01 (661.089110136032)
+Workload elapsed time (copy 0 workload 1) = 660.916804 seconds
+Copy 0 of 511.povray_r (base refrate) run 1 finished at 2020-06-11 23:37:02.  Total elapsed time: 660.916804
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+comparing 'imagevalidate_SPEC-benchmark.tga.out' with reltol=0.06
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/511.povray_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/511.povray_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout'
+Start command: 2020-06-11 23:37:02 (1591918622.53474)
+Stop command: 2020-06-11 23:37:04 (1591918624.35544)
+Elapsed time for command: 00:00:01 (1.82069897651672)
+Error with '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/511.povray_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout'; no non-empty output files exist
+  Command returned exit code 1
+****************************************
+Contents of imagevalidate_SPEC-benchmark.tga.err
+****************************************
+ImageValidator r4696
+SPEC-benchmark.tga: INFO:
+                AVG SSIM: 0.999593508
+                MIN SSIM: 0.622769554
+       SSIM distribution:
+         [         1.000]: 80451
+         [ 0.899,  1.000): 1378
+         [ 0.799,  0.899): 75
+         [ 0.699,  0.799): 14
+         [ 0.599,  0.699): 2
+         [ 0.500,  0.599): 0
+         [ 0.399,  0.500): 0
+         [ 0.299,  0.399): 0
+         [ 0.199,  0.299): 0
+         [ 0.099,  0.199): 0
+         [-0.000,  0.099): 0
+         [-0.101, -0.000): 0
+         [-0.201, -0.101): 0
+         [-0.301, -0.201): 0
+         [-0.401, -0.301): 0
+         [-0.500, -0.401): 0
+         [-0.601, -0.500): 0
+         [-0.701, -0.601): 0
+         [-0.801, -0.701): 0
+         [-0.901, -0.801): 0
+         [-1.000, -0.901): 0
+
+****************************************
+*** Miscompare of imagevalidate_SPEC-benchmark.tga.out; for details see
+    /home/ubuntu/spec/spec-2017/benchspec/CPU/511.povray_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003/imagevalidate_SPEC-benchmark.tga.out.mis
+39687:  (48,992)  SSIM = 1.000000000
+        (48,992)  SSIM = 0.911665885
+                                   ^
+39716:  (280,992)  SSIM = 1.000000000
+        (280,992)  SSIM = 0.921249700
+                                    ^
+39717:  (288,992)  SSIM = 1.000000000
+        (288,992)  SSIM = 0.907626498
+                                    ^
+39718:  (296,992)  SSIM = 1.000000000
+        (296,992)  SSIM = 0.919704246
+                                    ^
+39725:  (352,992)  SSIM = 1.000000000
+        (352,992)  SSIM = 0.918978761
+                                    ^
+39726:  (360,992)  SSIM = 1.000000000
+        (360,992)  SSIM = 0.850858394
+                                    ^
+39727:  (368,992)  SSIM = 1.000000000
+        (368,992)  SSIM = 0.843452190
+                                    ^
+39728:  (376,992)  SSIM = 1.000000000
+        (376,992)  SSIM = 0.812035153
+                                    ^
+39729:  (384,992)  SSIM = 1.000000000
+        (384,992)  SSIM = 0.709127164
+                                    ^
+39730:  (392,992)  SSIM = 1.000000000
+        (392,992)  SSIM = 0.857216814
+                                    ^
+Benchmark Times:
+  Run Start:    2020-06-11 23:26:01 (1591917961)
+  Rate Start:   2020-06-11 23:26:01 (1591917961.33761)
+  Rate End:     2020-06-11 23:37:02 (1591918622.25442)
+  Run Stop:     2020-06-11 23:37:02 (1591918622)
+  Run Elapsed:  00:11:01 (661)
+  Run Reported: 00:11:00 (660 916803836 660.916804)
+ Error 511.povray_r base refrate ratio=3.53, runtime=660.916804, copies=1, threads=1, power=0.00W, temp=0.00 degC, humidity=0.00%, errorcode=VE
+-----------------------------------
+  Running 519.lbm_r refrate (ref) base attack-library-sse-enabled-m64 (1 copy) [2020-06-11 23:37:04]
+In SPECrate mode, threads is always 1 (ignoring setting of 4)
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+Commands to run (specinvoke command file):
+    -r
+    -N C
+    -C /home/ubuntu/spec/spec-2017/benchspec/CPU/519.lbm_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003
+    -o lbm.out -e lbm.err ../run_base_refrate_attack-library-sse-enabled-m64.0003/lbm_r_base.attack-library-sse-enabled-m64 3000 reference.dat 0 0 100_100_130_ldc.of > lbm.out 2>> lbm.err (timed)
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/519.lbm_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/519.lbm_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout'
+Start command: 2020-06-11 23:37:04 (1591918624.43647)
+Stop command: 2020-06-11 23:49:23 (1591919363.98362)
+Elapsed time for command: 00:12:19 (739.547148942947)
+Workload elapsed time (copy 0 workload 1) = 739.36944 seconds
+Copy 0 of 519.lbm_r (base refrate) run 1 finished at 2020-06-11 23:49:23.  Total elapsed time: 739.36944
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+comparing 'lbm.out' with abstol=1e-07
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/519.lbm_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/519.lbm_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout'
+Start command: 2020-06-11 23:49:24 (1591919364.10855)
+Stop command: 2020-06-11 23:49:24 (1591919364.62028)
+Elapsed time for command: 00:00:00 (0.511730909347534)
+Benchmark Times:
+  Run Start:    2020-06-11 23:37:04 (1591918624)
+  Rate Start:   2020-06-11 23:37:04 (1591918624.44236)
+  Rate End:     2020-06-11 23:49:23 (1591919363.8118)
+  Run Stop:     2020-06-11 23:49:23 (1591919363)
+  Run Elapsed:  00:12:19 (739)
+  Run Reported: 00:12:19 (739 369439840 739.36944)
+ Success 519.lbm_r base refrate ratio=1.43, runtime=739.369440, copies=1, threads=1, power=0.00W, temp=0.00 degC, humidity=0.00%
+-----------------------------------
+  Running 521.wrf_r refrate (ref) base attack-library-sse-enabled-m64 (1 copy) [2020-06-11 23:49:26]
+In SPECrate mode, threads is always 1 (ignoring setting of 4)
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+Commands to run (specinvoke command file):
+    -r
+    -N C
+    -C /home/ubuntu/spec/spec-2017/benchspec/CPU/521.wrf_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003
+    -o rsl.out.0000 -e wrf.err ../run_base_refrate_attack-library-sse-enabled-m64.0003/wrf_r_base.attack-library-sse-enabled-m64 > rsl.out.0000 2>> wrf.err (timed)
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/521.wrf_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/521.wrf_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout'
+Start command: 2020-06-11 23:49:26 (1591919366.95459)
+Stop command: 2020-06-12 00:23:37 (1591921417.33022)
+Elapsed time for command: 00:34:10 (2050.37563109398)
+Workload elapsed time (copy 0 workload 1) = 2050.205095 seconds
+Copy 0 of 521.wrf_r (base refrate) run 1 finished at 2020-06-12 00:23:37.  Total elapsed time: 2050.205095
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+comparing 'diffwrf_output_01.txt' with cw=1
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/521.wrf_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/521.wrf_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout'
+Start command: 2020-06-12 00:23:37 (1591921417.48978)
+Stop command: 2020-06-12 00:23:38 (1591921418.39511)
+Elapsed time for command: 00:00:00 (0.905327081680298)
+Error with '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/521.wrf_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout'; no non-empty output files exist
+  Command returned exit code 1
+*** Miscompare of diffwrf_output_01.txt; for details see
+    /home/ubuntu/spec/spec-2017/benchspec/CPU/521.wrf_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003/diffwrf_output_01.txt.mis
+0078:         LAI    PASSED
+              LAI      1832    7   0.2149292680E+01   0.2149292916E+01   6   0.2882E-06   0.3464E-06
+                  ^
+0217:         LAI    PASSED
+              LAI      1832    7   0.2149292680E+01   0.2149292916E+01   6   0.2882E-06   0.3464E-06
+                  ^
+0356:         LAI    PASSED
+              LAI      1832    7   0.2149292680E+01   0.2149292916E+01   6   0.2882E-06   0.3464E-06
+                  ^
+Benchmark Times:
+  Run Start:    2020-06-11 23:49:26 (1591919366)
+  Rate Start:   2020-06-11 23:49:26 (1591919366.96121)
+  Rate End:     2020-06-12 00:23:37 (1591921417.16631)
+  Run Stop:     2020-06-12 00:23:37 (1591921417)
+  Run Elapsed:  00:34:11 (2051)
+  Run Reported: 00:34:10 (2050 205094814 2050.205095)
+ Error 521.wrf_r base refrate ratio=1.09, runtime=2050.205095, copies=1, threads=1, power=0.00W, temp=0.00 degC, humidity=0.00%, errorcode=VE
+-----------------------------------
+  Running 526.blender_r refrate (ref) base attack-library-sse-enabled-m64 (1 copy) [2020-06-12 00:23:40]
+In SPECrate mode, threads is always 1 (ignoring setting of 4)
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+Commands to run (specinvoke command file):
+    -r
+    -N C
+    -C /home/ubuntu/spec/spec-2017/benchspec/CPU/526.blender_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003
+    -o sh3_no_char.849.spec.out -e sh3_no_char.849.spec.err ../run_base_refrate_attack-library-sse-enabled-m64.0003/blender_r_base.attack-library-sse-enabled-m64 sh3_no_char.blend --render-output sh3_no_char_ --threads 1 -b -F RAWTGA -s 849 -e 849 -a > sh3_no_char.849.spec.out 2>> sh3_no_char.849.spec.err (timed)
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/526.blender_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/526.blender_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout'
+Start command: 2020-06-12 00:23:40 (1591921420.33112)
+Stop command: 2020-06-12 00:35:56 (1591922156.34122)
+Elapsed time for command: 00:12:16 (736.010100841522)
+Workload elapsed time (copy 0 workload 1) = 735.836909 seconds
+Copy 0 of 526.blender_r (base refrate) run 1 finished at 2020-06-12 00:35:56.  Total elapsed time: 735.836909
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+comparing 'imagevalidate_sh3_no_char_0849.out' with reltol=0.05
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/526.blender_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/526.blender_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout'
+Start command: 2020-06-12 00:35:56 (1591922156.47561)
+Stop command: 2020-06-12 00:35:57 (1591922157.17221)
+Elapsed time for command: 00:00:00 (0.696605920791626)
+Benchmark Times:
+  Run Start:    2020-06-12 00:23:40 (1591921420)
+  Rate Start:   2020-06-12 00:23:40 (1591921420.33985)
+  Rate End:     2020-06-12 00:35:56 (1591922156.17676)
+  Run Stop:     2020-06-12 00:35:56 (1591922156)
+  Run Elapsed:  00:12:16 (736)
+  Run Reported: 00:12:15 (735 836909055 735.836909)
+ Success 526.blender_r base refrate ratio=2.07, runtime=735.836909, copies=1, threads=1, power=0.00W, temp=0.00 degC, humidity=0.00%
+-----------------------------------
+  Running 527.cam4_r refrate (ref) base attack-library-sse-enabled-m64 (1 copy) [2020-06-12 00:35:57]
+In SPECrate mode, threads is always 1 (ignoring setting of 4)
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+Commands to run (specinvoke command file):
+    -r
+    -N C
+    -C /home/ubuntu/spec/spec-2017/benchspec/CPU/527.cam4_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003
+    -o cam4_r_base.attack-library-sse-enabled-m64.txt -e cam4_r_base.attack-library-sse-enabled-m64.err ../run_base_refrate_attack-library-sse-enabled-m64.0003/cam4_r_base.attack-library-sse-enabled-m64 > cam4_r_base.attack-library-sse-enabled-m64.txt 2>> cam4_r_base.attack-library-sse-enabled-m64.err (timed)
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/527.cam4_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/527.cam4_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout'
+Start command: 2020-06-12 00:35:57 (1591922157.88644)
+Stop command: 2020-06-12 00:56:13 (1591923373.2317)
+Elapsed time for command: 00:20:15 (1215.34526395798)
+Workload elapsed time (copy 0 workload 1) = 1215.174462 seconds
+Copy 0 of 527.cam4_r (base refrate) run 1 finished at 2020-06-12 00:56:13.  Total elapsed time: 1215.174462
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+comparing 'cam4_validate.txt' with cw=1
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/527.cam4_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/527.cam4_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout'
+Start command: 2020-06-12 00:56:13 (1591923373.3403)
+Stop command: 2020-06-12 00:56:14 (1591923374.09469)
+Elapsed time for command: 00:00:00 (0.75439190864563)
+Benchmark Times:
+  Run Start:    2020-06-12 00:35:57 (1591922157)
+  Rate Start:   2020-06-12 00:35:57 (1591922157.89436)
+  Rate End:     2020-06-12 00:56:13 (1591923373.06882)
+  Run Stop:     2020-06-12 00:56:13 (1591923373)
+  Run Elapsed:  00:20:16 (1216)
+  Run Reported: 00:20:15 (1215 174461841 1215.174462)
+ Success 527.cam4_r base refrate ratio=1.44, runtime=1215.174462, copies=1, threads=1, power=0.00W, temp=0.00 degC, humidity=0.00%
+-----------------------------------
+  Running 538.imagick_r refrate (ref) base attack-library-sse-enabled-m64 (1 copy) [2020-06-12 00:56:14]
+In SPECrate mode, threads is always 1 (ignoring setting of 4)
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+Commands to run (specinvoke command file):
+    -r
+    -N C
+    -C /home/ubuntu/spec/spec-2017/benchspec/CPU/538.imagick_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003
+    -o refrate_convert.out -e refrate_convert.err ../run_base_refrate_attack-library-sse-enabled-m64.0003/imagick_r_base.attack-library-sse-enabled-m64 -limit disk 0 refrate_input.tga -edge 41 -resample 181% -emboss 31 -colorspace YUV -mean-shift 19x19+15% -resize 30% refrate_output.tga > refrate_convert.out 2>> refrate_convert.err (timed)
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/538.imagick_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/538.imagick_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout'
+Start command: 2020-06-12 00:56:14 (1591923374.42995)
+Stop command: 2020-06-12 01:11:28 (1591924288.40104)
+Elapsed time for command: 00:15:13 (913.971093893051)
+Workload elapsed time (copy 0 workload 1) = 913.803242 seconds
+Copy 0 of 538.imagick_r (base refrate) run 1 finished at 2020-06-12 01:11:28.  Total elapsed time: 913.803242
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+comparing 'refrate_validate.out' with reltol=0.01
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/538.imagick_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/538.imagick_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout'
+Start command: 2020-06-12 01:11:28 (1591924288.50301)
+Stop command: 2020-06-12 01:11:29 (1591924289.05185)
+Elapsed time for command: 00:00:00 (0.548834085464478)
+Benchmark Times:
+  Run Start:    2020-06-12 00:56:14 (1591923374)
+  Rate Start:   2020-06-12 00:56:14 (1591923374.44119)
+  Rate End:     2020-06-12 01:11:28 (1591924288.24443)
+  Run Stop:     2020-06-12 01:11:28 (1591924288)
+  Run Elapsed:  00:15:14 (914)
+  Run Reported: 00:15:13 (913 803241968 913.803242)
+ Success 538.imagick_r base refrate ratio=2.72, runtime=913.803242, copies=1, threads=1, power=0.00W, temp=0.00 degC, humidity=0.00%
+-----------------------------------
+  Running 544.nab_r refrate (ref) base attack-library-sse-enabled-m64 (1 copy) [2020-06-12 01:11:29]
+In SPECrate mode, threads is always 1 (ignoring setting of 4)
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+Commands to run (specinvoke command file):
+    -r
+    -N C
+    -C /home/ubuntu/spec/spec-2017/benchspec/CPU/544.nab_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003
+    -o 1am0.out -e 1am0.err ../run_base_refrate_attack-library-sse-enabled-m64.0003/nab_r_base.attack-library-sse-enabled-m64 1am0 1122214447 122 > 1am0.out 2>> 1am0.err (timed)
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/544.nab_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/544.nab_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout'
+Start command: 2020-06-12 01:11:29 (1591924289.14863)
+Stop command: 2020-06-12 01:24:16 (1591925056.07241)
+Elapsed time for command: 00:12:46 (766.923780918121)
+Workload elapsed time (copy 0 workload 1) = 766.758847 seconds
+Copy 0 of 544.nab_r (base refrate) run 1 finished at 2020-06-12 01:24:15.  Total elapsed time: 766.758847
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+comparing '1am0.out' with reltol=0.01, skipreltol=2
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/544.nab_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/544.nab_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout'
+Start command: 2020-06-12 01:24:16 (1591925056.19436)
+Stop command: 2020-06-12 01:24:16 (1591925056.67138)
+Elapsed time for command: 00:00:00 (0.477024078369141)
+Benchmark Times:
+  Run Start:    2020-06-12 01:11:29 (1591924289)
+  Rate Start:   2020-06-12 01:11:29 (1591924289.15321)
+  Rate End:     2020-06-12 01:24:15 (1591925055.91206)
+  Run Stop:     2020-06-12 01:24:16 (1591925056)
+  Run Elapsed:  00:12:47 (767)
+  Run Reported: 00:12:46 (766 758846998 766.758847)
+ Success 544.nab_r base refrate ratio=2.19, runtime=766.758847, copies=1, threads=1, power=0.00W, temp=0.00 degC, humidity=0.00%
+-----------------------------------
+  Running 549.fotonik3d_r refrate (ref) base attack-library-sse-enabled-m64 (1 copy) [2020-06-12 01:24:16]
+In SPECrate mode, threads is always 1 (ignoring setting of 4)
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+Commands to run (specinvoke command file):
+    -r
+    -N C
+    -C /home/ubuntu/spec/spec-2017/benchspec/CPU/549.fotonik3d_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003
+    -o fotonik3d_r.log -e fotonik3d_r.err ../run_base_refrate_attack-library-sse-enabled-m64.0003/fotonik3d_r_base.attack-library-sse-enabled-m64 > fotonik3d_r.log 2>> fotonik3d_r.err (timed)
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/549.fotonik3d_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/549.fotonik3d_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout'
+Start command: 2020-06-12 01:24:16 (1591925056.77782)
+Stop command: 2020-06-12 01:42:09 (1591926129.94637)
+Elapsed time for command: 00:17:53 (1073.16854500771)
+Workload elapsed time (copy 0 workload 1) = 1073.002992 seconds
+Copy 0 of 549.fotonik3d_r (base refrate) run 1 finished at 2020-06-12 01:42:09.  Total elapsed time: 1073.002992
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+comparing 'pscyee.out' with abstol=1e-27, floatcompare=1, obiwan=1, reltol=1e-10
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/549.fotonik3d_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/549.fotonik3d_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout'
+Start command: 2020-06-12 01:42:10 (1591926130.05825)
+Stop command: 2020-06-12 01:42:10 (1591926130.81361)
+Elapsed time for command: 00:00:00 (0.755358934402466)
+Benchmark Times:
+  Run Start:    2020-06-12 01:24:16 (1591925056)
+  Rate Start:   2020-06-12 01:24:16 (1591925056.78376)
+  Rate End:     2020-06-12 01:42:09 (1591926129.78675)
+  Run Stop:     2020-06-12 01:42:09 (1591926129)
+  Run Elapsed:  00:17:53 (1073)
+  Run Reported: 00:17:53 (1073 2991914 1073.002992)
+ Success 549.fotonik3d_r base refrate ratio=3.63, runtime=1073.002992, copies=1, threads=1, power=0.00W, temp=0.00 degC, humidity=0.00%
+-----------------------------------
+  Running 554.roms_r refrate (ref) base attack-library-sse-enabled-m64 (1 copy) [2020-06-12 01:42:10]
+In SPECrate mode, threads is always 1 (ignoring setting of 4)
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+Commands to run (specinvoke command file):
+    -r
+    -N C
+    -C /home/ubuntu/spec/spec-2017/benchspec/CPU/554.roms_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003
+    -i ocean_benchmark2.in.x -o ocean_benchmark2.log -e ocean_benchmark2.err ../run_base_refrate_attack-library-sse-enabled-m64.0003/roms_r_base.attack-library-sse-enabled-m64 < ocean_benchmark2.in.x > ocean_benchmark2.log 2>> ocean_benchmark2.err (timed)
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/554.roms_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/554.roms_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout'
+Start command: 2020-06-12 01:42:10 (1591926130.98817)
+Stop command: 2020-06-12 02:00:22 (1591927222.90955)
+Elapsed time for command: 00:18:11 (1091.92137908936)
+Workload elapsed time (copy 0 workload 1) = 1091.754938 seconds
+Copy 0 of 554.roms_r (base refrate) run 1 finished at 2020-06-12 02:00:22.  Total elapsed time: 1091.754938
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+comparing 'ocean_benchmark2.log' with abstol=1e-07, reltol=1e-07
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/554.roms_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/554.roms_r/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout'
+Start command: 2020-06-12 02:00:22 (1591927222.99419)
+Stop command: 2020-06-12 02:00:23 (1591927223.43627)
+Elapsed time for command: 00:00:00 (0.44208288192749)
+Benchmark Times:
+  Run Start:    2020-06-12 01:42:10 (1591926130)
+  Rate Start:   2020-06-12 01:42:10 (1591926130.99785)
+  Rate End:     2020-06-12 02:00:22 (1591927222.75279)
+  Run Stop:     2020-06-12 02:00:22 (1591927222)
+  Run Elapsed:  00:18:12 (1092)
+  Run Reported: 00:18:11 (1091 754937887 1091.754938)
+ Success 554.roms_r base refrate ratio=1.46, runtime=1091.754938, copies=1, threads=1, power=0.00W, temp=0.00 degC, humidity=0.00%
+-----------------------------------
+  Running 997.specrand_fr refrate (ref) base attack-library-sse-enabled-m64 (1 copy) [2020-06-12 02:00:23]
+In SPECrate mode, threads is always 1 (ignoring setting of 4)
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+Commands to run (specinvoke command file):
+    -r
+    -N C
+    -C /home/ubuntu/spec/spec-2017/benchspec/CPU/997.specrand_fr/run/run_base_refrate_attack-library-sse-enabled-m64.0003
+    -o rand.234923.out -e rand.234923.err ../run_base_refrate_attack-library-sse-enabled-m64.0003/specrand_fr_base.attack-library-sse-enabled-m64 1255432124 234923 > rand.234923.out 2>> rand.234923.err (timed)
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/997.specrand_fr/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/997.specrand_fr/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout'
+Start command: 2020-06-12 02:00:23 (1591927223.50981)
+Stop command: 2020-06-12 02:00:23 (1591927223.77225)
+Elapsed time for command: 00:00:00 (0.262439966201782)
+Workload elapsed time (copy 0 workload 1) = 0.104093 seconds
+Copy 0 of 997.specrand_fr (base refrate) run 1 finished at 2020-06-12 02:00:23.  Total elapsed time: 0.104093
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+comparing 'rand.234923.out' with floatcompare=1, nansupport=0
+Specinvoke: /home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/997.specrand_fr/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout
+Issuing command '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/997.specrand_fr/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout'
+Start command: 2020-06-12 02:00:23 (1591927223.84339)
+Stop command: 2020-06-12 02:00:24 (1591927224.2481)
+Elapsed time for command: 00:00:00 (0.404710054397583)
+Error with '/home/ubuntu/spec/spec-2017/bin/specinvoke -d /home/ubuntu/spec/spec-2017/benchspec/CPU/997.specrand_fr/run/run_base_refrate_attack-library-sse-enabled-m64.0003 -f compare.cmd -E -e compare.err -o compare.stdout'; no non-empty output files exist
+  Command returned exit code 1
+*** Miscompare of rand.234923.out; for details see
+    /home/ubuntu/spec/spec-2017/benchspec/CPU/997.specrand_fr/run/run_base_refrate_attack-library-sse-enabled-m64.0003/rand.234923.out.mis
+0009:  0.951178     
+       0.951177     
+              ^
+0010:  0.784522     
+       0.784521     
+              ^
+0013:  0.229969     
+       0.229968     
+              ^
+0017:  0.646922     
+       0.646921     
+              ^
+0018:  0.054386     
+       0.054385     
+              ^
+0022:  0.400863     
+       0.400862     
+              ^
+0024:  0.837743     
+       0.837742     
+              ^
+0027:  0.773209     
+       0.773208     
+              ^
+0030:  0.762890     
+       0.762889     
+              ^
+0033:  0.981618     
+       0.981617     
+              ^
+Benchmark Times:
+  Run Start:    2020-06-12 02:00:23 (1591927223)
+  Rate Start:   2020-06-12 02:00:23 (1591927223.51527)
+  Rate End:     2020-06-12 02:00:23 (1591927223.61937)
+  Run Stop:     2020-06-12 02:00:23 (1591927223)
+  Run Elapsed:  00:00:00 (0)
+  Run Reported: 00:00:00 (0 104092836 0.104093)
+ Error 997.specrand_fr base refrate ratio=96.07, runtime=0.104093, copies=1, threads=1, power=0.00W, temp=0.00 degC, humidity=0.00%, errorcode=VE
+Success: 1x503.bwaves_r 1x510.parest_r 1x519.lbm_r 1x526.blender_r 1x527.cam4_r 1x538.imagick_r 1x544.nab_r 1x549.fotonik3d_r 1x554.roms_r
+Error: 1x507.cactuBSSN_r 1x508.namd_r 1x511.povray_r 1x521.wrf_r 1x997.specrand_fr
+Producing Raw Reports
+ label: attack-library-sse-enabled-m64
+  workload: refrate (ref)
+   benchset: intspeed
+   benchset: intrate
+   benchset: fpspeed
+   benchset: fprate
+   metric: SPECrate2017_fp_base
+    format: raw -> /home/ubuntu/spec/spec-2017/result/CPU2017.092.fprate.refrate.rsf
+Parsing flags for 503.bwaves_r base: done
+Parsing flags for 507.cactuBSSN_r base: done
+Parsing flags for 508.namd_r base: done
+Parsing flags for 510.parest_r base: done
+Parsing flags for 511.povray_r base: done
+Parsing flags for 519.lbm_r base: done
+Parsing flags for 521.wrf_r base: done
+Parsing flags for 526.blender_r base: done
+Parsing flags for 527.cam4_r base: done
+Parsing flags for 538.imagick_r base: done
+Parsing flags for 544.nab_r base: done
+Parsing flags for 549.fotonik3d_r base: done
+Parsing flags for 554.roms_r base: done
+Doing flag reduction: done
+    format: flags -> /home/ubuntu/spec/spec-2017/result/CPU2017.092.fprate.refrate.flags.html
+    format: cfg -> /home/ubuntu/spec/spec-2017/result/CPU2017.092.fprate.refrate.cfg, /home/ubuntu/spec/spec-2017/result/CPU2017.092.fprate.refrate.orig.cfg
+    format: CSV -> /home/ubuntu/spec/spec-2017/result/CPU2017.092.fprate.refrate.csv
+    format: PDF -> /home/ubuntu/spec/spec-2017/result/CPU2017.092.fprate.refrate.pdf
+    format: HTML -> /home/ubuntu/spec/spec-2017/result/CPU2017.092.fprate.refrate.html
+    format: Text -> /home/ubuntu/spec/spec-2017/result/CPU2017.092.fprate.refrate.txt
+runcpu finished at 2020-06-12 02:01:16; 16253 total seconds elapsed
+The log for this run is in /home/ubuntu/spec/spec-2017/result/CPU2017.092.log
+
+runcpu finished at 2020-06-12 02:01:16; 16255 total seconds elapsed
