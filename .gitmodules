@@ -7,3 +7,6 @@
 [submodule "dependencies/sgx-sdk-2.7.1_vulnerable"]
 	path = dependencies/sgx-sdk-2.7.1_vulnerable
 	url = https://github.com/intel/linux-sgx
+[submodule "02_table2_affected_runtimes/openenclave/openenclave-master"]
+	path = 02_table2_affected_runtimes/openenclave/openenclave-master
+	url = https://github.com/openenclave/openenclave
