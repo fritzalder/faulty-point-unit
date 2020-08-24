@@ -304,6 +304,7 @@ install_common
 install_sdks
 enable_vulnerable
 print_helper_text
+;;
 install_patched)
 echo "Installing only patched SDK for Travis simulation mode.."
 set -e
@@ -311,6 +312,7 @@ install_common
 install_patched_sdk
 enable_vulnerable
 print_helper_text
+;;
 install_vulnerable)
 echo "Installing only vulnerable SDK for Travis simulation mode.."
 set -e
