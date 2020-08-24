@@ -1,7 +1,34 @@
-language: c
-
-dist: focal
 os: linux
+dist: bionic
+
+language: cpp
+compiler:
+  - clang
+  - gcc
+
+addons:
+  apt:
+    packages:
+      - build-essential
+      - ocaml 
+      - ocamlbuild
+      - automake
+      - autoconf
+      - libtool
+      - wget
+      - python
+      - libssl-dev
+      - git
+      - cmake
+      - perl
+      - libssl-dev
+      - libcurl4-openssl-dev
+      - protobuf-compiler
+      - libprotobuf-dev
+      - debhelper
+      - reprepro
+      - unzip
+      - libboost-dev
 
 notifications:
   email: true
