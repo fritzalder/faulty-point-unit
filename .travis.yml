@@ -32,18 +32,9 @@ addons:
 notifications:
   email: true
 
-install:
-- ./sdk_helper.sh install_sim
-
-# Simple base script to test installation of SGX and the sdk_helper
-script:
-- source ./sdk_helper.sh vulnerable
-- source ./sdk_helper.sh patched
-- source ./sdk_helper.sh help
-
 jobs: # Add two jobs for each type of paper test, for each SDK
   include:
     - name: "Table 1 - Patched SDK"
-      script: source ./sdk_helper.sh patched && cd 01_table1_basic-poc && ./eval_simulator.sh
+      script: ./sdk_helper.sh install_patched && source ./sdk_helper.sh patched && cd 01_table1_basic-poc && ./eval_simulator.sh
     - name: "Table 1 - Vulnerable SDK"
-      script: source ./sdk_helper.sh vulnerable && cd 01_table1_basic-poc && ./eval_simulator.sh
+      script: ./sdk_helper.sh install_vulnerable && source ./sdk_helper.sh vulnerable && cd 01_table1_basic-poc && ./eval_simulator.sh

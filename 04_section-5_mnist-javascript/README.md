@@ -30,7 +30,7 @@ or alternatively to run in hardware mode, this time with the full 100 images tha
 ```bash
 cd sgx-duktape
 ./compile_fpu_hw.sh
-./js-duktape -x ../js-files/convnet.js  -i ../js-files/mnist-network-with-input.json
+./app -x ../js-files/convnet.js  -i ../js-files/mnist-network-with-input.json
 ```
 
 The generated output is a raw JSON string that is not very human readable. We provide two scripts in the `eval` folder to make running and evaluating the results more easy.

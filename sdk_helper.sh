@@ -235,24 +235,9 @@ function install_psw(){
 
 }
 
-function install_sdks(){
+function install_vulnerable_sdk(){
     # ----------------------------------------------------------------------
-    # Install patched SDK system wide
-    echo "[ building patched SDK version 2.8 ]"
-    cd $SGX_PATCHED
-    ./download_prebuilt.sh
-    make -j`nproc`
-    make sdk_install_pkg
-
-    echo "[ installing SDK at $SGX_REPOS/ ]"
-    cd linux/installer/bin/
-sudo ./sgx_linux_x64_sdk_*.bin << EOF
-no
-/opt/intel
-EOF
-   
-    # ----------------------------------------------------------------------
-    # Then install vulnerable SDK locally
+    # Install vulnerable SDK locally
     echo "[ building vulnerable SDK version 2.7.1 ]"
     cd $SGX_VULNERABLE
     ./download_prebuilt.sh
@@ -267,6 +252,30 @@ $SGX_VULNERABLE_INSTALL
 EOF
     cd $BASE_DIR
 
+}
+
+function install_patched_sdk(){
+    # ----------------------------------------------------------------------
+    # Install patched SDK system wide
+    echo "[ building patched SDK version 2.8 ]"
+    cd $SGX_PATCHED
+    ./download_prebuilt.sh
+    make -j`nproc`
+    make sdk_install_pkg
+
+    echo "[ installing SDK at $SGX_REPOS/ ]"
+    cd linux/installer/bin/
+sudo ./sgx_linux_x64_sdk_*.bin << EOF
+no
+/opt/intel
+EOF
+
+    cd $BASE_DIR
+}
+
+function install_sdks(){
+install_patched_sdk
+install_vulnerable_sdk
 }
 
 if [ $# -ne 1 ]; then
@@ -293,6 +302,20 @@ echo "Installing SDKs only for simulation mode.."
 set -e
 install_common
 install_sdks
+enable_vulnerable
+print_helper_text
+install_patched)
+echo "Installing only patched SDK for Travis simulation mode.."
+set -e
+install_common
+install_patched_sdk
+enable_vulnerable
+print_helper_text
+install_vulnerable)
+echo "Installing only vulnerable SDK for Travis simulation mode.."
+set -e
+install_common
+install_vulnerable_sdk
 enable_vulnerable
 print_helper_text
 ;;
