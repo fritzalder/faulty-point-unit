@@ -1,0 +1,22 @@
+
+enclave {
+   
+
+    untrusted {
+        void ocall_print_string([in, string] const char *str);
+    };
+
+    trusted {
+        public void ecall_script_init([in, size=script_len] const char* script, size_t script_len);
+
+        public size_t ecall_script_run(
+            [in, string] const char* input, 
+            size_t input_size);
+
+
+        public void ecall_get_script_output([out, size=output_pointer_size] char* output_pointer, size_t output_pointer_size);
+
+        public void ecall_verbose_mode();
+    };
+
+};

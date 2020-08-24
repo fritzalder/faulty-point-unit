@@ -171,9 +171,9 @@ function install_common(){
     # that prevents proper driver usage and prevents mmap(PROT_EXEC) on the SGX device
     # A temporary workaround right now is to remount /dev with exec permissions 
     # To be future-proof, we limit this workaround to ubuntu 20.04
-    if [ "$(lsb_release -sr)" = "20.04"]; then
+    if [ "$(lsb_release -sr)" = "20.04" ]; then
     echo "Remounting /dev due to issue in Ubuntu 20.04 with the SGX driver"
-    mount -o remount,exec /dev
+    sudo mount -o remount,exec /dev
     fi
 
     mkdir -p $SGX_VULNERABLE_INSTALL
@@ -188,9 +188,10 @@ function install_common(){
     echo "[ installing prerequisites ]"
     sudo apt-get -y install build-essential ocaml ocamlbuild automake autoconf libtool wget python libssl-dev git cmake perl
     sudo apt-get -y install libssl-dev libcurl4-openssl-dev protobuf-compiler libprotobuf-dev debhelper cmake reprepro unzip
+    sudo apt-get -y install python3 python3-pip
 
     # Boost program options for MNist example
-    sudo apt-get -y install libboost-dev
+    sudo apt-get -y install libboost-dev libboost-program-options-dev libboost-system-dev
     # tqdm for Python evaluation scripts
     sudo pip3 install tqdm
 
@@ -299,13 +300,13 @@ patched|2.8)
 echo "Switching to patched SDK 2.8..."
 enable_patched
 echo "done."
-echo "REMEMBER: Did you source this script as in 'source ./sdk_helper patched'? Otherwise the environment variables might be lost and not inherited by your shell."
+echo "REMEMBER: Did you source this script as in 'source ./sdk_helper patched'? Otherwise the environment variables might be lost and not inherited by your shell. You can double check with env | grep sgx."
 ;;
 vulnerable|2.7)
 echo "Switching to vulnerable SDK 2.7.1..."
 enable_vulnerable
 echo "done."
-echo "REMEMBER: Did you source this script as in 'source ./sdk_helper vulnerable'? Otherwise the environment variables might be lost and not inherited by your shell."
+echo "REMEMBER: Did you source this script as in 'source ./sdk_helper vulnerable'? Otherwise the environment variables might be lost and not inherited by your shell. You can double check with env | grep sgx."
 ;;
 help)
 print_helper_text

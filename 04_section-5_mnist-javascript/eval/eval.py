@@ -88,7 +88,8 @@ def main():
     files = os.listdir(files_path)
     logger.info("Ignoring filenames " + str(args.ignore_file))
     for i in args.ignore_file:
-        files.remove(i)
+        if i in files:
+            files.remove(i)
     logger.info("Directory has files " + str(files))
 
     # Load baseline file
