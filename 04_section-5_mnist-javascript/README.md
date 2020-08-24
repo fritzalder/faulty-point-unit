@@ -21,6 +21,7 @@ To run, give the JS file and JSON input in the command as follows:
 
 ```bash
 cd sgx-duktape
+source ../../sdk_helper.sh vulnerable
 ./compile_fpu_simulator.sh
 ./app -x ../js-files/convnet.js  -i ../js-files/mnist-network-with-input-only5.json
 ```
@@ -29,6 +30,7 @@ or alternatively to run in hardware mode, this time with the full 100 images tha
 
 ```bash
 cd sgx-duktape
+source ../../sdk_helper.sh vulnerable
 ./compile_fpu_hw.sh
 ./app -x ../js-files/convnet.js  -i ../js-files/mnist-network-with-input.json
 ```
@@ -40,6 +42,7 @@ The generated output is a raw JSON string that is not very human readable. We pr
 To reproduce Table 3, one has to perform two sets of 8 exeuctions each of the sgx duktape enclave: One compilation with the x87 FPU and two precision and four rounding modes, and one compilation with the default SSE version. The script `run-tests.py` performs all these runs automatically and places them in a new subidectory:
 ```bash
 cd eval
+source ../../sdk_helper.sh vulnerable
 ./run_tests.py --simulator.py
 # Alternatively, calling the script without --simulator would run this test in hardware mode
 
@@ -49,3 +52,5 @@ cd eval
 ```
 
 Note, that the eval scripts may print the rows in a different order than Table 3 showed them in the paper. A full run of the `run_tests.py` script may take around 10 minutes.
+
+To verify the mitigation, one can run  `source sdk_helper.sh patch` and rerun the lines above (without the `source` command) which should yield correct results independent of the used Rounding or Precision modes.

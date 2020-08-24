@@ -7,9 +7,11 @@ SGX_MODE ?= HW
 
 ifneq ($(SGX_MODE), HW)
 	Urts_Library_Name := sgx_urts_sim
+	UAE_SERVICE_NAME := sgx_uae_service_sim
 	MODE_NAME = "SIMULATION"
 else
 	Urts_Library_Name := sgx_urts
+	UAE_SERVICE_NAME := sgx_uae_service
 	MODE_NAME = "HARDWARE"
 endif
 export MODE_NAME
@@ -29,7 +31,7 @@ CFLAGS              += -fPIC -fno-stack-protector -fno-builtin -fno-jump-tables 
 			   
 INCLUDE              = -I$(SGX_SDK)/include/ -I$(CURDIR)/../lib/
 LDFLAGS             += -linc_proxy -l$(Urts_Library_Name) \
-                       -lsgx_uae_service -pthread $(SUBDIRS:%=-L %) -L$(SGX_SDK)/lib$(LIB_SUFX)/ -lm \
+                       -l$(UAE_SERVICE_NAME) -pthread $(SUBDIRS:%=-L %) -L$(SGX_SDK)/lib$(LIB_SUFX)/ -lm \
 					   -Wl,--whole-archive -L$(CURDIR)/../lib/ -lfpu_lib -Wl,--no-whole-archive
 
 SOURCES              = $(shell ls *.c)
