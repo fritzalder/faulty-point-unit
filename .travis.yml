@@ -1,36 +1,17 @@
 os: linux
 dist: bionic
 
-language: cpp
-
-addons:
-  apt:
-    packages:
-      - build-essential
-      - ocaml 
-      - ocamlbuild
-      - automake
-      - autoconf
-      - libtool
-      - wget
-      - python
-      - python3 
-      - python3-pip
-      - libssl-dev
-      - git
-      - cmake
-      - perl
-      - libssl-dev
-      - libcurl4-openssl-dev
-      - protobuf-compiler
-      - libprotobuf-dev
-      - debhelper
-      - reprepro
-      - unzip
-      - libboost-dev
-
 notifications:
   email: true
+
+services:
+  - docker
+
+language: cpp
+
+script:
+  - make build
+  - make run
 
 jobs: # Add two jobs for each type of paper test, for each SDK
   include:

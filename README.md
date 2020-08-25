@@ -92,18 +92,18 @@ The `sdk_helper.sh` script has two options to switch between Intel SGX-SDK versi
 A quick start example of commands to start with this artifact is as follows:
 ```bash
 # Install dependencies
-./sdk_helper install_sim
+./sdk_helper.sh install_sim
 # Switch to 2.7.1
-source ./sdk_helper vulnerable
+source ./sdk_helper.sh vulnerable
 # Reproduce basic proof of concept attack
 cd 01_table1_basic-poc
 ./eval_simulator.sh
 # Now reproduce same attack with patched SDK
-source ../sdk_helper patched
+source ../sdk_helper.sh patched
 ./eval_simulator.sh
 ```
 
-Use `sdk_helper help` to print an overview of commands and tasks the script performs.
+Use `./sdk_helper.sh help` to print an overview of commands and tasks the script performs.
 
 ## Intel SGX-SDK bug in Ubuntu 20.04LTS
 As of release of this artifact, there is a known issue with the Intel SGX-SDK and Ubuntu LTS 20.04 as reported [here](https://lore.kernel.org/linux-sgx/4db41057-910c-b686-0428-474debe382c1@fortanix.com/), [here](https://github.com/intel/linux-sgx/issues/569), and [here](https://github.com/intel/linux-sgx/pull/515). Since we are deliberately installing an obsolete Intel SGX-SDK to make it vulnerable to a known attack, we can not rely on future releases to patch this issue. A quick workaround is to set `mount -o remount,exec /dev` to circumvent the new behavior of Ubuntu 20.04. The `sdk_helper` sets this before installing if it detects the mentioned Ubuntu version. We **explicitly** warn of possible side-effects. Additionally, since this setting resets on reboot, a user might have to simply rerun the installation with the `sdk_helper` after a reboot.
