@@ -14,9 +14,7 @@ git:
 language: c
 
 script:
-  - docker run --name docker-ci-run -d -h "badf1oa7" -t sgx-fpu
-  - docker exec docker-ci-run /bin/bash -c "$SCRIPT"
-  - docker ps -a
+  - docker run $DOCKER_USERNAME/sgx-fpu -h "badf1oa7" "$SCRIPT"
 
 # Add two jobs for each type of paper test, for each SDK
 jobs:
