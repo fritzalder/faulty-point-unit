@@ -1,0 +1,14 @@
+enclave
+{
+	trusted 
+	{
+		public double secret_mul( double input );
+		public double get_secret( void );
+		public void set_secret( double s );
+	};
+
+	untrusted {
+	};
+};
+
+
