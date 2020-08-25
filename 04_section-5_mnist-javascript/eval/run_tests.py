@@ -83,6 +83,11 @@ def parse_args():
         help="Log verbosely.",
     )
     parser.add_argument(
+        "--travis",
+        required=False, default=False, action='store_true',
+        help="Use a fixed deterministic directory name to ease Travis scripting.",
+    )
+    parser.add_argument(
         "-s", "--simulator",
         required=False, default=False, action='store_true',
         help="Use simulator instead of hw mode.",
@@ -124,8 +129,12 @@ def main():
     timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d_%H-%M-%S')
     start_index = args.initial
     stop_index = args.amount + start_index
-    out_path = os.path.normpath(out_base_path + '/' + timestamp + '_' + str(start_index) + '-' + str(stop_index) )
-    out_path += "_HW-RUN" if run_in_hw else "_SIM-RUN"
+    filename = timestamp + '_' + str(start_index) + '-' + str(stop_index) 
+    filename += "_HW-RUN" if run_in_hw else "_SIM-RUN"
+    # Reset filename to a fixed string if we use travis.
+    if args.travis:
+        filename = "test_output"
+    out_path = os.path.normpath(out_base_path + '/' + filename )
     create_dir_if_not_exist(out_path)
     logger.info("Using " + out_path + " as base directory for outputs")
 
