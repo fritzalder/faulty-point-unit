@@ -2,7 +2,7 @@ os: linux
 dist: bionic
 
 notifications:
-  email: true
+  email: false
 
 services:
   - docker
@@ -14,18 +14,21 @@ git:
 language: c
 
 script:
-  - docker run --name docker-ci-run -d -h "badf1oa7" -t sgx-fpu
-  - docker exec docker-ci-run /bin/bash -c "$SCRIPT"
-  - docker ps -a
+  - docker run $DOCKER_USERNAME/sgx-fpu -h "badf1oa7" "$SCRIPT"
 
 # Add two jobs for each type of paper test, for each SDK
 jobs:
   include:
-    - name: "Build SGX simulator"
-      stage: build-sim
-      script: make build
+    - name: "Build and push Docker image"
+      stage: "Build SGX simulator"
+      script:
+          - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+          - make build
+          - docker images
+          - docker tag sgx-fpu $DOCKER_USERNAME/sgx-fpu
+          - docker push $DOCKER_USERNAME/sgx-fpu
     - name: "Table 1 - Patched SDK"
-      stage: run-sim
+      stage: "Run FPU poisoning attack on vulnerable and patched Intel SGX-SDK" 
       env: SCRIPT="./sdk_helper.sh install_patched && source ./sdk_helper.sh patched && cd 01_table1_basic-poc && ./eval_simulator.sh"
     - name: "Table 1 - Vulnerable SDK"
       env: SCRIPT="./sdk_helper.sh install_vulnerable && source ./sdk_helper.sh vulnerable && cd 01_table1_basic-poc && ./eval_simulator.sh"
