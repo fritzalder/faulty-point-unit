@@ -20,9 +20,9 @@ To reproduce Figure 4, simply run the scripts in order:
 ./plot.py -f results.csv
 ```
 
-To simply verify the plot based on the raw paper data, run `./plot.py -f paper_data.csv`.
+One can control how many tests the `binary_search` script is supposed to run with the `-a` flag which is set to 1000 by default. Example: `./binary_search.py -a 5` to just run 5 tests. Due to a static seed, the randomness is reproducible. To simply verify the plot based on the raw paper data, run `./plot.py -f paper_data.csv`.
 
-To run the controlled channel attack in the simulator, simply runt he `./test-sim.sh` script first to compile in simulator mode and then run the attack as normal. It will use the compiled simulator binaries without any further changes to be made.
+To run the controlled channel attack in the simulator, simply run the `./test-sim.sh` script first to compile in simulator mode and then run the attack as normal. It will use the compiled simulator binaries without any further changes to be made.
 
 ## Sample output
 

@@ -190,7 +190,7 @@ function install_common(){
     # Boost program options for MNist example
     sudo apt-get -yqq install libboost-dev libboost-program-options-dev libboost-system-dev
     # tqdm for Python evaluation scripts
-    sudo pip3 install tqdm
+    sudo pip3 install tqdm matplotlib numpy
 
     # Compile the fpu_lib library
     make -C lib

@@ -36,3 +36,7 @@ jobs:
       env: SCRIPT="./sdk_helper.sh install_patched && source ./sdk_helper.sh patched && cd 04_section-5_mnist-javascript/eval/ && ./run_tests.py --simulator --mnist ../js-files/mnist_handwritten_test_first5.json -a 5 && ./eval.py -p $(ls -a | grep SIM)"
     - name: "Table 3 - Vulnerable SDK (minimal run to not exceed Travis timeout)"
       env: SCRIPT="./sdk_helper.sh install_vulnerable && source ./sdk_helper.sh vulnerable && cd 04_section-5_mnist-javascript/eval/ && ./run_tests.py --simulator --mnist ../js-files/mnist_handwritten_test_first5.json -a 5 && ./eval.py -p $(ls -a | grep SIM)"
+    - name: "Figure 4 - Patched SDK (Only test script due to Travis timeout)"
+      env: SCRIPT="./sdk_helper.sh install_patched && source ./sdk_helper.sh patched && cd 03_section-4_controlled-channel && ./test_sim.sh && ./binary_search.py -a 5 && ./plot.py -f results.csv && test -e histogram_error.pdf"
+    - name: "Figure 4 - Vulnerable SDK (Only test script due to Travis timeout)"
+      env: SCRIPT="./sdk_helper.sh install_vulnerable && source ./sdk_helper.sh vulnerable && cd 03_section-4_controlled-channel && ./test_sim.sh && ./binary_search.py -a 5 && ./plot.py -f results.csv && test -e histogram_error.pdf"

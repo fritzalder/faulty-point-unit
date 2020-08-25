@@ -1,8 +1,21 @@
 #!/usr/bin/python3
 
+import argparse
 from ctypes import *
 import random
 from subprocess import Popen, PIPE
+
+def parse_args():
+  parser = argparse.ArgumentParser(description="SGX Floats Evaluation script")
+  parser.add_argument(
+      "-a", "--amount",
+      type=int, required=False, default=1000,
+      help="Amounto of tests to be run. Paper data reported 1000 runs (default).",
+  )
+
+  return parser.parse_args()
+
+  
 
 TARGET = "./main"
 MAX_SUBNORMAL_DOUBLE = 0x000FFFFFFFFFFFF
@@ -84,33 +97,49 @@ def recover_secret_binary_search(secret, debug = False):
     
     return (cnt, MIN_NORMAL_POSITIVE_DOUBLE_VAL/mid)
 
-#test_cases = [1.2, 0.623, 0.001, 0.987654321, 0.123456, 0.5000001, 0.4999999]
 
-# Number of random tests
-NUM_TESTS = 1000
+def main():
+    args = parse_args()
 
-# Fixed seed for reproducibility
-random.seed(0)
+    # Sample fixed test cases for bugfixing
+    #test_cases = [1.2, 0.623, 0.001, 0.987654321, 0.123456, 0.5000001, 0.4999999]
 
-# Get test cases
-test_cases = [random.uniform(0, 1) for _ in range(NUM_TESTS)]
+    # Number of random tests
+    NUM_TESTS = args.amount
+    print("Performing %s tests." % str(NUM_TESTS))
 
-f = open("results.csv", "w")
-f.write("secret;recovered;error;steps\n")
-f.flush()
+    # Fixed seed for reproducibility
+    random.seed(0)
 
-for secret in test_cases:
-    print()
-    print("========================================================================")
-    print()
-    print("Searching for secret = " + str(secret))
-    (cnt, recovered) = recover_secret_binary_search(secret)
-    error = abs(secret - recovered)
-    print("Recovered = " + str(recovered) + " after " + str(cnt) + " invocations")
-    print("Error = " + str(error))
+    # Get test cases
+    test_cases = [random.uniform(0, 1) for _ in range(NUM_TESTS)]
 
-    # Output to CSV
-    f.write(str(secret) + ";" + str(recovered) + ";" + str(error) + ";" + str(cnt) + "\n")
+    OUT_FILE = "results.csv"
+    print("Output file is " + OUT_FILE)
+    f = open(OUT_FILE, "w")
+    f.write("secret;recovered;error;steps\n")
     f.flush()
 
-f.close()
+    for secret in test_cases:
+        print()
+        print("========================================================================")
+        print()
+        print("Searching for secret = " + str(secret))
+        (cnt, recovered) = recover_secret_binary_search(secret)
+        error = abs(secret - recovered)
+        print("Recovered = " + str(recovered) + " after " + str(cnt) + " invocations")
+        print("Error = " + str(error))
+
+        # Output to CSV
+        f.write(str(secret) + ";" + str(recovered) + ";" + str(error) + ";" + str(cnt) + "\n")
+        f.flush()
+
+    f.close()
+
+    print("Performed %s tests." % str(NUM_TESTS))
+    print("Output file is " + OUT_FILE)
+
+
+if __name__ == '__main__':
+    main()
+
