@@ -181,9 +181,6 @@ function install_common(){
     git submodule init
     git submodule update
 
-    # Compile the fpu_lib library
-    make -C lib
-
     # ----------------------------------------------------------------------
     echo "[ installing prerequisites ]"
     sudo apt-get -y install build-essential ocaml ocamlbuild automake autoconf libtool wget python libssl-dev git cmake perl
@@ -195,7 +192,8 @@ function install_common(){
     # tqdm for Python evaluation scripts
     sudo pip3 install tqdm
 
-
+    # Compile the fpu_lib library
+    make -C lib
 }
 
 function install_driver(){
