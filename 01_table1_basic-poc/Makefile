@@ -44,7 +44,7 @@ CLEANDIRS            = $(SUBDIRS:%=clean-%)
 .SILENT:
 all: $(LIB) $(OUTPUT)
 	echo "###########################################################################################"
-	echo "# Compiled in $(MODE_NAME) mode. To instead compile in hardware mode, make with SGX_MODE=HW #"
+	echo "# Compiled in $(MODE_NAME) mode. You can compile either with SGX_MODE=HW or SGX_MODE=SIM #"
 	echo "###########################################################################################"
 
 $(LIB):

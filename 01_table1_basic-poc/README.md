@@ -59,7 +59,7 @@ done.
 [LD] main.o -o inc
 -fPIC -fno-stack-protector -fno-builtin -fno-jump-tables -fno-common -Wno-attributes -g -D_GNU_SOURCE 
 ###########################################################################################
-# Compiled in SIMULATION mode. To instead compile in hardware mode, make with SGX_MODE=HW #
+# Compiled in SIMULATION mode. You can compile either with SGX_MODE=HW or SGX_MODE=SIM #
 ###########################################################################################
 
 ---------------------------------------------------------------------------
@@ -122,7 +122,7 @@ done.
 [LD] main.o -o inc
 -fPIC -fno-stack-protector -fno-builtin -fno-jump-tables -fno-common -Wno-attributes -g -D_GNU_SOURCE 
 ###########################################################################################
-# Compiled in HARDWARE mode. To instead compile in hardware mode, make with SGX_MODE=HW #
+# Compiled in HARDWARE mode. You can compile either with SGX_MODE=HW or SGX_MODE=SIM #
 ###########################################################################################
 
 ---------------------------------------------------------------------------

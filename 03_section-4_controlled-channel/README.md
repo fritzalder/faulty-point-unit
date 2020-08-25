@@ -48,7 +48,7 @@ $ ./test.s
 [LD] main.o -o main
 -fPIC -fno-stack-protector -fno-builtin -fno-jump-tables -fno-common -Wno-attributes -g -D_GNU_SOURCE 
 ###########################################################################################
-# Compiled in HARDWARE mode. To instead compile in hardware mode, make with SGX_MODE=HW #
+# Compiled in HARDWARE mode. You can compile either with SGX_MODE=HW or SGX_MODE=SIM #
 ###########################################################################################
 [Testing a case causing an error]
 Usage: ./main HEX_VALUE_OF_SECRET HEX_VALUE_OF_INPUT
@@ -68,54 +68,43 @@ Result = 1
 
 ```bash
 $ ./binary_search.py
-========================================================================
-
-Searching for secret = 1.2
-|value| >= 1 - aborting...
-Recovered = 1 after 0 invocations
-Error = 0.19999999999999996
+Performing 5 tests.
+Output file is results.csv
 
 ========================================================================
 
-Searching for secret = 0.623
+Searching for secret = 0.8444218515250481
 |value| < 1, continue...
-Recovered = 0.6229998312645415 after 1040 invocations
-Error = 1.6873545849449556e-07
+Recovered = 0.8444245444383957 after 1040 invocations
+Error = 2.6929133475350753e-06
 
 ========================================================================
 
-Searching for secret = 0.001
+Searching for secret = 0.7579544029403025
 |value| < 1, continue...
-Recovered = 0.0010000000038146973 after 1040 invocations
-Error = 3.814697255993815e-12
+Recovered = 0.7579548773047821 after 1040 invocations
+Error = 4.743644795857094e-07
 
 ========================================================================
 
-Searching for secret = 0.987654321
+Searching for secret = 0.420571580830845
 |value| < 1, continue...
-Recovered = 0.9876535767704891 after 1040 invocations
-Error = 7.442295107962238e-07
+Recovered = 0.4205709885208686 after 1040 invocations
+Error = 5.923099763993633e-07
 
 ========================================================================
 
-Searching for secret = 0.123456
+Searching for secret = 0.25891675029296335
 |value| < 1, continue...
-Recovered = 0.12345605753847994 after 1040 invocations
-Error = 5.7538479938945564e-08
+Recovered = 0.25891660452460086 after 1040 invocations
+Error = 1.457683624916939e-07
 
 ========================================================================
 
-Searching for secret = 0.5000001
+Searching for secret = 0.5112747213686085
 |value| < 1, continue...
-Recovered = 0.5000009536761354 after 1040 invocations
-Error = 8.536761354482891e-07
-
-========================================================================
-
-Searching for secret = 0.4999999
-|value| < 1, continue...
-Recovered = 0.4999990463275026 after 1040 invocations
-Error = 8.536724974139709e-07
+Recovered = 0.5112740308195199 after 1040 invocations
+Error = 6.905490885777965e-07
 
 [....]
 ```
