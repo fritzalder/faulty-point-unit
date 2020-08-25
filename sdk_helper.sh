@@ -183,12 +183,12 @@ function install_common(){
 
     # ----------------------------------------------------------------------
     echo "[ installing prerequisites ]"
-    sudo apt-get -y install build-essential ocaml ocamlbuild automake autoconf libtool wget python libssl-dev git cmake perl
-    sudo apt-get -y install libssl-dev libcurl4-openssl-dev protobuf-compiler libprotobuf-dev debhelper cmake reprepro unzip
-    sudo apt-get -y install python3 python3-pip
+    sudo apt-get -yqq install build-essential ocaml ocamlbuild automake autoconf libtool wget python libssl-dev git cmake perl
+    sudo apt-get -yqq install libssl-dev libcurl4-openssl-dev protobuf-compiler libprotobuf-dev debhelper cmake reprepro unzip
+    sudo apt-get -yqq install python3 python3-pip
 
     # Boost program options for MNist example
-    sudo apt-get -y install libboost-dev libboost-program-options-dev libboost-system-dev
+    sudo apt-get -yqq install libboost-dev libboost-program-options-dev libboost-system-dev
     # tqdm for Python evaluation scripts
     sudo pip3 install tqdm
 
@@ -200,7 +200,7 @@ function install_driver(){
     # ----------------------------------------------------------------------
     # Install current driver
     cd $SGX_DRIVER
-    sudo apt-get install linux-headers-$(uname -r)
+    sudo apt-get -yqq install linux-headers-$(uname -r)
     make
     sudo mkdir -p "/lib/modules/"`uname -r`"/kernel/drivers/intel/sgx"    
     sudo cp isgx.ko "/lib/modules/"`uname -r`"/kernel/drivers/intel/sgx"    
@@ -238,9 +238,8 @@ function install_vulnerable_sdk(){
     # Install vulnerable SDK locally
     echo "[ building vulnerable SDK version 2.7.1 ]"
     cd $SGX_VULNERABLE
-    ./download_prebuilt.sh
-    make -j`nproc`
-    make sdk_install_pkg
+    ./download_prebuilt.sh > /dev/null
+    make -j`nproc` sdk_install_pkg > /dev/null
 
     echo "[ installing SDK 2.7.1 at $SGX_REPOS/ ]"
     cd linux/installer/bin/
@@ -257,9 +256,8 @@ function install_patched_sdk(){
     # Install patched SDK system wide
     echo "[ building patched SDK version 2.8 ]"
     cd $SGX_PATCHED
-    ./download_prebuilt.sh
-    make -j`nproc`
-    make sdk_install_pkg
+    ./download_prebuilt.sh > /dev/null
+    make -j`nproc` sdk_install_pkg > /dev/null
 
     echo "[ installing SDK at $SGX_REPOS/ ]"
     cd linux/installer/bin/
