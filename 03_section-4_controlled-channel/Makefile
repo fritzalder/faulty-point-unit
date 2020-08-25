@@ -31,8 +31,7 @@ CFLAGS              += -fPIC -fno-stack-protector -fno-builtin -fno-jump-tables 
 			   
 INCLUDE              = -I$(SGX_SDK)/include/ -I$(CURDIR)/../lib/
 LDFLAGS             += -linc_proxy -l$(Urts_Library_Name) \
-                       -l$(UAE_SERVICE_NAME) -pthread $(SUBDIRS:%=-L %) -L$(SGX_SDK)/lib$(LIB_SUFX)/ -lm \
-					   -Wl,--whole-archive -L$(CURDIR)/../lib/ -lfpu_lib -Wl,--no-whole-archive
+                       -l$(UAE_SERVICE_NAME) -pthread $(SUBDIRS:%=-L %) -L$(SGX_SDK)/lib$(LIB_SUFX)/ -lm 
 
 SOURCES              = $(shell ls *.c)
 OBJECTS              = $(SOURCES:.c=.o)

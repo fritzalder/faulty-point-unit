@@ -6,7 +6,6 @@
 #include <math.h>
 #include <signal.h>
 #include <float.h>
-#include "fpu_lib.h"
 
 #define MAX_SUBNORMAL_DOUBLE        0x000FFFFFFFFFFFF
 #define MIN_NORMAL_POSITIVE_DOUBLE  0x0010000000000000
@@ -16,30 +15,8 @@
 #define ENCLAVE_PATH                "./Enclave/inc.so"
 #define ENCLAVE_DBG                 1
 sgx_status_t sgx_rv;
-/**
- * Convenience wrapper to make an ecall.
- * Directly before and after the ecall, call the FPU library in ../lib/ that
- * performs the FPU modifications depending on environment variables.
- * This makes it easier to change results without recompiling the binary every
- * time a different FPU mode wants to be tested.
- * 
- * Importantly, this wrapper sets the FPU mode directly before an ecall and 
- * RESETS it directly after. This is crucial as otherwise the attacker poisons
- * her own FPU mode which has an impact on simple functions such as printf.
- * */
-#define SGX_ASSERT_FAULTY_POINT(f)                                                       \
-    do{                                                                     \
-        faulty_point_init();                                                \
-        if ( SGX_SUCCESS != (sgx_rv = (f)) )                                \
-        {                                                                   \
-            printf( "Error calling enclave at %s:%d (rv=0x%x)\n", __FILE__, \
-                                                    __LINE__, sgx_rv);      \
-            abort();                                                        \
-        }                                                                   \
-        faulty_point_reset();                                               \
-    } while (0)
 
-// Same wrapper but without FPU modifications
+// Wrapper to make ecalls
 #define SGX_ASSERT(f)                                                       \
     do{                                                                     \
         if ( SGX_SUCCESS != (sgx_rv = (f)) )                                \
@@ -170,7 +147,7 @@ int main( int argc, char **argv )
     // Simple way of searching ....
     int i = 0;
     {
-        SGX_ASSERT_FAULTY_POINT( secret_mul(eid, &oops, input) );
+        SGX_ASSERT( secret_mul(eid, &oops, input) );
     	
 		fprintf(stdout, "%d: oops = %.*e [in = %.*e]\n", i, DBL_DECIMAL_DIG, oops, DBL_DECIMAL_DIG, input);
     }
