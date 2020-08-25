@@ -3,7 +3,7 @@
 We provide the following scripts to reproduce the controlled channel attack: 
 
  1. Two simple test scripts to verify that the attack works in the enclave: `test.sh` to test the hardware mode and `test_sim.sh` to test the simulation mode.
- 2. A script to run the actual controlled channel attack called `binary_search.py`. This script executes 1000 runs of the attack and creates an output called results.csv. On an Intel(R) Core(TM) i7-8665U CPU, the script runs at a speed of 5 seconds per iteration which nets to a total runtime of about 90 minutes for a complete run.
+ 2. A script to run the actual controlled channel attack called `binary_search.py`. This script executes 1000 runs of the attack and creates an output called results.csv. On an Intel Core i7-8665U CPU, the script runs at a speed of 5 seconds per iteration which nets to a total runtime of about 90 minutes for a complete run.
  3. A script to evaluate a generated csv file and output a plot. You can control the input file to generate plots from different sources, e.g., `eval.py -f results.csv` or `eval.py -f paper_data.csv` to use the raw data used for the paper Figure 4. The eval script outputs a file named `histogram_error.pdf` that is identical to the file `figure-4.pdf` when called with the original paper data.
 
 ## Steps to reproduce Figure 4
@@ -19,8 +19,11 @@ To reproduce Figure 4, simply run the scripts in order:
 # The plot is generated into histogram_error.pdf
 ./plot.py -f results.csv
 ```
+**Note (runtime).** On an Intel Core i7-8665U CPU, the script runs at a speed of 5 seconds per iteration which nets to a total runtime of about 90 minutes for a complete run. One can control how many tests the `binary_search` script is supposed to run with the `-a` flag which is set to 1000 by default (as this is the reported number in the paper). Example: `./binary_search.py -a 5` to just run 5 tests. We use such a reduced set with 5 runs in the Travis build.
 
-One can control how many tests the `binary_search` script is supposed to run with the `-a` flag which is set to 1000 by default. Example: `./binary_search.py -a 5` to just run 5 tests. Due to a static seed, the randomness is reproducible. To simply verify the plot based on the raw paper data, run `./plot.py -f paper_data.csv`.
+**Note (reproducability).** The binary_search script uses a static seed to make the data reproducible.
+
+**Note (paper data).** To simply verify the plot based on the raw paper data, run `./plot.py -f paper_data.csv`.
 
 To run the controlled channel attack in the simulator, simply run the `./test-sim.sh` script first to compile in simulator mode and then run the attack as normal. It will use the compiled simulator binaries without any further changes to be made.
 
