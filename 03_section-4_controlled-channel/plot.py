@@ -3,6 +3,8 @@
 import argparse
 import csv
 import numpy as np
+import matplotlib
+matplotlib.use('pdf')
 import matplotlib.pyplot as plt
 from matplotlib import rc
 

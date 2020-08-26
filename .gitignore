@@ -17,3 +17,4 @@ dependencies/linux-sgx-driver/*
 *.swp
 03_section-4_controlled-channel/histogram_error.pdf
 03_section-4_controlled-channel/results.csv
+03_section-4_controlled-channel/main

@@ -185,7 +185,7 @@ function install_common(){
     echo "[ installing prerequisites ]"
     sudo apt-get -yqq install build-essential ocaml ocamlbuild automake autoconf libtool wget python libssl-dev git cmake perl
     sudo apt-get -yqq install libssl-dev libcurl4-openssl-dev protobuf-compiler libprotobuf-dev debhelper cmake reprepro unzip
-    sudo apt-get -yqq install python3 python3-pip
+    sudo apt-get -yqq install python3 python3-pip python3-matplotlib
 
     # Boost program options for MNist example
     sudo apt-get -yqq install libboost-dev libboost-program-options-dev libboost-system-dev
