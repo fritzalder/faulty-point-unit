@@ -16,7 +16,7 @@ include how to easily switch between vulnerable and patched compiler versions.
 
 ### Install vulnerable Rust-EDP
 
-```
+```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source $HOME/.cargo/env
 rustup default nightly-2020-02-01
@@ -39,7 +39,7 @@ cargo run --target x86_64-fortanix-unknown-sgx
 
 ### Vulnerable Rust-EDP version (SSE MXCSR + x87 control word + x87 tag)
 
-```
+```bash
 $ rustup default nightly-2020-02-01
 $ rustup target add x86_64-fortanix-unknown-sgx --toolchain nightly-2020-02-01
 $ rustc --version
@@ -77,7 +77,7 @@ add_fpu = NaN
 
 ### Patched Rust-EDP version (x87 tag)
 
-```
+```bash
 $ rustup default nightly
 $ rustup target add x86_64-fortanix-unknown-sgx --toolchain nightly
 $ rustc --version
@@ -116,7 +116,7 @@ add_fpu = NaN
 
 ### Install latest (patched) Rust-EDP
 
-```
+```bash
 rustup default nightly
 rustup target add x86_64-fortanix-unknown-sgx --toolchain nightly-2020-02-01
 rustc --version
@@ -126,7 +126,7 @@ rustc --version
 
 To go to newest version:
 
-```
+```bash
 $ rustup update
 $ rustup default nightly
 $ rustc --version
@@ -169,3 +169,9 @@ num     = 0.1234567889999999973360544913703051861375570297241210937500000000
 2*num   = 0.2469135779999999946721089827406103722751140594482421875000000000
 add_fpu = 0.2469135779999999946721089827406103722751140594482421875000000000
 ```
+
+## Disclosure and mitigation
+
+We disclosed the core FPU sanitization issue in December 2019 which was addressed with a `ldmxcsr/csw` instruction [<https://github.com/rust-lang/rust/pull/69040>].
+
+After further investigation, we found that this left the attacker open to perform the MMX attack as described in the paper. We also disclosed this issue and it is patched in the Rust compiler in version 1.46.0. The mitigation can be followed via this Pull Request [<https://github.com/rust-lang/rust/pull/73471>].

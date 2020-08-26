@@ -7,7 +7,7 @@ sudo ./build.sh # Takes a while
 sudo ./run.sh
 ```
 
-**Note (runtime).** Building SGX-LKL may take a long time during the `make sim` target of their build script. On our lab machine, the process took around 30 minutes.
+**Note (runtime).** Building SGX-LKL may take a long time during the `make sim` target of their build script. On our lab machine, the process took around 30 minutes. Due to this time effort, LKL is also not included in the Travis CI.
 
 ## Expected output
 
