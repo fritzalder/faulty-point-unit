@@ -1,0 +1,7 @@
+../../build/sgx-lkl-run sgxlkl-disk.img app/helloworld
+MXCSR = 00003fa1
+FCW = 077f
+rint(11.5) = 11.000000
+acosf(-1) = 3.1415925025939941406250
+MXCSR = 00003fa1
+FCW = 077f
