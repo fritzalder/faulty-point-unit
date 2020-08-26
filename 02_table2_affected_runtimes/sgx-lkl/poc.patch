@@ -1,0 +1,75 @@
+diff --git a/apps/helloworld/helloworld.c b/apps/helloworld/helloworld.c
+index 61edb0c..82efbdd 100644
+--- a/apps/helloworld/helloworld.c
++++ b/apps/helloworld/helloworld.c
+@@ -2,25 +2,34 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+-
+-#define HW_FILE "/app/helloworld.txt"
++#include <stdint.h>
++#include <math.h>
+ 
+ int main(int argc, char **argv)
+ {
+-    char buf[100];
+-    FILE *f = fopen(HW_FILE, "r");
+-    if (!f) {
+-        fprintf(stderr, "Could not open file %s: %s\n", HW_FILE, strerror(errno));
+-        exit(1);
+-    }
++    // Output MXCSR
++    uint32_t mxcsr = 0;
++    asm("stmxcsr %0\n\t" :: "m"(mxcsr) :);
++    fprintf(stdout, "MXCSR = %08x\n", mxcsr);
++
++    // Output FCW
++    uint16_t fcw = 0;
++    asm("fstcw %0\n\t" :: "m"(fcw) :);
++    fprintf(stdout, "FCW = %04x\n", fcw);
++
++    // Output round(11.5)
++    fprintf(stdout, "rint(11.5) = %f\n", rint(11.5));
++
++    // Output acosf(-1)
++    volatile double pi = 0;
++    volatile double arg = -1;
++    pi = acosf(arg);
++    fprintf(stdout, "acosf(-1) = %.22f\n", pi);
+ 
+-    // Prints first line of file /app/helloworld.txt (max 100 characters)
+-    if (fgets(buf, sizeof(buf), f) == buf) {
+-        printf("%s", buf);
+-    } else {
+-        fprintf(stderr, "Could not read first line of file %s: %s\n", HW_FILE, strerror(errno));
+-        exit(1);
+-    }
++    asm("stmxcsr %0\n\t" :: "m"(mxcsr) :);
++    fprintf(stdout, "MXCSR = %08x\n", mxcsr);
++    asm("fstcw %0\n\t" :: "m"(fcw) :);
++    fprintf(stdout, "FCW = %04x\n", fcw);
+ 
+     return 0;
+ }
+diff --git a/src/main/sgxlkl_run.c b/src/main/sgxlkl_run.c
+index b8b0cec..529022f 100644
+--- a/src/main/sgxlkl_run.c
++++ b/src/main/sgxlkl_run.c
+@@ -1709,6 +1709,15 @@ int main(int argc, char *argv[], char *envp[]) {
+             pthread_attr_setschedparam(&eattr, &schparam);
+             pthread_attr_setinheritsched(&eattr, PTHREAD_EXPLICIT_SCHED);
+         }
++
++        // Added poisoning
++	uint32_t mxcsr = 0x3f80;
++	asm("ldmxcsr %0\n\t" :: "m"(mxcsr) :);
++
++
++	uint16_t fcw = 0x77f;
++	asm("fldcw %0\n\t" :: "m"(fcw) :);
++
+ #ifdef SGXLKL_HW
+         a[i].call_id = SGXLKL_ENTER_THREAD_CREATE;
+         a[i].args = &encl;
+

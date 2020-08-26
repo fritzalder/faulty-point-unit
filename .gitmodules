@@ -16,3 +16,7 @@
 [submodule "02_table2_affected_runtimes/rust-edp/rust-sgx-fpu"]
 	path = 02_table2_affected_runtimes/rust-edp/rust-sgx-fpu
 	url = https://github.com/jovanbulck/rust-sgx.git
+[submodule "02_table2_affected_runtimes/sgx-lkl/sgx-lkl-legacy"]
+	path = 02_table2_affected_runtimes/sgx-lkl/sgx-lkl-legacy
+	url = https://github.com/lsds/sgx-lkl.git
+	branch = legacy
