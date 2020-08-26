@@ -185,7 +185,12 @@ function install_common(){
     echo "[ installing prerequisites ]"
     sudo apt-get -yqq install build-essential ocaml ocamlbuild automake autoconf libtool wget python libssl-dev git cmake perl
     sudo apt-get -yqq install libssl-dev libcurl4-openssl-dev protobuf-compiler libprotobuf-dev debhelper cmake reprepro unzip
+    
+    # Controlled channel
     sudo apt-get -yqq install python3 python3-pip python3-matplotlib texlive-latex-base texlive-latex-extra cm-super
+
+    # LKL (we accept duplication and let apt resolve them)
+    sudo apt-get -yqq install make gcc g++ bc python xutils-dev bison flex libgcrypt20-dev libjson-c-dev automake autopoint autoconf pkgconf libtool libcurl4-openssl-dev libprotobuf-dev libprotobuf-c-dev protobuf-compiler protobuf-c-compiler libssl-dev
 
     # Boost program options for MNist example
     sudo apt-get -yqq install libboost-dev libboost-program-options-dev libboost-system-dev
