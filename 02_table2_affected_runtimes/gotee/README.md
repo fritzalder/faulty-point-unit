@@ -10,6 +10,8 @@ $ PATH=$PATH:$HOME/go/bin
 $ sudo make
 ```
 
+**Note (Artifact).** This step was already executed on the lab machine for the ACSAC '20 artifact submission.
+
 ## Build and run example attack enclave
 
 We provide a hello-world sample that executes a print from both the untrusted and trusted domains.
@@ -18,9 +20,8 @@ Example output showcasing an example run with and without FPU poisoning in an
 untrusted domain and enclave, respectively. Notice the faulty result for
 `VADDPD` when poisoning the denormals-as-zero MXCSR flag:
 
-**Note (Path).** Make sure to execute the below commands in the same terminal where you set the Go PATH above.
-
 ```
+$ PATH=$PATH:$HOME/go/bin
 $ cd example/hello-world/
 $ make
 $ ./main
