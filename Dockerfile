@@ -5,6 +5,11 @@ RUN apt-get update -yqq && apt-get -yqq install git lsb-release sudo vim
 # Config parameters
 WORKDIR faulty-point-unit
 
+# Set to noninteractive mode
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Europe/Brussels
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 # Build and install Intel SGX simulator
 RUN git clone https://github.com/fritzalder/faulty-point-unit .
 RUN ./sdk_helper.sh install_sim
