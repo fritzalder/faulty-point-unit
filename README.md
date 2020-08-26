@@ -21,13 +21,13 @@ This paper analyzes a previously overlooked attack surface that allows unprivile
 In this artifact, we provide the means to reproduce all of our experimental results. More specifically, the repository is organized following the tables and figures in the paper:
 
 | Paper reference | Directory | Description |
-| :---- | :-------- | :---------- |
-| Table 1 | `01_table1_basic-poc` | Proof-of-concept poisoning attack executed against an Intel SGX-SDK enclave. We provide the documented source code, build instructions, and the raw paper data.|
-| Table 2 | `02_table2_affected_runtimes` | List of affected enclave shielding runtimes. We provide proof-of-concept poisoning attacks against all runtimes marked with a star. Namely, OpenEnclave, SGX-LKL, Rust-EDP, and Go-TEE (for Intel SGX-SDK, see the artifact for Table 1).|
-| Figure 4 | `03_section-4_controlled-channel` | Controlled channel attack. We provide the documented proof-of-concept attacker and victim source code, build instructions, and the raw paper data.|
-| Table 3 | `04_section-5_mnist-javascript` | Machine learning with Javascript inside an enclave. We provide the documented source code, build instructions, and the raw paper data. This example was built on the open-source code of the S-FaaS project.|
-| Table 4 | `05_section-6_spec-cpu-2017` | Benchmarks with SPEC CPU 2017. Due to licensing and copyright restrictions with the proprietary SPEC 2017 suite, we can only provide the used configuration files and detailed instructions how to reproduce our results for people who already bought the SPEC CPU 2017 suite. Please note however, that obtaining the raw data for the SPEC benchmarks summarized in Table 4 takes several CPU weeks. For the artifact evaluation, we therefore do *not* expect artifact reviewers to generate the raw data themselves. We instead provide the log outputs of the full SPEC runs with detailed instructions of how to reproduce the summary in Table 4.|
-| Figure 6 | `06_figure-6_blender-outputs` | Screenshot of the Blender benchmark. We provide the full reference output of Blender in normal conditions and under the attack.|
+| :----- | :------ | :------------------------ |
+| Table 1 | `01_table1_ basic-poc` | Proof-of-concept poisoning attack executed against an Intel SGX-SDK enclave. We provide the documented source code, build instructions, and the raw paper data.|
+| Table 2 | `02_table2_ affected_runtimes` | List of affected enclave shielding runtimes. We provide proof-of-concept poisoning attacks against all runtimes marked with a star. Namely, OpenEnclave, SGX-LKL, Rust-EDP, and Go-TEE (for Intel SGX-SDK, see the artifact for Table 1).|
+| Figure 4 | `03_section- 4_controlled-channel` | Controlled channel attack. We provide the documented proof-of-concept attacker and victim source code, build instructions, and the raw paper data.|
+| Table 3 | `04_section- 5_mnist-javascript` | Machine learning with Javascript inside an enclave. We provide the documented source code, build instructions, and the raw paper data. This example was built on the open-source code of the S-FaaS project.|
+| Table 4 | `05_section- 6_spec-cpu-2017` | Benchmarks with SPEC CPU 2017. Due to licensing and copyright restrictions with the proprietary SPEC 2017 suite, we can only provide the used configuration files and detailed instructions how to reproduce our results for people who already bought the SPEC CPU 2017 suite. Please note however, that obtaining the raw data for the SPEC benchmarks summarized in Table 4 takes several CPU weeks. For the artifact evaluation, we therefore do *not* expect artifact reviewers to generate the raw data themselves. We instead provide the log outputs of the full SPEC runs with detailed instructions of how to reproduce the summary in Table 4.|
+| Figure 6 | `06_figure- 6_blender-outputs` | Screenshot of the Blender benchmark. We provide the full reference output of Blender in normal conditions and under the attack.|
 
 ## Preparation and setup
 
