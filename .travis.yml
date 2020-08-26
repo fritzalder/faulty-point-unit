@@ -33,7 +33,7 @@ jobs:
     - name: "Table 1 - Vulnerable SDK"
       env: SCRIPT="./sdk_helper.sh install_vulnerable && source ./sdk_helper.sh vulnerable && cd 01_table1_basic-poc && ./eval_simulator.sh"
     - name: "Table 2 - Build GoTEE runtime"
-      env: SCRIPT="cd 02_table2_affected_runtimes/gotee/gotee-fpu/ && sudo apt-get install golang && go get github.com/aghosn/serializer && PATH=$PATH:$HOME/go/bin && sudo make && cd example/hello-world/ && make"
+      env: SCRIPT="cd 02_table2_affected_runtimes/gotee/gotee-fpu/ && sudo apt-get install -yqq golang && go get github.com/aghosn/serializer && PATH=$PATH:$HOME/go/bin && sudo make && cd example/hello-world/ && make"
     - name: "Figure 4 - Patched SDK (minimal run to not exceed Travis timeout)"
       env: SCRIPT="./sdk_helper.sh install_patched && source ./sdk_helper.sh patched && cd 03_section-4_controlled-channel && ./test_sim.sh && ./binary_search.py -a 5"
     - name: "Figure 4 - Vulnerable SDK (minimal run to not exceed Travis timeout)"

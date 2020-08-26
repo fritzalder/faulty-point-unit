@@ -13,3 +13,6 @@
 [submodule "02_table2_affected_runtimes/gotee/gotee"]
 	path = 02_table2_affected_runtimes/gotee/gotee-fpu
 	url = https://github.com/jovanbulck/gotee.git
+[submodule "02_table2_affected_runtimes/rust-edp/rust-sgx-fpu"]
+	path = 02_table2_affected_runtimes/rust-edp/rust-sgx-fpu
+	url = https://github.com/jovanbulck/rust-sgx.git
