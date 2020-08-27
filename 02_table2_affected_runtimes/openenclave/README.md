@@ -1,5 +1,7 @@
 # Proof of concept attack on OpenEnclave
 
+[![build status](https://travis-matrix-badges.herokuapp.com/repos/fritzalder/faulty-point-unit/branches/master/5)](https://travis-ci.org/github/fritzalder/faulty-point-unit)
+
 Open Enclave were the initial project to address the core issue described in the paper by using `ldmxcsr/cw` instructions. Following this patch, we started to investigate the issue described in the paper. During our investigation, we discovered a subclass of the issue, namely the MMX attack vector.
 
 ## Background and affected runtimes
@@ -12,71 +14,49 @@ This left a possibility to corrupt enclaved floating point operations (using the
 
 ## Building and running the proof-of-concept exploit
 
-This directory contains a minimal PoC developed with an unmodified vulnerable Open Enclave SDK. The PoC shows that untrusted code could affect the integrity (expected outcome) of x87 floating point operations. Concretely, without executing MMX instructions before ecall entry, the sample enclave correctly computes a floating point multiplication:
+The `hello-fpu` directory contains a minimal proof-of-concept OE application developed with an unmodified vulnerable Open Enclave SDK. The PoC shows that untrusted code could affect the integrity (expected outcome) of x87 floating point operations by silently replacing them with `NaN` values.
 
+**Note (Docker simulator).** Building OpenEnclave dependencies can be tricky. We therefore recommend to use the Docker container provided by the OpenEnclave team with all dependencies pre-installed, as documented [https://github.com/openenclave/openenclave/blob/v0.9.0/docs/GettingStartedDocs/Contributors/BuildingInADockerContainer.md](here). This is the easiest way to run the example exploit in the OE simulator.
 
+**Note (OE packages).** For convenience, the current directory includes prebuilt Debian packages for both the vulnerable OE v0.9 and the patched OE v0.10. These are _unmodified_ OE packages that can alternatively also be downloaded from the [official OE release page](https://github.com/openenclave/openenclave/releases).
 
-      env: SCRIPT="cd ~ && git clone https://github.com/fritzalder/faulty-point-unit.git && cd faulty-point-unit/02_table2_affected_runtimes/ && git submode init && git submodule update && cd openenclave/ && git submodule init && git submodule update && mkdir build && cd build/ && cmake .. && make && sudo make install && source /opt/openenclave/share/openenclave/openenclaverc && cd ../samples/hello-world && make && make simulate && cd ../../../hello-fpu/ && make && make simulate"
-      script:
-          - docker run oeciteam/oetools-full-18.04 /bin/bash -c "$SCRIPT"
-
-
-### 1. Install vulnerable unmodified OpenEnclave SDK
-
-$ ~/Downloads/cmake-3.18.2-Linux-x86_64/bin/cmake -DHAS_QUOTE_PROVIDER=OFF -DENABLE_REFMAN=OFF ..
-
-
-
-
-
-Minimal instructions based on `openenclave/docs/GettingStartedDocs/install_oe_sdk-Simulation.md` and ` openenclave/docs/GettingStartedDocs/install_oe_sdk-Ubuntu_18.04.md`:
+Proceed as follows to run the proof-of-concept FPU poisoning attack on the vulnerable and patched OE versions.
 
 ```bash
-$ sudo dpkg -i --force-depends ~/Downloads/Ubuntu_1804_open-enclave_0.10.0_amd64.deb 
-$ cp -r /opt/openenclave/share/openenclave/samples mysamples
-$ cd mysamples/helloworld/
-$ make simulate 
+$ docker run -i -t oeciteam/oetools-full-18.04
+
+# 1. Clone faulty-point-unit repo
+root@oe-docker# cd ~
+root@oe-docker# git clone https://github.com/fritzalder/faulty-point-unit.git
+root@oe-docker# cd faulty-point-unit/02_table2_affected_runtimes/openenclave/
+root@oe-docker# git submodule init && git submodule update
+
+# 2. Install vulnerable OE SDK
+root@oe-docker# sudo dpkg -i Ubuntu_1804_open-enclave_0.9.0_amd64.deb
+root@oe-docker# source /opt/openenclave/share/openenclave/openenclaverc
+
+# 3. Run proof-of-concept FPU poisoning attack in OE simulation mode
+root@oe-docker# cd hello-fpu/ && make
+root@oe-docker# make simulate
+host/helloworldhost ./enclave/helloworldenc.signed --simulate
 host/helloworldhost ./enclave/helloworldenc.signed --simulate
 Running in simulation mode
+Running in sim mode
 Hello world from the enclave
-Enclave called into host to print: Hello World!
-```
-$ patch -p1 < oe.patch
-$ make simulate 
+Result = -nan
+
+## 4. Install patched OE SDK
+root@oe-docker# sudo dpkg -i ../Ubuntu_1804_open-enclave_0.10.0_amd64.deb
+root@oe-docker# source /opt/openenclave/share/openenclave/openenclaverc
+
+# 5. Run proof-of-concept FPU poisoning attack in OE simulation mode
+root@oe-docker# make clean && make
+root@oe-docker# make simulate
 host/helloworldhost ./enclave/helloworldenc.signed --simulate
 Running in simulation mode
 Running in sim mode
 Hello world from the enclave
 Result = 0.246914
-
-
-
-```bash
-$ cd openenclave-master/
-$ git submodule init
-$ git submodule update
-$ mkdir build && cd build
-$ cmake .. -DHAS_QUOTE_PROVIDER=OFF -DENABLE_REFMAN=OFF -DCMAKE_BUILD_TYPE=Release -DUSE_LIBSGX=OFF
-```
-
-### 2. Run modified hello-world application
-
-```bash
-$ cd openenclave-master/
-$ git apply ../oe.patch
-
-
-Hello world from the enclave
-Running in HW mode
-Result = 0.246914
-```
-
-When issuing an MMX operation before invocation of the ecall in the untrusted host program, the floating point result is corrupted:
-
-```bash
-Hello world from the enclave
-Running in HW mode
-Result = -nan
 ```
 
 ## Disclosure and mitigation

@@ -1,6 +1,6 @@
 # Proof of concept attack on GoTEE
 
-[![build status](https://travis-matrix-badges.herokuapp.com/repos/fritzalder/faulty-point-unit/branches/master/4)](https://travis-ci.org/github/fritzalder/faulty-point-unit)
+[![build status](https://travis-matrix-badges.herokuapp.com/repos/fritzalder/faulty-point-unit/branches/master/7)](https://travis-ci.org/github/fritzalder/faulty-point-unit)
 
 ## Install GoTEE
 

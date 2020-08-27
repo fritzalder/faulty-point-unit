@@ -1,6 +1,6 @@
 # Section 4 - Controlled channel
 
-[![build status](https://travis-matrix-badges.herokuapp.com/repos/fritzalder/faulty-point-unit/branches/master/7)](https://travis-ci.org/github/fritzalder/faulty-point-unit)
+[![build status](https://travis-matrix-badges.herokuapp.com/repos/fritzalder/faulty-point-unit/branches/master/9)](https://travis-ci.org/github/fritzalder/faulty-point-unit)
 
 We provide the following scripts to reproduce the controlled channel attack: 
 
