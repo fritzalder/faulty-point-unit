@@ -14,7 +14,7 @@ git:
 language: c
 
 script:
-  - travis_wait 60 docker run --privileged $DOCKER_USERNAME/sgx-fpu /bin/bash -c "$SCRIPT"
+  - docker run $DOCKER_USERNAME/sgx-fpu /bin/bash -c "$SCRIPT"
 
 # Add two jobs for each type of paper test, for each SDK
 jobs:
@@ -36,6 +36,8 @@ jobs:
       env: SCRIPT="cd 02_table2_affected_runtimes/gotee/gotee-fpu/ && go get github.com/aghosn/serializer && PATH=$PATH:$HOME/go/bin && sudo make && cd example/hello-world/ && make"
     - name: "Table 2 - Build and run SGX-LKL runtime"
       env: SCRIPT="cd 02_table2_affected_runtimes/sgx-lkl/ && sudo ./build.sh && sudo ./run-test.sh && cat sgx-lkl-poisoned-run.txt"
+      script:
+          - travis_wait 60 docker run --privileged $DOCKER_USERNAME/sgx-fpu /bin/bash -c "$SCRIPT"
     - name: "Figure 4 - Patched SDK (minimal run to not exceed Travis timeout)"
       env: SCRIPT="./sdk_helper.sh install_patched && source ./sdk_helper.sh patched && cd 03_section-4_controlled-channel && ./test_sim.sh && ./binary_search.py -a 5 && ./plot.py -f results.csv"
     - name: "Figure 4 - Vulnerable SDK (minimal run to not exceed Travis timeout)"

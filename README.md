@@ -1,5 +1,7 @@
 # Faulty Point Unit: ABI Poisoning Attacks on Intel SGX
 
+![build status](https://travis-ci.org/fritzalder/faulty-point-unit.svg?branch=master)
+
 This repository collects source code and data to reproduce the research published in our paper "Faulty Point Unit: ABI Poisoning Attacks on Intel SGX" to appear at [ACSAC'20](https://www.acsac.org/).
 
 ## Abstract
@@ -18,16 +20,29 @@ This paper analyzes a previously overlooked attack surface that allows unprivile
 
 ## Artifact description
 
-In this artifact, we provide the means to reproduce all of our experimental results. More specifically, the repository is organized following the tables and figures in the paper:
+In this artifact, we provide the means to reproduce all of our experimental results. More specifically, the repository is organized following the tables and figures in the paper. The following table overviews the different artifacts and further details which of them can be reproduced in SGX simulation mode in the Docker container we further describe below. A full reproducible build and reference output for all of the attacks that can be ran in the Docker SGX simulator can be viewed in the [Travis Continuous Integration log](https://travis-ci.org/github/fritzalder/faulty-point-unit).
 
-| Paper reference | Directory | Description |
-| :----- | :------ | :------------------------ |
-| Table 1 | `01_table1_ basic-poc` | Proof-of-concept poisoning attack executed against an Intel SGX-SDK enclave. We provide the documented source code, build instructions, and the raw paper data.|
-| Table 2 | `02_table2_ affected_runtimes` | List of affected enclave shielding runtimes. We provide proof-of-concept poisoning attacks against all runtimes marked with a star. Namely, OpenEnclave, SGX-LKL, Rust-EDP, and Go-TEE (for Intel SGX-SDK, see the artifact for Table 1).|
-| Figure 4 | `03_section- 4_controlled-channel` | Controlled channel attack. We provide the documented proof-of-concept attacker and victim source code, build instructions, and the raw paper data.|
-| Table 3 | `04_section- 5_mnist-javascript` | Machine learning with Javascript inside an enclave. We provide the documented source code, build instructions, and the raw paper data. This example was built on the open-source code of the S-FaaS project.|
-| Table 4 | `05_section- 6_spec-cpu-2017` | Benchmarks with SPEC CPU 2017. Due to licensing and copyright restrictions with the proprietary SPEC 2017 suite, we can only provide the used configuration files and detailed instructions how to reproduce our results for people who already bought the SPEC CPU 2017 suite. Please note however, that obtaining the raw data for the SPEC benchmarks summarized in Table 4 takes several CPU weeks. For the artifact evaluation, we therefore do *not* expect artifact reviewers to generate the raw data themselves. We instead provide the log outputs of the full SPEC runs with detailed instructions of how to reproduce the summary in Table 4.|
-| Figure 6 | `06_figure- 6_blender-outputs` | Screenshot of the Blender benchmark. We provide the full reference output of Blender in normal conditions and under the attack.|
+| Paper reference | Directory | Reproducible in Docker (simulation mode) | Reproducible on SGX hardware | Description |
+| :----- | :------ | :------ | :------ | :------------------------ |
+| Table 1 | `01_table1_ basic-poc` | Yes | Yes | Proof-of-concept poisoning attack executed against an Intel SGX-SDK enclave. We provide the documented source code, build instructions, and the raw paper data.|
+| Table 2 | `02_table2_ affected_runtimes` | Partially (full simulation: LKL; build-only: Go-TEE) | Yes | List of affected enclave shielding runtimes. We provide proof-of-concept poisoning attacks against all runtimes marked with a star. Namely, OpenEnclave, SGX-LKL, Rust-EDP, and Go-TEE (for Intel SGX-SDK, see the artifact for Table 1).|
+| Figure 4 | `03_section- 4_controlled-channel` | Yes | Yes | Controlled channel attack. We provide the documented proof-of-concept attacker and victim source code, build instructions, and the raw paper data.|
+| Table 3 | `04_section- 5_mnist-javascript` | Yes | Yes | Machine learning with Javascript inside an enclave. We provide the documented source code, build instructions, and the raw paper data. This example was built on the open-source code of the S-FaaS project.|
+| Table 4 | `05_section- 6_spec-cpu-2017` | Limited, only with license. See notes on SPEC licensing\* | N/A | Benchmarks with SPEC CPU 2017. Due to licensing and copyright restrictions with the proprietary SPEC 2017 suite, we can only provide the used configuration files and detailed instructions how to reproduce our results for people who already bought the SPEC CPU 2017 suite. Please note however, that obtaining the raw data for the SPEC benchmarks summarized in Table 4 takes several CPU weeks. For the artifact evaluation, we therefore do *not* expect artifact reviewers to generate the raw data themselves. We instead provide the log outputs of the full SPEC runs with detailed instructions of how to reproduce the summary in Table 4.|
+| Figure 6 | `06_figure- 6_blender-outputs` | Same as Table 4\* | N/A | Screenshot of the Blender benchmark. We provide the full reference output of Blender in normal conditions and under the attack.|
+
+**\*Note (on SPEC licensing).** Due to licensing and copyright restrictions with the proprietary SPEC CPU 2017 suite, we can only provide the used configuration files and detailed instructions how to reproduce our results for people who already bought the SPEC CPU 2017 suite. Please note, however, that obtaining the raw data for the SPEC benchmarks summarized in Table 4 takes several CPU weeks. For the artifact evaluation, we therefore do **\_\_not\_\_** expect artifact reviewers to generate the raw data themselves. We instead provide the log outputs of the full SPEC runs with detailed instructions of how to reproduce the summary in Table 4.
+
+**Note (runtime).** The table below lists a rough time estimate for the runtime of each artifact for the reviewer's convenience.
+
+| Paper reference |  Time required |
+| :------ |  :---------------------------------- |
+| Table 1 | Immediate |
+| Table 2 | Once built, each runtime attack should execute in less than one minute. |
+| Figure 4| Around 90 minutes for a full run. |
+| Table 3 | Around 10 minutes for a full run (using 8 threads). |
+| Table 4 | Reported log outputs provided. Producing these results will take multiple CPU weeks and is **NOT** expected from artifact reviewers. |
+| Figure 6 | Reported images provided, see also notes of Table 4. |
 
 ## Preparation and setup
 
@@ -66,24 +81,28 @@ This message shows that your installation appears to be working correctly.
 [...]
 ```
 
-### 4. Quickstart with pulling the latest Docker image
+#### 4. Quickstart with pulling the latest Docker image
 
 We provide a Makefile target to easily pull the latest Docker image that has been built by the Travis continuous integration. This pulls and creates a new interactive session in that Docker container to directly start with the artifact. Once inside the Docker container, you will still need to run the installation script and source the desired SDK (detailed below). A quick start with the Docker container looks as follows:
 
 ```bash
-# Pull latest Docker build
-make pull
-# This should start an interactive session inside the pulled Docker container
-# Install dependencies
-./sdk_helper.sh install_sim
-# Switch to the vulnerable Intel SGX SDK v2.7.1
-source ./sdk_helper.sh vulnerable
-# Reproduce basic proof of concept attack
-cd 01_table1_basic-poc
-./eval_simulator.sh
-# Now reproduce same attack with patched SDK v2.8.0
-source ../sdk_helper.sh patched
-./eval_simulator.sh
+# Pull latest Docker build and start an interactive session inside the Docker container
+$ make pull
+docker run -i -h "badf1oa7" -t fritzalder/sgx-fpu
+========================================================================
+= Faulty Point Unit SGX simulator Docker container                     =
+========================================================================
+Description:	Ubuntu 18.04.5 LTS
+
+To get started, see README.md in the current directory
+
+root@badf1oa7$ ./sdk_helper.sh install_sim       # Install dependencies
+...
+root@badf1oa7$ source ./sdk_helper.sh vulnerable # Switch to the vulnerable Intel SGX SDK v2.7.1
+root@badf1oa7$ cd 01_table1_basic-poc            
+root@badf1oa7$ ./eval_simulator.sh               # Reproduce basic proof of concept attack
+root@badf1oa7$ source ../sdk_helper.sh patched   # Now reproduce same attack with patched SDK v2.8.0
+root@badf1oa7$ ./eval_simulator.sh
 ```
 
 ### Switching Intel SGX-SDK versions
@@ -97,11 +116,14 @@ The `sdk_helper.sh` script has two options to switch between Intel SGX-SDK versi
 Use `./sdk_helper.sh help` to print an overview of commands and tasks the script performs.
 
 ## Intel SGX-SDK bug in Ubuntu 20.04LTS
-As of release of this artifact, there is a known issue with the Intel SGX-SDK and Ubuntu LTS 20.04 as reported [here](https://lore.kernel.org/linux-sgx/4db41057-910c-b686-0428-474debe382c1@fortanix.com/), [here](https://github.com/intel/linux-sgx/issues/569), and [here](https://github.com/intel/linux-sgx/pull/515). Since we are deliberately installing an obsolete Intel SGX-SDK to make it vulnerable to a known attack, we can not rely on future releases to patch this issue. A quick workaround is to set `mount -o remount,exec /dev` to circumvent the new behavior of Ubuntu 20.04. The `sdk_helper` sets this before installing if it detects the mentioned Ubuntu version. We **explicitly** warn of possible side-effects. Additionally, since this setting resets on reboot, a user might have to simply rerun the installation with the `sdk_helper` after a reboot.
+
+As of release of this artifact, there is a known issue with the Intel SGX-SDK and Ubuntu LTS 20.04 as reported [here](https://lore.kernel.org/linux-sgx/4db41057-910c-b686-0428-474debe382c1@fortanix.com/), [here](https://github.com/intel/linux-sgx/issues/569), and [here](https://github.com/intel/linux-sgx/pull/515). This is an issue in the SGX driver and does, therefore, *not* affect the simulator described above. The below workaround is, hence, only needed when running the attack on real SGX hardware on Ubuntu 20.04.
+
+Since we are deliberately installing an obsolete Intel SGX-SDK to make it vulnerable to a known attack, we can not rely on future releases to patch this issue. A quick workaround is to set `mount -o remount,exec /dev` to circumvent the new behavior of Ubuntu 20.04. The `sdk_helper` sets this before installing if it detects the mentioned Ubuntu version. We **explicitly** warn of possible side-effects. Additionally, since this setting resets on reboot, a user might have to simply rerun the installation with the `sdk_helper` after a reboot.
 
 ## Building your own Docker container
 
-To build a new Docker container instead of the automatically built one, use these commands:
+Optionally, to build a new Docker container instead of the automatically built one, use these commands:
 
 ```bash
 $ make build
