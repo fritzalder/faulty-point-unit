@@ -2,9 +2,7 @@
 // Licensed under the MIT License.
 
 enclave {
-    from "openenclave/edl/logging.edl" import *;
-    from "openenclave/edl/syscall.edl" import *;
-    from "platform.edl" import *;
+    from "system.edl" import *;
 
     trusted {
         public double enclave_helloworld();
