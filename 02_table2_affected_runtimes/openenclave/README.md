@@ -4,55 +4,55 @@ Open Enclave were the initial project to address the core issue described in the
 
 ## Background and affected runtimes
 
-The trusted enclave entry code reset the x87 FPU control word and SSE MXCSR control registers:
+The trusted enclave entry code reset the x87 FPU control word and SSE MXCSR control registers. We observed, however, that Open Enclave used `ldmxcsr/cw` instructions, instead of a full `xrstor` (as patched in e.g. in the Intel SGX-SDK):
 
  <https://github.com/openenclave/openenclave/commit/efe75044d215d43c2587ffd79a52074bf838368b>
 
-However, in contrast to other runtimes such as the Intel SGX-SDK, Open Enclave (master branch, commit ef97d964aec4887addbe2d62d96f2c224d984612) used `ldmxcsr/cw` instructions, instead of a full `xrstor` (as patched in e.g. in the Intel SGX-SDK):
+This left a possibility to corrupt enclaved floating point operations (using the x87 FPU) by issuing MMX instructions in untrusted code before enclave entry. As of publication of this artifact, Microsoft has also decided to apply a full `xrstor` instruction to mitigate this here described issue (see below for details on the patch and associated CVE).
 
-<https://github.com/openenclave/openenclave/blob/master/enclave/core/sgx/enter.S#L139>
+## Building and running the proof-of-concept exploit
 
-This left a possibility to corrupt enclaved floating point operations (using the x87 FPU) by issuing MMX instructions in untrusted code before enclave entry. As of publication of this artifact, Microsoft has also decided to apply a full `xrstor` instruction to mitigate this here described issue (see below for details on the patch and CVE).
+This directory contains a minimal PoC developed with the vulnerable Open Enclave SDK. The PoC shows that untrusted code could affect the integrity (expected outcome) of x87 floating point operations. Concretely, without executing MMX instructions before ecall entry, the sample enclave correctly computes a floating point multiplication:
 
-## Attack description
+### 1. Install vulnerable unmodified OpenEnclave SDK
 
-Concretely, the attack is based on certain ABI state expectations. The System V ABI states that:
-
-```text
-> The CPU shall be in x87 mode upon entry to a function.   Therefore,
-> every function  that  uses the MMX registers  is  required  to  issue
-> an emms or femms instruction after using MMX registers, before returning or
-> calling another function.
-```
-
-The Intel SDM writes that:
-
-```text
-> However, because the MMX registers
-> are aliased to the x87 FPU register stack, care must be taken when making
-> transitions between x87 FPU instructions and MMX instructions to prevent
-> incoherent or unexpected results.
-> [...]
-> When an x87 FPU instruction is executed, the processor assumes that the
-> current state of the x87 FPU register stack and control registers is valid
-> and executes the instruction without any preparatory modifications to the x87
-> FPU state
-```
-
-An attack thus proceeds as follows:
-
- 1. Attacker executes an MMX instruction before entering the enclave
- 2. --> The CPU sets x87 TOS=0 and TAG=0xffff (all valid)
- 3. Enclave executes x87 instructions that load data into the x87 stack
- 4. --> The CPU detects an FPU stack overflow and breaks enclave integrity and/or confidentiality:
-    * If exceptions are masked? Enclave silently continues with indefinite result (NaN) (integrity corruption)
-    * If exceptions are unmasked? The attacker learns that an x87 instruction was executed (e.g., in secret-dependent execution path)
-
-## Proof-of-concept exploit
-
-This folder contains a minimal PoC developed with the unmodified Open Enclave SDK (master branch, commit ef97d964aec4887addbe2d62d96f2c224d984612). The PoC shows that untrusted code could affect the integrity (expected outcome) of x87 floating point operations. Concretely, without executing MMX instructions before ecall entry, the sample enclave correctly computes a floating point multiplication:
+Minimal instructions based on `openenclave/docs/GettingStartedDocs/install_oe_sdk-Simulation.md` and ` openenclave/docs/GettingStartedDocs/install_oe_sdk-Ubuntu_18.04.md`:
 
 ```bash
+$ sudo dpkg -i --force-depends ~/Downloads/Ubuntu_1804_open-enclave_0.10.0_amd64.deb 
+$ cp -r /opt/openenclave/share/openenclave/samples mysamples
+$ cd mysamples/helloworld/
+$ make simulate 
+host/helloworldhost ./enclave/helloworldenc.signed --simulate
+Running in simulation mode
+Hello world from the enclave
+Enclave called into host to print: Hello World!
+```
+$ patch -p1 < oe.patch
+$ make simulate 
+host/helloworldhost ./enclave/helloworldenc.signed --simulate
+Running in simulation mode
+Running in sim mode
+Hello world from the enclave
+Result = 0.246914
+
+
+
+```bash
+$ cd openenclave-master/
+$ git submodule init
+$ git submodule update
+$ mkdir build && cd build
+$ cmake .. -DHAS_QUOTE_PROVIDER=OFF -DENABLE_REFMAN=OFF -DCMAKE_BUILD_TYPE=Release -DUSE_LIBSGX=OFF
+```
+
+### 2. Run modified hello-world application
+
+```bash
+$ cd openenclave-master/
+$ git apply ../oe.patch
+
+
 Hello world from the enclave
 Running in HW mode
 Result = 0.246914

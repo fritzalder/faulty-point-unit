@@ -9,4 +9,5 @@ run:
 	docker run -i -h "badf1oa7" -t $(DOCKER_NAME) 
 
 pull:
+	docker pull fritzalder/$(DOCKER_NAME)
 	docker run -i -h "badf1oa7" -t fritzalder/$(DOCKER_NAME)

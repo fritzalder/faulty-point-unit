@@ -1,6 +1,6 @@
 # Faulty Point Unit: ABI Poisoning Attacks on Intel SGX
 
-![build status](https://travis-ci.org/fritzalder/faulty-point-unit.svg?branch=master)
+[![build status](https://travis-ci.org/fritzalder/faulty-point-unit.svg?branch=master)](https://travis-ci.org/github/fritzalder/faulty-point-unit)
 
 This repository collects source code and data to reproduce the research published in our paper "Faulty Point Unit: ABI Poisoning Attacks on Intel SGX" to appear at [ACSAC'20](https://www.acsac.org/).
 

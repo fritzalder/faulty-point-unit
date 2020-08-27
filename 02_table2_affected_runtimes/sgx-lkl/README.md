@@ -1,5 +1,7 @@
 # Proof of Concept attack on SGX-LKL
 
+[![build status](https://travis-matrix-badges.herokuapp.com/repos/fritzalder/faulty-point-unit/branches/master/5)](https://travis-ci.org/github/fritzalder/faulty-point-unit)
+
 We provide two simple scripts to test the poc:
 
 ```bash

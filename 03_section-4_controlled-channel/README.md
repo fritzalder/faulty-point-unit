@@ -1,5 +1,7 @@
 # Section 4 - Controlled channel
 
+[![build status](https://travis-matrix-badges.herokuapp.com/repos/fritzalder/faulty-point-unit/branches/master/7)](https://travis-ci.org/github/fritzalder/faulty-point-unit)
+
 We provide the following scripts to reproduce the controlled channel attack: 
 
  1. Two simple test scripts to verify that the attack works in the enclave: `test.sh` to test the hardware mode and `test_sim.sh` to test the simulation mode.

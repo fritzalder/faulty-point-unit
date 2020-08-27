@@ -27,11 +27,11 @@ jobs:
           - docker images
           - docker tag sgx-fpu $DOCKER_USERNAME/sgx-fpu
           - docker push $DOCKER_USERNAME/sgx-fpu
+    - name: "Table 1 - Vulnerable SDK"
+      env: SCRIPT="./sdk_helper.sh install_vulnerable && source ./sdk_helper.sh vulnerable && cd 01_table1_basic-poc && ./eval_simulator.sh"
     - name: "Table 1 - Patched SDK"
       stage: "Run FPU poisoning attack on vulnerable and patched runtimes" 
       env: SCRIPT="./sdk_helper.sh install_patched && source ./sdk_helper.sh patched && cd 01_table1_basic-poc && ./eval_simulator.sh"
-    - name: "Table 1 - Vulnerable SDK"
-      env: SCRIPT="./sdk_helper.sh install_vulnerable && source ./sdk_helper.sh vulnerable && cd 01_table1_basic-poc && ./eval_simulator.sh"
     - name: "Table 2 - Build vulnerable GoTEE runtime"
       env: SCRIPT="cd 02_table2_affected_runtimes/gotee/gotee-fpu/ && go get github.com/aghosn/serializer && PATH=$PATH:$HOME/go/bin && sudo make && cd example/hello-world/ && make"
     - name: "Table 2 - Build and run vulnerable SGX-LKL runtime"
@@ -39,12 +39,12 @@ jobs:
       script:
           - travis_wait 60 docker run --privileged $DOCKER_USERNAME/sgx-fpu /bin/bash -c "$SCRIPT"
     - name: "Table 2 - Build vulnerable Rust-EDP runtime"
-      env: SCRIPT="cd 02_table2_affected_runtimes/rust-edp/ && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup-init.sh && sh ./rustup-init.sh -y && source ~/.cargo/env && rustup -y default nightly-2020-02-01 && rustup -y target add x86_64-fortanix-unknown-sgx --toolchain nightly-2020-02-01 && rustc --version && cd rust-sgx-fpu/ && cargo install --locked --path ./fortanix-sgx-tools fortanix-sgx-tools && cargo install --locked --path ./sgxs-tools sgxs-tools && echo >> ~/.cargo/config -e '[target.x86_64-fortanix-unknown-sgx]\nrunner = "ftxsgx-runner-cargo"' && cd ../hello-world/ && cargo build"
+      env: SCRIPT="cd 02_table2_affected_runtimes/rust-edp/ && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup-init.sh && sh ./rustup-init.sh -y && source ~/.cargo/env && rustup -y default nightly-2020-02-01 && rustup -y target add x86_64-fortanix-unknown-sgx --toolchain nightly-2020-02-01 && rustc --version && cd rust-sgx-fpu/ && cargo install --locked --path ./fortanix-sgx-tools fortanix-sgx-tools && cargo install --locked --path ./sgxs-tools sgxs-tools && cd ../hello-world/ && cargo build"
     - name: "Figure 4 - Patched SDK (minimal run to not exceed Travis timeout)"
-      env: SCRIPT="./sdk_helper.sh install_patched && source ./sdk_helper.sh patched && cd 03_section-4_controlled-channel && ./test_sim.sh && ./binary_search.py -a 5 && ./plot.py -f results.csv"
+      env: SCRIPT="./sdk_helper.sh install_patched && source ./sdk_helper.sh patched && cd 03_section-4_controlled-channel && ./test_sim.sh && ./binary_search.py -a 50 && ./plot.py -f results.csv"
     - name: "Figure 4 - Vulnerable SDK (minimal run to not exceed Travis timeout)"
-      env: SCRIPT="./sdk_helper.sh install_vulnerable && source ./sdk_helper.sh vulnerable && cd 03_section-4_controlled-channel && ./test_sim.sh && ./binary_search.py -a 5 && ./plot.py -f results.csv"
-    - name: "Table 3 - Patched SDK (minimal run to not exceed Travis timeout)"
-      env: SCRIPT="./sdk_helper.sh install_patched && source ./sdk_helper.sh patched && cd 04_section-5_mnist-javascript/eval/ && ./run_tests.py --simulator --mnist ../js-files/mnist_handwritten_test_first5.json -a 5 --travis && ./eval.py -p test_output"
+      env: SCRIPT="./sdk_helper.sh install_vulnerable && source ./sdk_helper.sh vulnerable && cd 03_section-4_controlled-channel && ./test_sim.sh && ./binary_search.py -a 50 && ./plot.py -f results.csv"
     - name: "Table 3 - Vulnerable SDK (minimal run to not exceed Travis timeout)"
-      env: SCRIPT="./sdk_helper.sh install_vulnerable && source ./sdk_helper.sh vulnerable && cd 04_section-5_mnist-javascript/eval/ && ./run_tests.py --simulator --mnist ../js-files/mnist_handwritten_test_first5.json -a 5 --travis && ./eval.py -p test_output"
+      env: SCRIPT="./sdk_helper.sh install_vulnerable && source ./sdk_helper.sh vulnerable && cd 04_section-5_mnist-javascript/eval/ && ./run_tests.py --simulator --mnist ../js-files/mnist_handwritten_test_first5.json -a 50 --travis && ./eval.py -p test_output"
+    - name: "Table 3 - Patched SDK (minimal run to not exceed Travis timeout)"
+      env: SCRIPT="./sdk_helper.sh install_patched && source ./sdk_helper.sh patched && cd 04_section-5_mnist-javascript/eval/ && ./run_tests.py --simulator --mnist ../js-files/mnist_handwritten_test_first5.json -a 50 --travis && ./eval.py -p test_output"

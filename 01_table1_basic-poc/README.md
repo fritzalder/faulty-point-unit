@@ -1,5 +1,7 @@
 # Basic proof of concept attack to reproduce Table 1
 
+[![build status](https://travis-matrix-badges.herokuapp.com/repos/fritzalder/faulty-point-unit/branches/master/2)](https://travis-ci.org/github/fritzalder/faulty-point-unit)
+
 This proof of concept attack showcases the basic issue described in the paper and can be used to reproduce Table 1. The code in this poc consist of a simple enclave with two ECALLs that performs two calculations and of an untrusted part that executes both ECALLs and prints their result. In doing so, the untrusted application uses the fpu_lib library in the project_root/lib folder. This library allows to change between different FPU settings based on environment variables. The benefit of this approach is that there is no need to recompile the untrusted application for every setting of the FPU registers (rounding mode, precision, MMX attack). Instead, the untrusted application can simply be executed multiple times with different environment variables to quickly calculate all desired results.
 
 ![Table1 screenshot](table1.png)
