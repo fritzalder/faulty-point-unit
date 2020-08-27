@@ -1,5 +1,7 @@
 # Proof of concept attack on GoTEE
 
+[![build status](https://travis-matrix-badges.herokuapp.com/repos/fritzalder/faulty-point-unit/branches/master/7)](https://travis-ci.org/github/fritzalder/faulty-point-unit)
+
 ## Install GoTEE
 
 ```bash
@@ -12,7 +14,7 @@ $ sudo make
 
 **Note (Artifact).** This step was already executed on the lab machine for the ACSAC '20 artifact submission.
 
-## Build and run example attack enclave
+## Build and run example attack enclave (only on SGX hardware)
 
 We provide a hello-world sample that executes a print from both the untrusted and trusted domains.
 

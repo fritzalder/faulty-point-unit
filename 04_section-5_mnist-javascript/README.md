@@ -1,5 +1,7 @@
 # MNist predictions with Javascript in an enclave
 
+[![build status](https://travis-matrix-badges.herokuapp.com/repos/fritzalder/faulty-point-unit/branches/master/11)](https://travis-ci.org/github/fritzalder/faulty-point-unit)
+
 The second case study in the paper performs a machine learing prediction in an enclave that runs the `Convnet.JS` Javascript library ([<https://cs.stanford.edu/people/karpathy/convnetjs/>]). The source code for the enclave and its Javascript runtime is adopted from earlier research:
 
 ```bibtex
@@ -48,7 +50,7 @@ To reproduce Table 3, one has to perform two sets of 8 exeuctions each of the sg
 ```bash
 cd eval
 source ../../sdk_helper.sh vulnerable
-./run_tests.py --simulator.py
+./run_tests.py --simulator
 # Alternatively, calling the script without --simulator would run this test in hardware mode
 
 # Now a directory was created. Show a Table similar to Table 3 with:

@@ -1,69 +1,62 @@
 # Proof of concept attack on OpenEnclave
 
+[![build status](https://travis-matrix-badges.herokuapp.com/repos/fritzalder/faulty-point-unit/branches/master/5)](https://travis-ci.org/github/fritzalder/faulty-point-unit)
+
 Open Enclave were the initial project to address the core issue described in the paper by using `ldmxcsr/cw` instructions. Following this patch, we started to investigate the issue described in the paper. During our investigation, we discovered a subclass of the issue, namely the MMX attack vector.
 
 ## Background and affected runtimes
 
-The trusted enclave entry code reset the x87 FPU control word and SSE MXCSR control registers:
+The trusted enclave entry code reset the x87 FPU control word and SSE MXCSR control registers. We observed, however, that Open Enclave used `ldmxcsr/cw` instructions, instead of a full `xrstor` (as patched in e.g. in the Intel SGX-SDK):
 
  <https://github.com/openenclave/openenclave/commit/efe75044d215d43c2587ffd79a52074bf838368b>
 
-However, in contrast to other runtimes such as the Intel SGX-SDK, Open Enclave (master branch, commit ef97d964aec4887addbe2d62d96f2c224d984612) used `ldmxcsr/cw` instructions, instead of a full `xrstor` (as patched in e.g. in the Intel SGX-SDK):
+This left a possibility to corrupt enclaved floating point operations (using the x87 FPU) by issuing MMX instructions in untrusted code before enclave entry. As of publication of this artifact, Microsoft has also decided to apply a full `xrstor` instruction to mitigate this here described issue (see below for details on the patch and associated CVE).
 
-<https://github.com/openenclave/openenclave/blob/master/enclave/core/sgx/enter.S#L139>
+## Building and running the proof-of-concept exploit
 
-This left a possibility to corrupt enclaved floating point operations (using the x87 FPU) by issuing MMX instructions in untrusted code before enclave entry. As of publication of this artifact, Microsoft has also decided to apply a full `xrstor` instruction to mitigate this here described issue (see below for details on the patch and CVE).
+The `hello-fpu` directory contains a minimal proof-of-concept OE application developed with an unmodified vulnerable Open Enclave SDK. The PoC shows that untrusted code could affect the integrity (expected outcome) of x87 floating point operations by silently replacing them with `NaN` values.
 
-## Attack description
+**Note (Docker simulator).** Building and installing OpenEnclave dependencies can be tricky. We therefore recommend to use the Docker container provided by the OpenEnclave team with all dependencies pre-installed, as documented [here](https://github.com/openenclave/openenclave/blob/v0.9.0/docs/GettingStartedDocs/Contributors/BuildingInADockerContainer.md). This is the easiest way to run the example exploit in the OE simulator.
 
-Concretely, the attack is based on certain ABI state expectations. The System V ABI states that:
+**Note (OE packages).** For convenience, the current directory includes prebuilt Debian packages for both the vulnerable OE v0.9 and the patched OE v0.10. These are _unmodified_ OE packages that can alternatively also be downloaded from the [official OE release page](https://github.com/openenclave/openenclave/releases).
 
-```text
-> The CPU shall be in x87 mode upon entry to a function.   Therefore,
-> every function  that  uses the MMX registers  is  required  to  issue
-> an emms or femms instruction after using MMX registers, before returning or
-> calling another function.
-```
-
-The Intel SDM writes that:
-
-```text
-> However, because the MMX registers
-> are aliased to the x87 FPU register stack, care must be taken when making
-> transitions between x87 FPU instructions and MMX instructions to prevent
-> incoherent or unexpected results.
-> [...]
-> When an x87 FPU instruction is executed, the processor assumes that the
-> current state of the x87 FPU register stack and control registers is valid
-> and executes the instruction without any preparatory modifications to the x87
-> FPU state
-```
-
-An attack thus proceeds as follows:
-
- 1. Attacker executes an MMX instruction before entering the enclave
- 2. --> The CPU sets x87 TOS=0 and TAG=0xffff (all valid)
- 3. Enclave executes x87 instructions that load data into the x87 stack
- 4. --> The CPU detects an FPU stack overflow and breaks enclave integrity and/or confidentiality:
-    * If exceptions are masked? Enclave silently continues with indefinite result (NaN) (integrity corruption)
-    * If exceptions are unmasked? The attacker learns that an x87 instruction was executed (e.g., in secret-dependent execution path)
-
-## Proof-of-concept exploit
-
-This folder contains a minimal PoC developed with the unmodified Open Enclave SDK (master branch, commit ef97d964aec4887addbe2d62d96f2c224d984612). The PoC shows that untrusted code could affect the integrity (expected outcome) of x87 floating point operations. Concretely, without executing MMX instructions before ecall entry, the sample enclave correctly computes a floating point multiplication:
+Proceed as follows to run the proof-of-concept FPU poisoning attack on the vulnerable and patched OE versions.
 
 ```bash
-Hello world from the enclave
-Running in HW mode
-Result = 0.246914
-```
+$ docker run -i -t oeciteam/oetools-full-18.04
 
-When issuing an MMX operation before invocation of the ecall in the untrusted host program, the floating point result is corrupted:
+# 1. Clone faulty-point-unit repo
+root@oe-docker# cd ~
+root@oe-docker# git clone https://github.com/fritzalder/faulty-point-unit.git
+root@oe-docker# cd faulty-point-unit/02_table2_affected_runtimes/openenclave/
+root@oe-docker# git submodule init && git submodule update
 
-```bash
+# 2. Install vulnerable OE SDK
+root@oe-docker# sudo dpkg -i Ubuntu_1804_open-enclave_0.9.0_amd64.deb
+root@oe-docker# source /opt/openenclave/share/openenclave/openenclaverc
+
+# 3. Run proof-of-concept FPU poisoning attack in OE simulation mode
+root@oe-docker# cd hello-fpu/ && make
+root@oe-docker# make simulate
+host/helloworldhost ./enclave/helloworldenc.signed --simulate
+host/helloworldhost ./enclave/helloworldenc.signed --simulate
+Running in simulation mode
+Running in sim mode
 Hello world from the enclave
-Running in HW mode
 Result = -nan
+
+## 4. Install patched OE SDK
+root@oe-docker# sudo dpkg -i ../Ubuntu_1804_open-enclave_0.10.0_amd64.deb
+root@oe-docker# source /opt/openenclave/share/openenclave/openenclaverc
+
+# 5. Run proof-of-concept FPU poisoning attack in OE simulation mode
+root@oe-docker# make clean && make
+root@oe-docker# make simulate
+host/helloworldhost ./enclave/helloworldenc.signed --simulate
+Running in simulation mode
+Running in sim mode
+Hello world from the enclave
+Result = 0.246914
 ```
 
 ## Disclosure and mitigation
