@@ -41,6 +41,8 @@ The generated output is a raw JSON string that is not very human readable. We pr
 
 ## Reproducing Table 3
 
+![Table3 screenshot](table3.png)
+
 To reproduce Table 3, one has to perform two sets of 8 exeuctions each of the sgx duktape enclave: One compilation with the x87 FPU and two precision and four rounding modes, and one compilation with the default SSE version. The script `run-tests.py` performs all these runs automatically and places them in a new subidectory:
 
 ```bash

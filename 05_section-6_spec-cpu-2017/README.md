@@ -6,6 +6,8 @@ For the artifact evaluation, we therefore do >>**not**<< expect artifact reviewe
 
 Furthermore, we provide the two configuration files used during our benchmarks and describe their important elements as well as how they can be utilized to reproduce and regenerate the raw data used in the paper.
 
+![Table4 screenshot](table4.png)
+
 ## 1. Spec setup used in our case study
 
 As described in Section 6 of the paper, we performed the SPEC benchmarks multiple times with different settings of the FPU and SSE registers. For this, we modified the configuration file to link our fpu_lib as described in the `lib/` folder. This allowed us to perform the FPU attacks without needing to modify any SPEC source files. For more documentation on this library, see the `lib/` folder of this project or see the detailed description below.

@@ -14,7 +14,7 @@ git:
 language: c
 
 script:
-  - travis_wait 60 docker run $DOCKER_USERNAME/sgx-fpu /bin/bash -c "$SCRIPT"
+  - travis_wait 60 docker run --privileged $DOCKER_USERNAME/sgx-fpu /bin/bash -c "$SCRIPT"
 
 # Add two jobs for each type of paper test, for each SDK
 jobs:

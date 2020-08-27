@@ -6,6 +6,8 @@ We provide the following scripts to reproduce the controlled channel attack:
  2. A script to run the actual controlled channel attack called `binary_search.py`. This script executes 1000 runs of the attack and creates an output called results.csv. On an Intel Core i7-8665U CPU, the script runs at a speed of 5 seconds per iteration which nets to a total runtime of about 90 minutes for a complete run.
  3. A script to evaluate a generated csv file and output a plot. You can control the input file to generate plots from different sources, e.g., `eval.py -f results.csv` or `eval.py -f paper_data.csv` to use the raw data used for the paper Figure 4. The eval script outputs a file named `histogram_error.pdf` that is identical to the file `figure-4.pdf` when called with the original paper data.
 
+![Figure4 screenshot](figure4.png)
+
 ## Steps to reproduce Figure 4
 
 To reproduce Figure 4, simply run the scripts in order:

@@ -2,6 +2,8 @@
 
 The images in this directory are the result of running the SPEC CPU 2017 suite when following the instructions given in the description of the SPEC case study (more details are given in directory 05_section-6_spec-cpu-2017 ). The benefit of the blender benchmark is its generation of easily viewable images that can be used to showcase the differences between original, unattacked benchmarks, and attacked benchmarks.
 
+![Figure6 screenshot](figure6.png)
+
 ## Reproducing these images
 
 As described in the Readme of the project and in the subdirectory of the Spec CPU 2017 case study, we do **not** expect artifact reviewers to generate the raw data of the SPEC CPU 2017 suite themselves. Additionally, due to licensing and copyright restrictions with the proprietary SPEC 2017 suite, we can only provide the used configuration file and detailed instructions how to reproduce our results for people who already bought the SPEC CPU 2017 suite. Please note, that obtaining the raw data for the SPEC benchmarks summarized in Table 4 of the paper takes several CPU weeks. Obtaining the raw data of just the single blender_r benchmark however takes significantly less time, as not the full suite but just one benchmark has to be completed.
