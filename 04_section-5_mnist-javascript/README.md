@@ -56,8 +56,6 @@ source ../../sdk_helper.sh vulnerable
 # where 2020-06-12_0-100_Paper-Data would be the freshly created folder.
 ```
 
-**Note (output validity).** The eval scripts may print the rows in a different order than Table 3 showed them in the paper.
-
 **Note (runtime).** A full run of the `run_tests.py` script takes around 10 minutes on our Intel Core i7-8665U CPU.
 
 To verify the mitigation, one can run  `source sdk_helper.sh patch` and rerun the lines above (without the `source` command) which should yield correct results independent of the used Rounding or Precision modes.

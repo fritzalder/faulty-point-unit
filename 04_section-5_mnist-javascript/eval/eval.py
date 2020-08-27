@@ -43,7 +43,7 @@ def parse_args():
     )
     parser.add_argument(
         "-i", "--ignore-file",
-        type=str, required=False, default=['input.json', 'Readme.md'], action='append',
+        type=str, required=False, default=['input.json', 'Readme.md', 'README.md'], action='append',
         help="Filenames to ignore.",
     )
     parser.add_argument(
@@ -175,19 +175,20 @@ def main():
     sse_single = [ "sse_" + i[0] + "_" + i[1] for i in single_zip ]
     sse_extended = [ "sse_" + i[0] + "_" + i[1] for i in extended_zip ]
     
-    rounding_modes = ["Round to nearest", "Rounding down", "Rounding up", "Round to zero"]
+    rounding_modes = {'TO_NEAREST':"Round to nearest", 'DOWN':"Rounding down", 'UP':"Rounding up", 'TO_ZERO':"Round to zero"}
     print_format        = "{:<23} {:<17} {:<8} {:<7} {:<42} {:<42} {:01.50f}"
     print_format_header = "{:<23} {:<17} {:<8} {:<7} {:<42} {:<42} {:<50}"
 
 
     def pretty_print_dict(dict):
         print(print_format_header.format('CW','Rounding mode','Correct','(Rate)', 'Class count [0..9]', 'Class count difference to baseline [0..9]', 'Average error'))
-        curr_rounding_mode = 0
-        for k, v in sorted(dict.items(), key=lambda item: item[0]):
-            class_count_string = "[%s]" % (" ".join(["{:<3}".format(s) for s in v["predicted_class_count"]]))
-            incorrect_class_count_string = "[%s]" % (" ".join(["{:<3}".format(abs(s[0]-s[1])) for s in zip(v["predicted_class_count"],statistics[baseline_key]["predicted_class_count"])]))
-            print(print_format.format(k, rounding_modes[curr_rounding_mode], v["as_baseline_amount"], v["as_baseline_rate"], class_count_string, incorrect_class_count_string, v["average_error"]))
-            curr_rounding_mode += 1
+        for r in fpu_round_list:
+            for k in dict:
+                if r in k:
+                    v = dict[k]
+                    class_count_string = "[%s]" % (" ".join(["{:<3}".format(s) for s in v["predicted_class_count"]]))
+                    incorrect_class_count_string = "[%s]" % (" ".join(["{:<3}".format(abs(s[0]-s[1])) for s in zip(v["predicted_class_count"],statistics[baseline_key]["predicted_class_count"])]))
+                    print(print_format.format(k, rounding_modes[r], v["as_baseline_amount"], v["as_baseline_rate"], class_count_string, incorrect_class_count_string, v["average_error"]))
 
     print("\nSingle precision:")
     pretty_print_dict({ k:v for k,v in statistics.items() if k in single_precision})
