@@ -23,7 +23,7 @@ To reproduce Figure 4, simply run the scripts in order:
 # The plot is generated into histogram_error.pdf
 ./plot.py -f results.csv
 ```
-**Note (runtime).** On an Intel Core i7-8665U CPU, the script runs at a speed of 5 seconds per iteration which nets to a total runtime of about 90 minutes for a complete run. One can control how many tests the `binary_search` script is supposed to run with the `-a` flag which is set to 1000 by default (as this is the reported number in the paper). Example: `./binary_search.py -a 5` to just run 5 tests. We use such a reduced set with 5 runs in the Travis build.
+**Note (runtime).** On an Intel Core i7-8665U CPU, the script runs at a speed of 5 seconds per iteration which nets to a total runtime of about 90 minutes for a complete run. One can control how many tests the `binary_search` script is supposed to run with the `-a` flag which is set to 1000 by default (as this is the reported number in the paper). Example: `./binary_search.py -a 5` to just run 5 tests. We use such a reduced set with 100 runs in the Travis build.
 
 **Note (reproducability).** The binary_search script uses a static seed to make the data reproducible.
 

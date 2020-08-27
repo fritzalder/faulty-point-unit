@@ -16,7 +16,7 @@ This left a possibility to corrupt enclaved floating point operations (using the
 
 The `hello-fpu` directory contains a minimal proof-of-concept OE application developed with an unmodified vulnerable Open Enclave SDK. The PoC shows that untrusted code could affect the integrity (expected outcome) of x87 floating point operations by silently replacing them with `NaN` values.
 
-**Note (Docker simulator).** Building OpenEnclave dependencies can be tricky. We therefore recommend to use the Docker container provided by the OpenEnclave team with all dependencies pre-installed, as documented [https://github.com/openenclave/openenclave/blob/v0.9.0/docs/GettingStartedDocs/Contributors/BuildingInADockerContainer.md](here). This is the easiest way to run the example exploit in the OE simulator.
+**Note (Docker simulator).** Building and installing OpenEnclave dependencies can be tricky. We therefore recommend to use the Docker container provided by the OpenEnclave team with all dependencies pre-installed, as documented [here](https://github.com/openenclave/openenclave/blob/v0.9.0/docs/GettingStartedDocs/Contributors/BuildingInADockerContainer.md). This is the easiest way to run the example exploit in the OE simulator.
 
 **Note (OE packages).** For convenience, the current directory includes prebuilt Debian packages for both the vulnerable OE v0.9 and the patched OE v0.10. These are _unmodified_ OE packages that can alternatively also be downloaded from the [official OE release page](https://github.com/openenclave/openenclave/releases).
 

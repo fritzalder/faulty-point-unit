@@ -50,7 +50,7 @@ To reproduce Table 3, one has to perform two sets of 8 exeuctions each of the sg
 ```bash
 cd eval
 source ../../sdk_helper.sh vulnerable
-./run_tests.py --simulator.py
+./run_tests.py --simulator
 # Alternatively, calling the script without --simulator would run this test in hardware mode
 
 # Now a directory was created. Show a Table similar to Table 3 with:
