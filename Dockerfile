@@ -10,8 +10,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/Brussels
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-# Install dependencies for SGX-LKL and Go-TEE
-RUN apt-get install make gcc g++ bc python xutils-dev bison flex libgcrypt20-dev libjson-c-dev autopoint pkgconf autoconf libtool libcurl4-openssl-dev libprotobuf-dev libprotobuf-c-dev protobuf-compiler protobuf-c-compiler libssl-dev rsync golang -yqq
+# Install dependencies for SGX-LKL, Go-TEE, Rust-EDP
+RUN apt-get install make gcc g++ bc python xutils-dev bison flex libgcrypt20-dev libjson-c-dev autopoint pkgconf autoconf libtool libcurl4-openssl-dev libprotobuf-dev libprotobuf-c-dev protobuf-compiler protobuf-c-compiler libssl-dev rsync golang curl -yqq
 
 # Build and install Intel SGX simulator
 RUN git clone https://github.com/fritzalder/faulty-point-unit .
