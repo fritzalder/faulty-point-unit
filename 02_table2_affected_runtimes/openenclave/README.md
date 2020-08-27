@@ -12,9 +12,22 @@ This left a possibility to corrupt enclaved floating point operations (using the
 
 ## Building and running the proof-of-concept exploit
 
-This directory contains a minimal PoC developed with the vulnerable Open Enclave SDK. The PoC shows that untrusted code could affect the integrity (expected outcome) of x87 floating point operations. Concretely, without executing MMX instructions before ecall entry, the sample enclave correctly computes a floating point multiplication:
+This directory contains a minimal PoC developed with an unmodified vulnerable Open Enclave SDK. The PoC shows that untrusted code could affect the integrity (expected outcome) of x87 floating point operations. Concretely, without executing MMX instructions before ecall entry, the sample enclave correctly computes a floating point multiplication:
+
+
+
+      env: SCRIPT="cd ~ && git clone https://github.com/fritzalder/faulty-point-unit.git && cd faulty-point-unit/02_table2_affected_runtimes/ && git submode init && git submodule update && cd openenclave/ && git submodule init && git submodule update && mkdir build && cd build/ && cmake .. && make && sudo make install && source /opt/openenclave/share/openenclave/openenclaverc && cd ../samples/hello-world && make && make simulate && cd ../../../hello-fpu/ && make && make simulate"
+      script:
+          - docker run oeciteam/oetools-full-18.04 /bin/bash -c "$SCRIPT"
+
 
 ### 1. Install vulnerable unmodified OpenEnclave SDK
+
+$ ~/Downloads/cmake-3.18.2-Linux-x86_64/bin/cmake -DHAS_QUOTE_PROVIDER=OFF -DENABLE_REFMAN=OFF ..
+
+
+
+
 
 Minimal instructions based on `openenclave/docs/GettingStartedDocs/install_oe_sdk-Simulation.md` and ` openenclave/docs/GettingStartedDocs/install_oe_sdk-Ubuntu_18.04.md`:
 
