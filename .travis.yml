@@ -44,8 +44,8 @@ jobs:
       env: SCRIPT="cd ~ && git clone https://github.com/fritzalder/faulty-point-unit.git && cd faulty-point-unit/02_table2_affected_runtimes/openenclave/ && git submodule init && git submodule update && sudo dpkg -i Ubuntu_1804_open-enclave_0.10.0_amd64.deb && source /opt/openenclave/share/openenclave/openenclaverc && cd hello-fpu/ && make && make simulate"
       script:
           - docker run oeciteam/oetools-full-18.04 /bin/bash -c "$SCRIPT"
-    - name: "Table 2 - Build vulnerable GoTEE runtime"
-      env: SCRIPT="cd 02_table2_affected_runtimes/gotee/gotee-fpu/ && go get github.com/aghosn/serializer && PATH=$PATH:$HOME/go/bin && sudo make && cd example/hello-world/ && make"
+    - name: "Table 2 - Build and run vulnerable GoTEE runtime"
+      env: SCRIPT="cd 02_table2_affected_runtimes/gotee/gotee-fpu/ && go get github.com/aghosn/serializer && PATH=$PATH:$HOME/go/bin && sudo make && cd example/hello-world/ && make && SIM=1 ./main"
     - name: "Table 2 - Build vulnerable Rust-EDP runtime"
       env: SCRIPT="cd 02_table2_affected_runtimes/rust-edp/ && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup-init.sh && sh ./rustup-init.sh -y && source ~/.cargo/env && rustup default nightly-2020-02-01 && rustup target add x86_64-fortanix-unknown-sgx --toolchain nightly-2020-02-01 && rustc --version && cd rust-sgx-fpu/ && cargo install --locked --path ./fortanix-sgx-tools fortanix-sgx-tools && cargo install --locked --path ./sgxs-tools sgxs-tools && cd ../hello-world/ && cargo build --target x86_64-fortanix-unknown-sgx"
     - name: "Figure 4 - Vulnerable Intel SGX-SDK (reduced run to not exceed Travis timeout)"
