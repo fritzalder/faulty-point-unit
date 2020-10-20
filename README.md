@@ -138,3 +138,66 @@ To get started, see README.md in the current directory
 
 root@badf1oa7:/faulty-point-unit#
 ```
+
+## Running on real hardware
+
+If you want to reproduce above artifacts on real hardware instead of using the SGX simulators, you can follow these  instructions. 
+
+### Ubuntu, RHEL, SUSE
+
+We provide the `sdk_helper.sh` script that can be instructed to do a installation of the hardware driver via `sudo ./sdk_helper.sh install`.
+One installed, the `sdk_helper.sh` script can be used to switch between patched and vulnerable SDK: `./sdk_helper.sh vulnerable` | `./sdk_helper.sh patched`. 
+
+If needed, general installation instructions are provided by Intel [here](https://download.01.org/intel-sgx/latest/linux-latest/docs/Intel_SGX_Installation_Guide_Linux_2.11_Open_Source.pdf).
+
+Potentially you also still have to start the aesmd service by running:
+
+```bash
+$ sudo service aesmd start
+```
+
+### Arch Linux, Manjaro
+
+The driver can be installed from the AUR [here](https://aur.archlinux.org/packages/linux-sgx-driver-dkms-git/).
+
+A docker image with the Intel SGX PSW installed can be obtained in the following way.
+
+```bash
+$ wget https://raw.githubusercontent.com/intel/linux-sgx/sgx_2.11/linux/installer/docker/Dockerfile
+$ docker build --target aesm --build-arg https_proxy=$https_proxy \
+             --build-arg http_proxy=$http_proxy -t sgx_aesm -f ./Dockerfile ./
+$ rm Dockerfile
+$ docker volume create --driver local --opt type=tmpfs --opt device=tmpfs --opt o=rw aesmd-socket
+```
+
+At the time of writing the AUR still contains the Legacy Launch Control driver and you can create the container with the following command
+
+```bash
+$ docker run --env http_proxy --env https_proxy --device=/dev/isgx -v /dev/log:/dev/log -v aesmd-socket:/var/run/aesmd -it sgx_aesm
+```
+
+If however the [SGX Flexible Launch Control driver](https://github.com/intel/SGXDataCenterAttestationPrimitives/driver/linux) is installed on your system or the upcoming patches to the driver have been upstreamed you will need to create the container as follows
+
+```bash
+$ docker run --env http_proxy --env https_proxy --device=/dev/sgx/enclave --device=/dev/sgx/provision -v /dev/log:/dev/log -v aesmd-socket:/var/run/aesmd -it sgx_aesm
+```
+
+##### Running the container in Arch Linux for this repository
+
+To start the docker container that has been built by the Travis CI you can run the following.
+
+```bash
+$ docker pull fritzalder/sgx-fpu
+```
+
+For the SGX Legacy Launch Control driver:
+
+```bash
+$ docker run -h "badf1oa7" --device=/dev/isgx -v aesmd-socket:/var/run/aesmd -it fritzalder/sgx-fpu
+```
+
+For the SGX Flexible Launch Control driver:
+
+```bash
+$ docker run -h "badf1oa7" --device=/dev/sgx/enclave -v aesmd-socket:/var/run/aesmd -it fritzalder/sgx-fpu
+```
