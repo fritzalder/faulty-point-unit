@@ -143,19 +143,20 @@ root@badf1oa7:/faulty-point-unit#
 
 If you want to reproduce above artifacts on real hardware instead of using the SGX simulators, you can follow these  instructions. 
 
-### Install Linux-SGX driver + Intel SGX PSW
+### Ubuntu, RHEL, SUSE
 
-#### Ubuntu, RHEL, SUSE
+We provide the `sdk_helper.sh` script that can be instructed to do a installation of the hardware driver via `sudo ./sdk_helper.sh install`.
+One installed, the `sdk_helper.sh` script can be used to switch between patched and vulnerable SDK: `./sdk_helper.sh vulnerable` | `./sdk_helper.sh patched`. 
 
-Installation instructions are provided by Intel [here](https://download.01.org/intel-sgx/latest/linux-latest/docs/Intel_SGX_Installation_Guide_Linux_2.11_Open_Source.pdf).
+If needed, general installation instructions are provided by Intel [here](https://download.01.org/intel-sgx/latest/linux-latest/docs/Intel_SGX_Installation_Guide_Linux_2.11_Open_Source.pdf).
 
-Start the aesm service by running:
+Potentially you also still have to start the aesmd service by running:
 
 ```bash
 $ sudo service aesmd start
 ```
 
-#### Arch Linux, Manjaro
+### Arch Linux, Manjaro
 
 The driver can be installed from the AUR [here](https://aur.archlinux.org/packages/linux-sgx-driver-dkms-git/).
 
@@ -181,7 +182,7 @@ If however the [SGX Flexible Launch Control driver](https://github.com/intel/SGX
 $ docker run --env http_proxy --env https_proxy --device=/dev/sgx/enclave --device=/dev/sgx/provision -v /dev/log:/dev/log -v aesmd-socket:/var/run/aesmd -it sgx_aesm
 ```
 
-### Running the container for this repository
+##### Running the container in Arch Linux for this repository
 
 To start the docker container that has been built by the Travis CI you can run the following.
 
