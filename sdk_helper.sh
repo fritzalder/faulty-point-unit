@@ -179,7 +179,7 @@ function install_common(){
     mkdir -p $SGX_VULNERABLE_INSTALL
 
     git submodule init
-    git submodule update
+    git submodule update --recursive
 
     # ----------------------------------------------------------------------
     echo "[ installing prerequisites ]"
