@@ -28,10 +28,10 @@ In this artifact, we provide the means to reproduce all of our experimental resu
 | Table 2 | `02_table2_ affected_runtimes` | Partially (full simulation: LKL, OE, Go-TEE; build-only: Rust-EDP) | Yes | List of affected enclave shielding runtimes. We provide proof-of-concept poisoning attacks against all runtimes marked with a star. Namely, OpenEnclave, SGX-LKL, Rust-EDP, and Go-TEE (for Intel SGX-SDK, see the artifact for Table 1).|
 | Figure 4 | `03_section- 4_controlled-channel` | Yes | Yes | Controlled channel attack. We provide the documented proof-of-concept attacker and victim source code, build instructions, and the raw paper data.|
 | Table 3 | `04_section- 5_mnist-javascript` | Yes | Yes | Machine learning with Javascript inside an enclave. We provide the documented source code, build instructions, and the raw paper data. This example was built on the open-source code of the S-FaaS project.|
-| Table 4 | `05_section- 6_spec-cpu-2017` | Limited, only with license. See notes on SPEC licensing\* | N/A | Benchmarks with SPEC CPU 2017. Due to licensing and copyright restrictions with the proprietary SPEC 2017 suite, we can only provide the used configuration files and detailed instructions how to reproduce our results for people who already bought the SPEC CPU 2017 suite. Please note however, that obtaining the raw data for the SPEC benchmarks summarized in Table 4 takes several CPU weeks. For the artifact evaluation, we therefore do *not* expect artifact reviewers to generate the raw data themselves. We instead provide the log outputs of the full SPEC runs with detailed instructions of how to reproduce the summary in Table 4.|
+| Table 4 | `05_section- 6_spec-cpu-2017` | Limited, only with license. See notes on SPEC licensing\* | N/A | Benchmarks with SPEC CPU 2017. Due to licensing and copyright restrictions with the proprietary SPEC 2017 suite, we can only provide the used configuration files and detailed instructions how to reproduce our results for people who already bought the SPEC CPU 2017 suite. Please note however, that obtaining the raw data for the SPEC benchmarks summarized in Table 4 takes several CPU weeks. We provide the log outputs of the full SPEC runs with detailed instructions of how to reproduce the summary in Table 4.|
 | Figure 6 | `06_figure- 6_blender-outputs` | Same as Table 4\* | N/A | Screenshot of the Blender benchmark. We provide the full reference output of Blender in normal conditions and under the attack.|
 
-**\*Note (on SPEC licensing).** Due to licensing and copyright restrictions with the proprietary SPEC CPU 2017 suite, we can only provide the used configuration files and detailed instructions how to reproduce our results for people who already bought the SPEC CPU 2017 suite. Please note, however, that obtaining the raw data for the SPEC benchmarks summarized in Table 4 takes several CPU weeks. For the artifact evaluation, we therefore do **\_\_not\_\_** expect artifact reviewers to generate the raw data themselves. We instead provide the log outputs of the full SPEC runs with detailed instructions of how to reproduce the summary in Table 4.
+**\*Note (on SPEC licensing).** Due to licensing and copyright restrictions with the proprietary SPEC CPU 2017 suite, we can only provide the used configuration files and detailed instructions how to reproduce our results for people who already bought the SPEC CPU 2017 suite. Please note, however, that obtaining the raw data for the SPEC benchmarks summarized in Table 4 takes several CPU weeks. We provide the log outputs of the full SPEC runs with detailed instructions of how to reproduce the summary in Table 4.
 
 **Note (runtime).** The table below lists a rough time estimate for the runtime of each artifact for the reviewer's convenience.
 
@@ -41,7 +41,7 @@ In this artifact, we provide the means to reproduce all of our experimental resu
 | Table 2 | Once built, each runtime attack should execute in less than one minute. |
 | Figure 4| Around 90 minutes for a full run. |
 | Table 3 | Around 10 minutes for a full run (using 8 threads). |
-| Table 4 | Reported log outputs provided. Producing these results will take multiple CPU weeks and is **NOT** expected from artifact reviewers. |
+| Table 4 | Reported log outputs provided. Producing these results will take multiple CPU weeks. |
 | Figure 6 | Reported images provided, see also notes of Table 4. |
 
 ## Preparation and setup
@@ -54,7 +54,7 @@ All of the attacks described in our paper were performed on *real SGX hardware*.
 
 **Note (simulation validity).** Simulation mode does assuredly _not_ affect the validity of our attacks, as we exploit software sanitization oversights that occur in code that is agnostic to whether the enclave executes on real hardware or in a simulator.
 
-**Note (hardware access).** Almost all of the enclave shielding runtimes that we studied offer a simulation mode (i.e., Intel SGX-SDK, OpenEnclave, LKL, GoTEE). Rust-EDP does not, however, and we can therefore not offer a simulation mode for our proof-of-concept attacks on the Rust-EDP runtime. This is only a concern for Table 2 (`02_table2_affected_runtimes`). To test the artifacts in a real hardware environment, we will provide ACSAC artifact reviewers with SSH access to a preinstalled SGX-enabled lab machine.
+**Note (hardware access).** Almost all of the enclave shielding runtimes that we studied offer a simulation mode (i.e., Intel SGX-SDK, OpenEnclave, LKL, GoTEE). Rust-EDP does not, however, and we can therefore not offer a simulation mode for our proof-of-concept attacks on the Rust-EDP runtime. This is only a concern for Table 2 (`02_table2_affected_runtimes`).
 
 ## Quickstart: Pulling the latest Docker image
 
@@ -141,7 +141,7 @@ root@badf1oa7:/faulty-point-unit#
 
 ## Running on real hardware
 
-If you want to reproduce above artifacts on real hardware instead of using the SGX simulators, you can follow these  instructions. 
+If you want to reproduce above artifacts on real hardware instead of using the SGX simulators, you can follow these  instructions.
 
 ### Ubuntu, RHEL, SUSE
 
@@ -182,7 +182,7 @@ If however the [SGX Flexible Launch Control driver](https://github.com/intel/SGX
 $ docker run --env http_proxy --env https_proxy --device=/dev/sgx/enclave --device=/dev/sgx/provision -v /dev/log:/dev/log -v aesmd-socket:/var/run/aesmd -it sgx_aesm
 ```
 
-##### Running the container in Arch Linux for this repository
+#### Running the container in Arch Linux for this repository
 
 To start the docker container that has been built by the Travis CI you can run the following.
 

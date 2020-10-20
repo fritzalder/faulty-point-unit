@@ -1,8 +1,8 @@
 # Case study: SPEC CPU 2017 benchmarks
 
-As described in the Readme of the project, we do **not** expect artifact reviewers to generate the raw data of the SPEC CPU 2017 suite themselves. Additionally, due to licensing and copyright restrictions with the proprietary SPEC 2017 suite, we can only provide the used configuration file and detailed instructions how to reproduce our results for people who already bought the SPEC CPU 2017 suite. Please note, that obtaining the raw data for the SPEC benchmarks summarized in Table 4 of the paper takes several CPU weeks.
+As described in the Readme of the project, the full runs of the SPEC CPU 2017 suite require a lot of time. Additionally, due to licensing and copyright restrictions with the proprietary SPEC 2017 suite, we can only provide the used configuration file and detailed instructions how to reproduce our results for people who already bought the SPEC CPU 2017 suite. Please note, that obtaining the raw data for the SPEC benchmarks summarized in Table 4 of the paper takes several CPU weeks.
 
-For the artifact evaluation, we therefore do >>**not**<< expect artifact reviewers to generate the raw data themselves. In this subdirectory, we instead provide the log outputs of the full SPEC runs with instructions of how to reconstruct Table 4 from these logs.
+For this artifact, we therefore do >>**not**<< provide the raw data itself or expect the reviewers to reproduce the full data. In this subdirectory, we instead provide the log outputs of the full SPEC runs with instructions of how to reconstruct Table 4 from these logs.
 
 Furthermore, we provide the two configuration files used during our benchmarks and describe their important elements as well as how they can be utilized to reproduce and regenerate the raw data used in the paper.
 
@@ -20,7 +20,7 @@ While these console outputs are technically only secondarily useful, they fully 
 
 ## 3. Reproducing and regenerating the benchmark data
 
-**NOTE AGAIN** that we do **not** expect artifact reviewers to perform this step as all relevant information can be deduced from the log outputs described in the previous step. However, if one wishes to reproduce and regenerate the raw data and run the benchmarks, this section is intended to describe all necessary steps.
+If one wishes to reproduce and regenerate the raw data and run the benchmarks, this section is intended to describe all necessary steps.
 
 The benchmarks were executed with the [SPEC CPU 2017](https://www.spec.org/cpu2017/) benchmark. Once a license has been purchased and the program has been installed, the user needs to adjust the basic configuration file based on the own needs and the utilized system. We performed all benchmarks inside a virtual machine with 16 cores and 16 GB of memory. While the configuration files shared as part of this artifact might not be usable as-is due to custom configurations of the user's machine, this is a list of the essential steps that need to be performed to include the attack in the configuration file. To reproduce and generate the raw data that was used as a basis for the first row in Table 4, the file `attack-fpus.cfg` was used with the following changes:
 
