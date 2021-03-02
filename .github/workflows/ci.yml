@@ -21,8 +21,21 @@ jobs:
       # Retrieves the name of the docker image we want to use
       - uses: actions/docker-image-action@v1
 
-      # Runs this jobs script
+      # Runs this job's script
       - name: Table 1 - Vulnerable Intel SGX-SDK
         run: |
           SCRIPT="source ./sdk_helper.sh vulnerable && cd 01_table1_basic-poc && ./eval_simulator.sh"
+          docker run ${{ steps.outputs.image-id }}:${{ steps.outputs.image-version }} /bin/bash -c "$SCRIPT"
+  
+  table1-patched:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Retrieves the name of the docker image we want to use
+      - uses: actions/docker-image-action@v1
+
+      # Runs this job's script
+      - name: Table 1 - Patched Intel SGX-SDK
+        run: |
+          SCRIPT="source ./sdk_helper.sh patched && cd 01_table1_basic-poc && ./eval_simulator.sh"
           docker run ${{ steps.outputs.image-id }}:${{ steps.outputs.image-version }} /bin/bash -c "$SCRIPT"
