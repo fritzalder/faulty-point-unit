@@ -1,7 +1,5 @@
 # Proof-of-concept Rust-EDP exploitation with malicious runner
 
-[![build status](https://travis-matrix-badges.herokuapp.com/repos/fritzalder/faulty-point-unit/branches/master/8)](https://travis-ci.org/github/fritzalder/faulty-point-unit)
-
 This directory includes a minimal PoC showcasing insufficient ABI sanitization
 in Rust-EDP. The PoC shows that untrusted code controls x87 and SSE
 configuration registers on enclave entry, which got fixed after our disclosure

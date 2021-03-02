@@ -1,15 +1,11 @@
 # Proof of Concept attack on SGX-LKL
 
-[![build status](https://travis-matrix-badges.herokuapp.com/repos/fritzalder/faulty-point-unit/branches/master/4)](https://travis-ci.org/github/fritzalder/faulty-point-unit)
-
 We provide two simple scripts to test the poc:
 
 ```bash
 sudo ./build.sh # Takes a while
 sudo ./run-test.sh
 ```
-
-**Note (runtime).** Building SGX-LKL may take a long time during the `make sim` target of their build script. On our lab machine, the process took around 30 minutes. Due to this time effort, LKL is also not included in the Travis CI.
 
 ## Expected output
 

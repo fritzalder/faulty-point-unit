@@ -1,7 +1,5 @@
 # Proof of concept attack on OpenEnclave
 
-[![build status](https://travis-matrix-badges.herokuapp.com/repos/fritzalder/faulty-point-unit/branches/master/5)](https://travis-ci.org/github/fritzalder/faulty-point-unit)
-
 Open Enclave were the initial project to address the core issue described in the paper by using `ldmxcsr/cw` instructions. Following this patch, we started to investigate the issue described in the paper. During our investigation, we discovered a subclass of the issue, namely the MMX attack vector.
 
 ## Background and affected runtimes

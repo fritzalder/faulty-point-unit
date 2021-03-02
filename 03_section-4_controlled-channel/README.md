@@ -1,7 +1,5 @@
 # Section 4 - Controlled channel
 
-[![build status](https://travis-matrix-badges.herokuapp.com/repos/fritzalder/faulty-point-unit/branches/master/9)](https://travis-ci.org/github/fritzalder/faulty-point-unit)
-
 We provide the following scripts to reproduce the controlled channel attack: 
 
  1. Two simple test scripts to verify that the attack works in the enclave: `test.sh` to test the hardware mode and `test_sim.sh` to test the simulation mode.
@@ -23,7 +21,7 @@ To reproduce Figure 4, simply run the scripts in order:
 # The plot is generated into histogram_error.pdf
 ./plot.py -f results.csv
 ```
-**Note (runtime).** On an Intel Core i7-8665U CPU, the script runs at a speed of 5 seconds per iteration which nets to a total runtime of about 90 minutes for a complete run. One can control how many tests the `binary_search` script is supposed to run with the `-a` flag which is set to 1000 by default (as this is the reported number in the paper). Example: `./binary_search.py -a 5` to just run 5 tests. We use such a reduced set with 100 runs in the Travis build.
+**Note (runtime).** On an Intel Core i7-8665U CPU, the script runs at a speed of 5 seconds per iteration which nets to a total runtime of about 90 minutes for a complete run. One can control how many tests the `binary_search` script is supposed to run with the `-a` flag which is set to 1000 by default (as this is the reported number in the paper). Example: `./binary_search.py -a 5` to just run 5 tests. We use such a reduced set with 100 runs in the CI build.
 
 **Note (reproducability).** The binary_search script uses a static seed to make the data reproducible.
 

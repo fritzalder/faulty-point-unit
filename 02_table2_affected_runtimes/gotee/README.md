@@ -1,7 +1,5 @@
 # Proof of concept attack on GoTEE
 
-[![build status](https://travis-matrix-badges.herokuapp.com/repos/fritzalder/faulty-point-unit/branches/master/7)](https://travis-ci.org/github/fritzalder/faulty-point-unit)
-
 ## Attack Description
 
 The attack is described in more detail in the gotee-fpu fork of the original GoTEE repository. We added additional information on how to execute the attack in `gotee-fpu/example/hello-world/`. The attack itself is contained in the assembly file `gotee-fpu/src/gosec/assembly_amd64.s` where the MXCSR and FPUCW are poisoned manually.

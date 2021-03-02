@@ -1,13 +1,14 @@
-DOCKER_NAME = sgx-fpu
+IMAGE_NAME = sgx-fpu
+REPOSITORY = docker.pkg.github.com/fritzalder/faulty-point-unit
 
 all: build run
 
 build:
-	docker build -t $(DOCKER_NAME) --no-cache .
+	docker build -t $(IMAGE_NAME) --no-cache .
 
 run:
-	docker run -i -h "badf1oa7" -t $(DOCKER_NAME) 
+	docker run -i -h "badf1oa7" -t $(REPOSITORY)/$(IMAGE_NAME)
 
 pull:
-	docker pull fritzalder/$(DOCKER_NAME)
-	docker run -i -h "badf1oa7" -t fritzalder/$(DOCKER_NAME)
+	docker pull $(REPOSITORY)/$(IMAGE_NAME):latest
+	docker run -i -h "badf1oa7" -t $(REPOSITORY)/$(IMAGE_NAME)

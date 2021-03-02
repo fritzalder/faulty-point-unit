@@ -144,7 +144,7 @@ jobs:
       # Runs this job's script
       - name: Table 3 - Vulnerable Intel SGX-SDK
         run: |
-          SCRIPT="source ./sdk_helper.sh vulnerable && cd 04_section-5_mnist-javascript/eval/ && ./run_tests.py --simulator -a 100 --travis && ./eval.py -p test_output"
+          SCRIPT="source ./sdk_helper.sh vulnerable && cd 04_section-5_mnist-javascript/eval/ && ./run_tests.py --simulator -a 100 --ci && ./eval.py -p test_output"
           docker run ${{ steps.docker-name.outputs.image-id }}:${{ steps.docker-name.outputs.image-version }} /bin/bash -c "$SCRIPT"
   
   table3-patched:
@@ -163,7 +163,7 @@ jobs:
       # Runs this job's script
       - name: Table 3 - Patched Intel SGX-SDK
         run: |
-          SCRIPT="source ./sdk_helper.sh patched && cd 04_section-5_mnist-javascript/eval/ && ./run_tests.py --simulator -a 100 --travis && ./eval.py -p test_output"
+          SCRIPT="source ./sdk_helper.sh patched && cd 04_section-5_mnist-javascript/eval/ && ./run_tests.py --simulator -a 100 --ci && ./eval.py -p test_output"
           docker run ${{ steps.docker-name.outputs.image-id }}:${{ steps.docker-name.outputs.image-version }} /bin/bash -c "$SCRIPT"
   
   table4-vulnerable:
