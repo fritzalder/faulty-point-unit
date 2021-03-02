@@ -5,9 +5,9 @@ on:
     # Publish `master` as Docker `latest` image.
     branches:
       - master
-
-  # run tests for any PRs.
-  pull_request:
+  # Also run on a schedule
+  schedule:
+    - cron: '0 0 1 */1 *'
 
 env:
   IMAGE_NAME: sgx-fpu
