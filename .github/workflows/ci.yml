@@ -4,9 +4,6 @@ name: CI
 
 # Run action after the docker push
 on:
-  #TODO: Remove
-  pull_request: # only temporarily during gh actions migration 
-
   workflow_run:
     workflows:
       - Docker
@@ -21,8 +18,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
+
       # Retrieves the name of the docker image we want to use
-      - uses: ./.github/workflows/scripts/docker-image-name
+      - uses: ./.github/workflows/scripts/docker-image-name/
+
+faulty-point-unit/.github/workflows/scripts/docker-image-name/
+
 
       # Runs this job's script
       - name: Table 1 - Vulnerable Intel SGX-SDK
@@ -34,6 +36,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
+
       # Retrieves the name of the docker image we want to use
       - uses: ./.github/workflows/scripts/docker-image-name
 
