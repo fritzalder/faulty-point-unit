@@ -21,13 +21,14 @@ jobs:
       - uses: actions/checkout@v2
 
       # Retrieves the name of the docker image we want to use
-      - uses: ./.github/workflows/scripts/docker-image-name/
+      - id: docker-name
+        uses: ./.github/workflows/scripts/docker-image-name/
 
       # Runs this job's script
       - name: Table 1 - Vulnerable Intel SGX-SDK
         run: |
           SCRIPT="source ./sdk_helper.sh vulnerable && cd 01_table1_basic-poc && ./eval_simulator.sh"
-          docker run ${{ steps.outputs.image-id }}:${{ steps.outputs.image-version }} /bin/bash -c "$SCRIPT"
+          docker run ${{ steps.docker-name.outputs.image-id }}:${{ steps.docker-name.outputs.image-version }} /bin/bash -c "$SCRIPT"
   
   table1-patched:
     runs-on: ubuntu-latest
@@ -42,4 +43,4 @@ jobs:
       - name: Table 1 - Patched Intel SGX-SDK
         run: |
           SCRIPT="source ./sdk_helper.sh patched && cd 01_table1_basic-poc && ./eval_simulator.sh"
-          docker run ${{ steps.outputs.image-id }}:${{ steps.outputs.image-version }} /bin/bash -c "$SCRIPT"
+          docker run ${{ steps.docker-name.outputs.image-id }}:${{ steps.docker-name.outputs.image-version }} /bin/bash -c "$SCRIPT"
