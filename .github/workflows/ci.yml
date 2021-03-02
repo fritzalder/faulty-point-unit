@@ -24,6 +24,9 @@ jobs:
       - id: docker-name
         uses: ./.github/workflows/scripts/docker-image-name/
 
+      - name: Log into registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+
       # Runs this job's script
       - name: Table 1 - Vulnerable Intel SGX-SDK
         run: |
@@ -38,6 +41,9 @@ jobs:
 
       # Retrieves the name of the docker image we want to use
       - uses: ./.github/workflows/scripts/docker-image-name
+
+      - name: Log into registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
 
       # Runs this job's script
       - name: Table 1 - Patched Intel SGX-SDK
