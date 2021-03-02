@@ -1,0 +1,34 @@
+name: 'Get Docker image name'
+description: 'Generates the docker image name and version based on merge PR or master push'
+outputs:
+  image-name:
+    description: "Docker image name"
+    value: ${{ steps.image-name.outputs.name }}
+  image-version:
+    description: "Version tag of the Docker image"
+    value: ${{ steps.image-name.outputs.version }}
+  image-id:
+    description: "Full image URL"
+    value: ${{ steps.image-name.outputs.id }}
+runs:
+  using: "composite"
+  steps:
+    - run: |
+        IMAGE_NAME=sgx-fpu
+        IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
+        # Change all uppercase to lowercase
+        IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+        # Strip git ref prefix from version
+        VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+        # Strip "v" prefix from tag name
+        [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+        # Use Docker `latest` tag convention
+        [ "$VERSION" == "master" ] && VERSION=latest
+        echo IMAGE_ID=$IMAGE_ID
+        echo VERSION=$VERSION
+        echo "::set-output image-name::$(echo $IMAGE_NAME)"
+        echo "::set-output image-version::$(echo $VERSION)"
+        echo "::set-output image-id::$(echo $IMAGE_ID)"
+      shell: bash
+
+
