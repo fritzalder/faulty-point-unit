@@ -26,9 +26,9 @@ runs:
         [ "$VERSION" == "master" ] && VERSION=latest
         echo IMAGE_ID=$IMAGE_ID
         echo VERSION=$VERSION
-        echo "::set-output image-name::$(echo $IMAGE_NAME)"
-        echo "::set-output image-version::$(echo $VERSION)"
-        echo "::set-output image-id::$(echo $IMAGE_ID)"
+        echo "::set-output name=image-name::$(echo $IMAGE_NAME)"
+        echo "::set-output name=image-version::$(echo $VERSION)"
+        echo "::set-output name=image-id::$(echo $IMAGE_ID)"
       shell: bash
 
 
