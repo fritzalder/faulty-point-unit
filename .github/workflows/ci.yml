@@ -1,0 +1,28 @@
+# This is the ci workflow to run after the docker push
+
+name: CI
+
+# Run action after the docker push
+on:
+  workflow_run:
+    workflows:
+      - Docker
+    types:
+      - completed
+
+  # Allows to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  table1-vulnerable:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Retrieves the name of the docker image we want to use
+      - uses: actions/docker-image-action@v1
+
+      # Runs this jobs script
+      - name: Table 1 - Vulnerable Intel SGX-SDK
+        run: |
+          SCRIPT="source ./sdk_helper.sh vulnerable && cd 01_table1_basic-poc && ./eval_simulator.sh"
+          docker run ${{ steps.outputs.image-id }}:${{ steps.outputs.image-version }} /bin/bash -c "$SCRIPT"
