@@ -3,17 +3,18 @@ description: 'Generates the docker image name and version based on merge PR or m
 outputs:
   image-name:
     description: "Docker image name"
-    value: ${{ steps.image-name.outputs.name }}
+    value: ${{ steps.generate-name.outputs.name }}
   image-version:
     description: "Version tag of the Docker image"
-    value: ${{ steps.image-name.outputs.version }}
+    value: ${{ steps.generate-name.outputs.version }}
   image-id:
     description: "Full image URL"
-    value: ${{ steps.image-name.outputs.id }}
+    value: ${{ steps.generate-name.outputs.id }}
 runs:
   using: "composite"
   steps:
-    - run: |
+    - id: generate-name
+      run: |
         IMAGE_NAME=sgx-fpu
         IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
         # Change all uppercase to lowercase
@@ -26,9 +27,9 @@ runs:
         [ "$VERSION" == "master" ] && VERSION=latest
         echo IMAGE_ID=$IMAGE_ID
         echo VERSION=$VERSION
-        echo "::set-output name=image-name::$(echo $IMAGE_NAME)"
-        echo "::set-output name=image-version::$(echo $VERSION)"
-        echo "::set-output name=image-id::$(echo $IMAGE_ID)"
+        echo "::set-output name=name::$(echo $IMAGE_NAME)"
+        echo "::set-output name=version::$(echo $VERSION)"
+        echo "::set-output name=id::$(echo $IMAGE_ID)"
       shell: bash
 
 
