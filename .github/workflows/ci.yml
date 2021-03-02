@@ -51,3 +51,155 @@ jobs:
         run: |
           SCRIPT="source ./sdk_helper.sh patched && cd 01_table1_basic-poc && ./eval_simulator.sh"
           docker run ${{ steps.docker-name.outputs.image-id }}:${{ steps.docker-name.outputs.image-version }} /bin/bash -c "$SCRIPT"
+  
+  table2-lkl:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # Retrieves the name of the docker image we want to use
+      - id: docker-name
+        uses: ./.github/workflows/scripts/docker-image-name/
+
+      - name: Log into registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+
+      # Runs this job's script
+      - name: Table 2 - Build and run vulnerable SGX-LKL runtime
+        run: |
+          SCRIPT="cd 02_table2_affected_runtimes/sgx-lkl/ && sudo ./build.sh && sudo ./run-test.sh && cat sgx-lkl-poisoned-run.txt"
+          docker run ${{ steps.docker-name.outputs.image-id }}:${{ steps.docker-name.outputs.image-version }} /bin/bash -c "$SCRIPT"
+  
+  table2-oe:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # Retrieves the name of the docker image we want to use
+      - id: docker-name
+        uses: ./.github/workflows/scripts/docker-image-name/
+
+      - name: Log into registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+
+      # Runs this job's script
+      - name: Table 2 - Build and run vulnerable OE runtime
+        run: |
+          SCRIPT="cd /faulty-point-unit/02_table2_affected_runtimes/openenclave/ && sudo dpkg -i Ubuntu_1804_open-enclave_0.10.0_amd64.deb && source /opt/openenclave/share/openenclave/openenclaverc && cd hello-fpu/ && make && make simulate"
+          docker run ${{ steps.docker-name.outputs.image-id }}:${{ steps.docker-name.outputs.image-version }} /bin/bash -c "$SCRIPT"
+  
+  table2-gotee:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # Retrieves the name of the docker image we want to use
+      - id: docker-name
+        uses: ./.github/workflows/scripts/docker-image-name/
+
+      - name: Log into registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+
+      # Runs this job's script
+      - name: Table 2 - Build and run vulnerable GoTEE runtime
+        run: |
+          SCRIPT="cd 02_table2_affected_runtimes/gotee/gotee-fpu/ && go get github.com/aghosn/serializer && PATH=$PATH:$HOME/go/bin && sudo make && cd example/hello-world/ && make && SIM=1 ./main"
+          docker run ${{ steps.docker-name.outputs.image-id }}:${{ steps.docker-name.outputs.image-version }} /bin/bash -c "$SCRIPT"
+  
+  table2-rustedp:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # Retrieves the name of the docker image we want to use
+      - id: docker-name
+        uses: ./.github/workflows/scripts/docker-image-name/
+
+      - name: Log into registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+
+      # Runs this job's script
+      - name: Table 2 - Build vulnerable Rust-EDP runtime
+        run: |
+          SCRIPT="cd 02_table2_affected_runtimes/rust-edp/ && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup-init.sh && sh ./rustup-init.sh -y && source ~/.cargo/env && rustup default nightly-2020-02-01 && rustup target add x86_64-fortanix-unknown-sgx --toolchain nightly-2020-02-01 && rustc --version && cd rust-sgx-fpu/ && cargo install --locked --path ./fortanix-sgx-tools fortanix-sgx-tools && cargo install --locked --path ./sgxs-tools sgxs-tools && cd ../hello-world/ && cargo build --target x86_64-fortanix-unknown-sgx"
+          docker run ${{ steps.docker-name.outputs.image-id }}:${{ steps.docker-name.outputs.image-version }} /bin/bash -c "$SCRIPT"
+  
+  table3-vulnerable:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # Retrieves the name of the docker image we want to use
+      - id: docker-name
+        uses: ./.github/workflows/scripts/docker-image-name/
+
+      - name: Log into registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+
+      # Runs this job's script
+      - name: Table 3 - Vulnerable Intel SGX-SDK
+        run: |
+          SCRIPT="source ./sdk_helper.sh vulnerable && cd 04_section-5_mnist-javascript/eval/ && ./run_tests.py --simulator -a 100 --travis && ./eval.py -p test_output"
+          docker run ${{ steps.docker-name.outputs.image-id }}:${{ steps.docker-name.outputs.image-version }} /bin/bash -c "$SCRIPT"
+  
+  table3-patched:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # Retrieves the name of the docker image we want to use
+      - id: docker-name
+        uses: ./.github/workflows/scripts/docker-image-name/
+
+      - name: Log into registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+
+      # Runs this job's script
+      - name: Table 3 - Patched Intel SGX-SDK
+        run: |
+          SCRIPT="source ./sdk_helper.sh patched && cd 04_section-5_mnist-javascript/eval/ && ./run_tests.py --simulator -a 100 --travis && ./eval.py -p test_output"
+          docker run ${{ steps.docker-name.outputs.image-id }}:${{ steps.docker-name.outputs.image-version }} /bin/bash -c "$SCRIPT"
+  
+  table4-vulnerable:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # Retrieves the name of the docker image we want to use
+      - id: docker-name
+        uses: ./.github/workflows/scripts/docker-image-name/
+
+      - name: Log into registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+
+      # Runs this job's script
+      - name: Figure 4 - Vulnerable Intel SGX-SDK
+        run: |
+          SCRIPT="source ./sdk_helper.sh vulnerable && cd 03_section-4_controlled-channel && ./test_sim.sh && ./binary_search.py -a 100 && ./plot.py -f results.csv"
+          docker run ${{ steps.docker-name.outputs.image-id }}:${{ steps.docker-name.outputs.image-version }} /bin/bash -c "$SCRIPT"
+  
+  table4-patched:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # Retrieves the name of the docker image we want to use
+      - id: docker-name
+        uses: ./.github/workflows/scripts/docker-image-name/
+
+      - name: Log into registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+
+      # Runs this job's script
+      - name: Figure 4 - Patched Intel SGX-SDK
+        run: |
+          SCRIPT="source ./sdk_helper.sh patched && cd 03_section-4_controlled-channel && ./test_sim.sh && ./binary_search.py -a 100 && ./plot.py -f results.csv"
+          docker run ${{ steps.docker-name.outputs.image-id }}:${{ steps.docker-name.outputs.image-version }} /bin/bash -c "$SCRIPT"
