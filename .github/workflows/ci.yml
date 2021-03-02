@@ -22,7 +22,7 @@ jobs:
 
     steps:
       # Retrieves the name of the docker image we want to use
-      - uses: actions/docker-image-action@v1
+      - uses: actions/docker-image-name-action@v1
 
       # Runs this job's script
       - name: Table 1 - Vulnerable Intel SGX-SDK
@@ -35,7 +35,7 @@ jobs:
 
     steps:
       # Retrieves the name of the docker image we want to use
-      - uses: actions/docker-image-action@v1
+      - uses: actions/docker-image-name-action@v1
 
       # Runs this job's script
       - name: Table 1 - Patched Intel SGX-SDK
