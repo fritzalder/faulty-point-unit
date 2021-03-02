@@ -4,6 +4,9 @@ name: CI
 
 # Run action after the docker push
 on:
+  #TODO: Remove
+  pull_request: # only temporarily during gh actions migration 
+
   workflow_run:
     workflows:
       - Docker
