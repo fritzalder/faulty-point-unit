@@ -83,9 +83,9 @@ def parse_args():
         help="Log verbosely.",
     )
     parser.add_argument(
-        "--travis",
+        "--ci",
         required=False, default=False, action='store_true',
-        help="Use a fixed deterministic directory name to ease Travis scripting.",
+        help="Use a fixed deterministic directory name to ease CI scripting.",
     )
     parser.add_argument(
         "-s", "--simulator",
@@ -131,8 +131,8 @@ def main():
     stop_index = args.amount + start_index
     filename = timestamp + '_' + str(start_index) + '-' + str(stop_index) 
     filename += "_HW-RUN" if run_in_hw else "_SIM-RUN"
-    # Reset filename to a fixed string if we use travis.
-    if args.travis:
+    # Reset filename to a fixed string if we use ci.
+    if args.ci:
         filename = "test_output"
     out_path = os.path.normpath(out_base_path + '/' + filename )
     create_dir_if_not_exist(out_path)
