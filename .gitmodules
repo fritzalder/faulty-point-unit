@@ -18,5 +18,5 @@
 	url = https://github.com/jovanbulck/rust-sgx.git
 [submodule "02_table2_affected_runtimes/sgx-lkl/sgx-lkl-legacy"]
 	path = 02_table2_affected_runtimes/sgx-lkl/sgx-lkl-legacy
-	url = https://github.com/lsds/sgx-lkl.git
-	branch = legacy
+	url = https://github.com/fritzalder/sgx-lkl.git
+	branch = faulty-point-artifact
